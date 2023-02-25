@@ -1,0 +1,81 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+.forma {
+    width: 100%;
+    height: 20vh;
+    background-color: #413b6b;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+
+}
+
+body {
+
+    background-color: #edf3c5;
+}
+
+.list-json {
+
+    margin-top: 2rem;
+    border: 1px solid#413b6b;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+pre {
+    padding-left: 3rem;
+}
+
+
+.list-json h2 {
+
+    text-align: center;
+    color: white;
+    background-color: #413b6b;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+
+form {
+    color: white;
+    background-color: #413b6b;
+    border: 1px solid #413b6b;
+    width: 70%;
+    padding: 1rem;
+}
+
+form legend {
+    text-align: center;
+
+
+}
+
+.button-submit {
+    background-color: #6f95ff;
+    color: #301c41;
+}
+
+table {
+    color: white;
+    background-color: #413b6b;
+    border: 1px solid #413b6b !important;
+}
+
+.column {
+    color: white;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.modal-back {
+    color: white;
+    background-color: #413b6b;
+}

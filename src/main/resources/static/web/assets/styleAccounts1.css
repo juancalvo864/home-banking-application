@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.main-home {
+    min-height: 100vh;
+}
+
+.box-main-home {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box-header {
+    width: 100%;
+    height: 10vh;
+    background-color: #3f454e;
+}
+
+.logo-header {
+    height: 3.5rem;
+
+}
+
+.box-logo-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.menu-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    background-color: white;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border: none;
+    text-align: center;
+}
+
+.list-nav {
+    background-color: #3f454e;
+}
+
+.usuario {
+    color: white;
+
+}
+
+.menu-slide {
+
+    height: 60vh;
+    width: 15vw;
+
+}
+
+.button-menu-collapse {
+    display: flex;
+    justify-content: center;
+
+}
+
+.box-main-home {
+    display: flex;
+}
+
+.box-taxes {
+    text-align: center;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.taxes {
+    background-color: #adb5bd;
+    border-radius: 10px;
+    border: 1px solid #adb5bd;
+    width: 15rem;
+    height: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.title-accounts {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 5px;
+    color: white;
+    background-color: #3f454e;
+}
+
+.box-table-accounts {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 60vw;
+}
+
+.table-striped {
+    background-color: #6bb4e5ba;
+    border-radius: 5px;
+}
+
+th,
+td {
+    text-align: center;
+}
+
+.card-container {
+    width: 350px;
+    height: 220px;
+    background-image: linear-gradient(#453F78, #3F2E56, #401F3E);
+    color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card-name {
+    font-weight: 700;
+    text-align: right;
+}
+
+.chip {
+    margin-top: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.chip img {
+    width: 40px;
+    height: 40px;
+}
+
+.card-no {
+    letter-spacing: .456rem;
+    margin-top: 10px;
+}
+
+.expire-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.expire-date {
+    margin-top: 6px;
+}
+
+.date-label {
+    font-size: 8px;
+}
+
+.card-type {
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+    width: 70px;
+    height: 80px;
+}
+
+.card-type img {
+    width: 70px;
+    height: 40px;
+}
+
+.logo-creditcard {
+    width: 9rem;
+}
