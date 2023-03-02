@@ -24,7 +24,11 @@ body {
     font-size: 15px;
     line-height: 1.7;
     color: #c4c3ca;
-    background-color: #1f2029;
+    /*   background-color: #1f2029; */
+    background-image: linear-gradient(rgba(1, 1, 1, 0.7), rgba(1, 1, 1, 0.7)), url(../images/background.jpg);
+    background-position: center;
+
+
     overflow-x: hidden;
 }
 

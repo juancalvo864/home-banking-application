@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>NUMBA | Cards</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="./assets/accounts.css">
 </head>
 
@@ -25,7 +26,7 @@
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle navbar-brand navbar-dark" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="img-usuario" src="./images/pexels-pixabay-358532.jpg" alt="">
+                            <img class="img-usuario" src="./images/nick-hillier-aQcE3gDSSTY-unsplash.jpg" alt="">
                             <div>
                                 <p>Welcome!</p>
                                 <p>{{dataClients.firstName + " "}} {{dataClients.lastName}} </p>
@@ -50,7 +51,7 @@
                                 <a class="nav-link" href="./cards.html">Cards</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./createCards.html">Transactions</a>
+                                <a class="nav-link" href="./createCards.html">Create cards</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -58,9 +59,9 @@
                                     More options
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="./loanApplication.html">Loan application</a></li>
+                                    <li><a class="dropdown-item" href="./transfers.html">Transfers</a></li>
+                                    <li><a class="dropdown-item" href="./servicePay.html">Service pay</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -71,20 +72,22 @@
         <main>
             <div class="subContainer-cards ">
                 <h2 style="text-align: center; font-size: 2rem;"> Cards</h2>
-                <div class="Container-cards">
+                <div class="Container-cards-section">
                     <div class="Container-card">
                         <h3 style="text-align: center;">Debit Card</h3>
-                        <template v-if="cards" v-for="card of cards">
-                            <div class="flip-card" v-if="card.type == `DEBIT`">
-                                <div class="flip-card-inner">
-                                    <div :class="'flip-card-front '+ card.color.toLowerCase()">
-                                        <p class="heading">{{card.color}} </p>
-                                        <img class="logo-numba-card" src="./images/logo-homebanking.jpg" alt="">
-                                        <img class="logo-card-visa" src="./images/visaCard.png" alt="">
-                                        <svg xml:space="preserve" viewBox="0 0 50 50" height="35px" width="35px" y="0px"
-                                            x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                            xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="chip" version="1.1">
-                                            <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                        <div v-if="cards.length !== 0" class="container-card-section">
+                            <template v-for="card of cards">
+                                <div class="flip-card" v-if="card.type == `DEBIT`">
+                                    <div class="flip-card-inner">
+                                        <div :class="'flip-card-front '+ card.color.toLowerCase()">
+                                            <p class="heading">{{card.color}} </p>
+                                            <img class="logo-numba-card" src="./images/logo-homebanking.jpg" alt="">
+                                            <img class="logo-card-visa" src="./images/visaCard.png" alt="">
+                                            <svg xml:space="preserve" viewBox="0 0 50 50" height="35px" width="35px"
+                                                y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="chip"
+                                                version="1.1">
+                                                <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
                                   AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB6VBMVEUAAACNcTiVeUKVeUOY
                                   fEaafEeUeUSYfEWZfEaykleyklaXe0SWekSZZjOYfEWYe0WXfUWXe0WcgEicfkiXe0SVekSXekSW
                                   ekKYe0a9nF67m12ZfUWUeEaXfESVekOdgEmVeUWWekSniU+VeUKVeUOrjFKYfEWliE6WeESZe0GS
@@ -110,13 +113,13 @@
                                   cmVhdGUAMjAyMy0wMi0xM1QwODoxNToyOSswMDowMEUnN7UAAAAldEVYdGRhdGU6bW9kaWZ5ADIw
                                   MjMtMDItMTNUMDg6MTU6MjkrMDA6MDA0eo8JAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDIzLTAy
                                   LTEzVDA4OjE1OjI5KzAwOjAwY2+u1gAAAABJRU5ErkJggg==" y="0" x="0" height="50" width="50"
-                                                id="image0"></image>
-                                        </svg>
-                                        <svg xml:space="preserve" viewBox="0 0 50 50" height="30px" width="30px" y="0px"
-                                            x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                            xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="contactless"
-                                            version="1.1">
-                                            <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                                                    id="image0"></image>
+                                            </svg>
+                                            <svg xml:space="preserve" viewBox="0 0 50 50" height="30px" width="30px"
+                                                y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="contactless"
+                                                version="1.1">
+                                                <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
                                   AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZ
                                   cwAACxMAAAsTAQCanBgAAAAHdElNRQfnAg0IEzgIwaKTAAADDklEQVRYw+1XS0iUURQ+f5qPyjQf
                                   lGRFEEFK76koKGxRbWyVVLSOgsCgwjZBJJYuKogSIoOonUK4q3U0WVBWFPZYiIE6kuArG3VGzK/F
@@ -136,47 +139,52 @@
                                   MTNUMDg6MTk6NTYrMDA6MDCjlq7LAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTEzVDA4OjE5
                                   OjU2KzAwOjAw0ssWdwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0xM1QwODoxOTo1Nisw
                                   MDowMIXeN6gAAAAASUVORK5CYII=" y="0" x="0" height="50" width="50" id="image0">
-                                            </image>
-                                        </svg>
-                                        <p class="number">{{card.number}} </p>
-                                        <p class="valid_thru "> Valid dates </p>
-                                        <p class="fromDate">{{card.fromDate}} </p>
-                                        <p class="thruDate">{{card.thruDate}} </p>
-                                        <p class="name">{{card.cardholder}}</p>
-                                    </div>
-                                    <div :class="'flip-card-back '+ card.color.toLowerCase()">
-                                        <div class="strip"></div>
-                                        <div class="mstrip"></div>
-                                        <div class="sstrip">
-                                            <p class="code">cvv {{card.cvv}} </p>
+                                                </image>
+                                            </svg>
+                                            <p class="number">{{card.number}} </p>
+                                            <p class="valid_thru "> Valid dates </p>
+                                            <p class="fromDate">{{card.fromDate}} </p>
+                                            <p class="thruDate">{{card.thruDate}} </p>
+                                            <p class="name">{{card.cardholder}}</p>
                                         </div>
-                                        <p class="text-card-one">This card is property of Numba Bank. Misuse is
-                                            criminal offence. If
-                                            found, please
-                                            return to Numba Bank or to the nearest bank with MasterCard logo.
-                                        </p>
+                                        <div :class="'flip-card-back '+ card.color.toLowerCase()">
+                                            <div class="strip"></div>
+                                            <div class="mstrip"></div>
+                                            <div class="sstrip">
+                                                <p class="code">cvv {{card.cvv}} </p>
+                                            </div>
+                                            <p class="text-card-one">This card is property of Numba Bank. Misuse is
+                                                criminal offence. If
+                                                found, please
+                                                return to Numba Bank or to the nearest bank with MasterCard logo.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
+                            </template>
+                        </div>
+                        <div v-else class="d-flex justify-content-center">
+                            <div class="box-account ">
+                                <h1>Has no cards!</h1>
                             </div>
-                        </template>
-                        <div class="box-account" v-else>
-                            <h1>Has no cards!</h1>
                         </div>
                     </div>
 
                     <div class="Container-card">
                         <h3 style="text-align: center;">Credit card</h3>
-                        <template v-if="cards" v-for="card of cards">
-                            <div class="flip-card" v-if="card.type == `CREDIT`">
-                                <div class="flip-card-inner">
-                                    <div :class="'flip-card-front ' + card.color.toLowerCase()">
-                                        <p class="heading">{{card.color}} </p>
-                                        <img class="logo-numba-card" src="./images/logo-homebanking.jpg" alt="">
-                                        <img class="logo-card-visa" src="./images/visaCard.png" alt="">
-                                        <svg xml:space="preserve" viewBox="0 0 50 50" height="30px" width="30px" y="0px"
-                                            x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                            xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="chip" version="1.1">
-                                            <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                        <div v-if="cards.length !== 0" class="container-card-section">
+                            <template v-for="card of cards">
+                                <div class="flip-card" v-if="card.type == `CREDIT`">
+                                    <div class="flip-card-inner">
+                                        <div :class="'flip-card-front ' + card.color.toLowerCase()">
+                                            <p class="heading">{{card.color}} </p>
+                                            <img class="logo-numba-card" src="./images/logo-homebanking.jpg" alt="">
+                                            <img class="logo-card-visa" src="./images/visaCard.png" alt="">
+                                            <svg xml:space="preserve" viewBox="0 0 50 50" height="30px" width="30px"
+                                                y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="chip"
+                                                version="1.1">
+                                                <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
                                       AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB6VBMVEUAAACNcTiVeUKVeUOY
                                       fEaafEeUeUSYfEWZfEaykleyklaXe0SWekSZZjOYfEWYe0WXfUWXe0WcgEicfkiXe0SVekSXekSW
                                       ekKYe0a9nF67m12ZfUWUeEaXfESVekOdgEmVeUWWekSniU+VeUKVeUOrjFKYfEWliE6WeESZe0GS
@@ -202,13 +210,13 @@
                                       cmVhdGUAMjAyMy0wMi0xM1QwODoxNToyOSswMDowMEUnN7UAAAAldEVYdGRhdGU6bW9kaWZ5ADIw
                                       MjMtMDItMTNUMDg6MTU6MjkrMDA6MDA0eo8JAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDIzLTAy
                                       LTEzVDA4OjE1OjI5KzAwOjAwY2+u1gAAAABJRU5ErkJggg==" y="0" x="0" height="50"
-                                                width="50" id="image0"></image>
-                                        </svg>
-                                        <svg xml:space="preserve" viewBox="0 0 50 50" height="30px" width="30px" y="0px"
-                                            x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                            xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="contactless"
-                                            version="1.1">
-                                            <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                                                    width="50" id="image0"></image>
+                                            </svg>
+                                            <svg xml:space="preserve" viewBox="0 0 50 50" height="30px" width="30px"
+                                                y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="contactless"
+                                                version="1.1">
+                                                <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
                                       AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZ
                                       cwAACxMAAAsTAQCanBgAAAAHdElNRQfnAg0IEzgIwaKTAAADDklEQVRYw+1XS0iUURQ+f5qPyjQf
                                       lGRFEEFK76koKGxRbWyVVLSOgsCgwjZBJJYuKogSIoOonUK4q3U0WVBWFPZYiIE6kuArG3VGzK/F
@@ -228,31 +236,34 @@
                                       MTNUMDg6MTk6NTYrMDA6MDCjlq7LAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTEzVDA4OjE5
                                       OjU2KzAwOjAw0ssWdwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0xM1QwODoxOTo1Nisw
                                       MDowMIXeN6gAAAAASUVORK5CYII=" y="0" x="0" height="50" width="50" id="image0">
-                                            </image>
-                                        </svg>
-                                        <p class="number">{{card.number}} </p>
-                                        <p class="valid_thru "> Valid dates </p>
-                                        <p class="fromDate">{{card.fromDate}} </p>
-                                        <p class="thruDate">{{card.thruDate}} </p>
-                                        <p class="name">{{card.cardholder}}</p>
-                                    </div>
-                                    <div :class="'flip-card-back '+ card.color.toLowerCase()">
-                                        <div class="strip"></div>
-                                        <div class="mstrip"></div>
-                                        <div class="sstrip">
-                                            <p class="code">cvv {{card.cvv}} </p>
+                                                </image>
+                                            </svg>
+                                            <p class="number">{{card.number}} </p>
+                                            <p class="valid_thru "> Valid dates </p>
+                                            <p class="fromDate">{{card.fromDate}} </p>
+                                            <p class="thruDate">{{card.thruDate}} </p>
+                                            <p class="name">{{card.cardholder}}</p>
                                         </div>
-                                        <p class="text-card-one">This card is property of Numba Bank. Misuse is
-                                            criminal offence. If
-                                            found, please
-                                            return to Numba Bank or to the nearest bank with MasterCard logo.
-                                        </p>
+                                        <div :class="'flip-card-back '+ card.color.toLowerCase()">
+                                            <div class="strip"></div>
+                                            <div class="mstrip"></div>
+                                            <div class="sstrip">
+                                                <p class="code">cvv {{card.cvv}} </p>
+                                            </div>
+                                            <p class="text-card-one">This card is property of Numba Bank. Misuse is
+                                                criminal offence. If
+                                                found, please
+                                                return to Numba Bank or to the nearest bank with MasterCard logo.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
+                            </template>
+                        </div>
+                        <div v-else class="d-flex justify-content-center">
+                            <div class="box-account ">
+                                <h1>Has no cards!</h1>
                             </div>
-                        </template>
-                        <div class="box-account" v-else>
-                            <h1>Has no cards!</h1>
                         </div>
                     </div>
                 </div>

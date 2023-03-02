@@ -1,3 +1,8 @@
+
+
+
+
+
 const { createApp } = Vue
 createApp({
     data() {
@@ -15,8 +20,6 @@ createApp({
         this.params();
 
 
-
-
     },
     methods: {
         loadData() {
@@ -25,6 +28,7 @@ createApp({
                     this.dataClients = res
                     this.clients = this.dataClients.data
                     this.accounts = this.clients.accounts
+
                 })
         },
         params() {
@@ -74,8 +78,10 @@ createApp({
             })
         },
 
+
     },
 
 
 
 }).mount("#app")
+

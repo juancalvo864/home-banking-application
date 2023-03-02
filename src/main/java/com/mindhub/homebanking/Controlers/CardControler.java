@@ -1,5 +1,7 @@
 package com.mindhub.homebanking.Controlers;
 
+import com.mindhub.homebanking.dtos.AccountDTO;
+import com.mindhub.homebanking.dtos.CardDTO;
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.CardRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
@@ -15,7 +17,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.Set;
-import static com.mindhub.homebanking.Controlers.ClientController.getAccountNumber;
 import static java.time.LocalDate.now;
 import static java.util.stream.Collectors.toSet;
 
@@ -31,6 +32,10 @@ public class CardControler {
 
     private ClientRepository repoClient;
 
+    @RequestMapping("/clients/current/cards")
+    public  Set<CardDTO> getCardsCurrent(Authentication authentication) {
+        return repoClient.findByEmail(authentication.getName()).getCards().stream().map(card -> new CardDTO(card)).collect(toSet());
+    }
 
     @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
     public ResponseEntity<Object> createCard(Authentication authentication, @RequestParam CardType type, @RequestParam CardColor color) {
@@ -61,7 +66,7 @@ public class CardControler {
 
     public  String getCardNumber() {
         Random rand = new Random();
-        int number = rand.nextInt(10000);
+        int    number = rand.nextInt(10000);
         String stringNumber = String.format("%04d", number);
         return stringNumber;
     }

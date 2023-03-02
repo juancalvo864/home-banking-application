@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.http.HttpRequest;
 
+
 @EnableWebSecurity
 @Configuration
 public class WebAuthorization extends WebSecurityConfigurerAdapter {
@@ -21,20 +22,25 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests()
-                .antMatchers("/web/index.html").permitAll()
+                .antMatchers("/web/index.html","/web/assets/**","/web/javaScript/**","/web/images/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
-                .antMatchers(HttpMethod.PUT, "/api/clients").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PATCH, "/api/clients").hasRole("ADMIN")
-                .antMatchers("/manager/manager.html").hasAuthority("ADMI")
-                .antMatchers("/api/client").hasAuthority("ADMI")
-                .antMatchers("/h2-console").hasAuthority("ADMI")
-                .antMatchers("/rest/**").hasAuthority("ADMI")
-                .antMatchers("/api/client/**").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST, "/api/clients/current/accounts").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.GET, "/api/clients/current/accounts").hasAuthority("CLIENT")
                 .antMatchers( HttpMethod.POST,"/api/clients/current/cards").hasAuthority("CLIENT")
-                .antMatchers("/web/accounts.html").hasAuthority("CLIENT")
-                .antMatchers("/web/account.html").hasAuthority("CLIENT")
-                .antMatchers("/web/cards.html").hasAuthority("CLIENT");
+                .antMatchers( HttpMethod.GET,"/api/clients/current/cards").hasAuthority("CLIENT")
+                .antMatchers( HttpMethod.POST,"/api/clients/current/transaction").hasAuthority("CLIENT")
+                .antMatchers( HttpMethod.PATCH,"/api/clients/current/transaction").hasAuthority("CLIENT")
+                .antMatchers("/manager/**.html").hasAuthority("ADMIN")
+                .antMatchers("/api/clients").hasAuthority("ADMIN")
+                .antMatchers("/h2-console/**").hasAuthority("ADMIN")
+                .antMatchers("/rest/**").hasAuthority("ADMIN")
+                .antMatchers("/api/client/current").hasAuthority("CLIENT")
+                .antMatchers("/web/**").hasAuthority("CLIENT");
+
+
+
+
+
 
 
         http.formLogin()
@@ -76,13 +82,9 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
     }
     private void clearAuthenticationAttributes(HttpServletRequest request) {
-
         HttpSession session = request.getSession(false);
-
         if (session != null) {
-
             session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
-
         }
 
     }

@@ -19,8 +19,9 @@ import java.util.Objects;
 @Configuration
 public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
     @Autowired
-
     ClientRepository clientRepository;
+
+
     @Bean
     public PasswordEncoder passwordEncoder() {
 
@@ -31,31 +32,19 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
 
     @Override
-
     public void init(AuthenticationManagerBuilder auth) throws Exception {
-
-
         auth.userDetailsService(inputName-> {
-
             Client  client= clientRepository.findByEmail(inputName);
-
-
-            if(inputName.equals("admin@mindhub.com")) {
-
-                return new User(client.getEmail(), client.getPassword(),
-
-                        AuthorityUtils.createAuthorityList("ADMIN"));
-
-            } else if (client != null) {
-
-                return new User(client.getEmail(), client.getPassword(),
-
-                        AuthorityUtils.createAuthorityList("CLIENT"));
-
-            } else {
-
+            if(client != null) {
+                if (inputName.equals("admin@mindhub.com")) {
+                    return new User(client.getEmail(), client.getPassword(),
+                            AuthorityUtils.createAuthorityList("ADMIN"));
+                } else {
+                    return new User(client.getEmail(), client.getPassword(),
+                            AuthorityUtils.createAuthorityList("CLIENT"));
+                }
+            }else {
                 throw new UsernameNotFoundException("Unknown user: " + inputName);
-
             }
 
         });

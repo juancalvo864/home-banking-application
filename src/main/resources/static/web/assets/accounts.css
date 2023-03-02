@@ -1,22 +1,44 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
+
+
+body {
+    font-family: Roboto, sans-serif;
+
+}
+
+#chart {
+    max-width: 650px;
+    margin: 35px auto;
+}
+
 main {
-    background-color: #1a1d21;
+    /* background-color: #1a1d2125; */
+    background-image: linear-gradient(rgba(1, 1, 1, 0.8), rgba(1, 1, 1, 0.9)), url(https://www.mckinsey.com/~/media/mckinsey/business%20functions/risk/our%20insights/the%20future%20of%20bank%20risk%20management/the-future-of-bank_1536x1536_300_standard.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
     min-height: 100vh;
     padding: 2rem 1rem;
 }
 
 
 /* -------------------------start header-------------------------- */
+
+
 .header-logo {
     display: flex;
     align-items: center;
-    background-color: #212529;
+    background-color: #21252950;
     height: 6rem;
+
 }
 
 .logo-header {
@@ -33,7 +55,27 @@ main {
     flex-direction: row-reverse;
 }
 
+.nav-link {
+    margin-right: 1rem;
+    font-size: 1.1rem;
+
+    border-bottom: 1px solid white;
+    border-radius: 2px;
+
+}
+
+.nav-link:hover {
+    background: rgba(75, 110, 175, 0.233);
+    border-radius: 5px;
+    transform: scale(1.1);
+    border: 1px solid white;
+
+}
+
+
+
 .navbar-brand {
+    background-color: transparent !important;
     padding-right: 1rem;
     display: flex;
     align-items: center;
@@ -73,82 +115,163 @@ main {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 2rem;
-    gap: 1rem;
+    gap: 8rem;
+
+}
+
+
+
+.box-only-accounts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5rem;
+
+}
+
+.container-account {
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323;
+    border-radius: 22px;
+    transition: all .3s;
 }
 
 .box-account {
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    background-color: #212529;
-    border-radius: 10px;
+    height: 100%;
+    border-radius: 17px;
+    background: linear-gradient(145deg, #151414, #191818);
     color: white;
     width: 350px;
+    transition: all .2s;
 
+
+}
+
+.box-account:hover {
+    transform: scale(0.97);
+    border-radius: 20px;
+}
+
+.container-account:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+
+.click-here:hover {
+    color: #00ff75
+}
+
+.click-here {
+    text-align: center;
+    font-size: .8rem;
+}
+
+.container-total-balance {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 17px;
+    background: linear-gradient(145deg, #151414, #191818);
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323;
+    color: white;
+    width: 350px;
+    transition: all .3s;
+}
+
+.container-total-balance:hover {
+    transform: scale(1.2);
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
 }
 
 .box-total-balance {
-    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #212529;
-    border-radius: 10px;
-    color: white;
-    width: 350px;
+    width: 100%;
 }
 
 .container-main-transactions {
-    border: 4px solid #212529;
-    border-radius: 10px;
+    border-radius: 17px;
     padding: 1rem;
     color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.container-main-transactions table {
+    border-radius: 15px;
+    background: linear-gradient(145deg, #151414, #191818);
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323;
+    max-width: 90%;
 }
 
 .container-loans-and-cards {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     gap: 2rem;
     margin-top: 2rem;
     width: 100%;
 }
 
 .container-loans-and-title {
-    border: 5px solid #212529;
     color: white;
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
-    gap: 2rem;
+    align-items: center;
+    gap: 2.5rem;
     min-width: 40%;
 }
 
 .containter-loans {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 5rem;
 }
 
 .box-loans {
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    background-color: #212529;
-    border-radius: 10px;
+    border-radius: 18px;
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    transition: all .3s;
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323;
     color: white;
     width: 300px;
 }
 
-.container-cards {
-    border: 5px solid #212529;
-    color: white;
+.box-loan {
+    background: linear-gradient(145deg, #151414, #191818);
     padding: 1rem;
     display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    gap: 2rem;
-    min-width: 50%;
+    justify-content: space-between;
+    border-radius: 17px;
+    transition: all .2s;
+}
+
+.box-loans:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+
+.box-loan:hover {
+    transform: scale(0.98);
+    border-radius: 20px;
+}
+
+
+.container-cards-render {
+
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+    gap: 4rem;
 }
 
 .box-cards {
@@ -168,11 +291,53 @@ main {
 }
 
 
+.subContainer-cards {
+    border: 5px solid #212529;
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    gap: 2rem;
+    min-width: 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.container-cards {
+    color: white;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+
+
+.Container-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
 /*--------CARD------*/
 
+.container-card-section {
+    display: flex;
+    justify-content: space-around;
+}
+
+.Container-cards-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+}
 
 
-.flip-card {
+
+
+.flip-card,
+.flip-cards {
     background-color: transparent;
     width: 280px;
     height: 170px;
@@ -211,6 +376,13 @@ main {
     position: absolute;
     top: 3.5em;
     left: 14em;
+}
+
+.type-card-front {
+    font-size: .7em;
+    position: absolute;
+    top: 9.5em;
+    left: 20em;
 }
 
 .number {
@@ -298,7 +470,8 @@ main {
 }
 
 
-.flip-card-inner {
+.flip-card-inner,
+.flip-cards-inner {
     position: relative;
     width: 100%;
     height: 100%;
@@ -308,8 +481,18 @@ main {
 }
 
 .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
+    border-radius: 17px;
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323;
+    transform: scale(1.4) rotateY(180deg);
 }
+
+.flip-cards:hover .flip-cards-inner {
+    border-radius: 17px;
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+    transform: scale(1.4);
+}
+
 
 .flip-card-front,
 .flip-card-back {
@@ -378,13 +561,17 @@ main {
     display: flex;
     justify-content: space-between;
     background-color: #4455a9;
-    border-radius: 10px;
+    border-radius: 17px;
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323;
     color: white;
     width: 85%;
 }
 
 .container-transactions-account {
-    border: 4px solid #212529;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-radius: 10px;
     padding: 1rem;
     color: white;
@@ -394,93 +581,142 @@ main {
     font-size: 1.5rem;
 }
 
-.subContainer-cards {
-    border: 5px solid #212529;
-    color: white;
-    padding: 1rem;
-    border-radius: 10px;
-    gap: 2rem;
-    min-width: 10rem;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+.table-start {
+    border-top-left-radius: 17px;
 }
 
-.Container-cards {
-    display: flex;
-    justify-content: space-around;
-
+.table-end {
+    border-top-right-radius: 17px;
 }
 
-.Container-card {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.container-transactions-account table {
+    border-radius: 17px;
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323;
+    width: 80%;
 }
+
+
+
+
 
 /*-------------------------FINISH ACCOUNT---------------------------*/
 
 /*-------------------------START CREATE CARD------------------------*/
+.general-container-create-card {
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.container-create-card {
-    background-color: aqua;
 }
 
+
+.container-create-card {
+    background-color: #151414;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    gap: 5rem;
+    width: 50rem;
+    height: 20rem;
+    border-radius: 20px;
+    transition: all .3s;
+}
+
+.container-create-card:hover {
+    background-color: #0f0e0e;
+    transform: scale(0.98);
+    border-radius: 20px;
+}
+
+.create-for-hover {
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    border-radius: 20px;
+    transition: all .4s;
+}
+
+.create-for-hover:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+
+
+.container-select-card-create {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-radius: 0;
+}
+
+.select-card-create {
+    color: #090909;
+}
+
+
 .flip-card-create {
+    color: white;
     background-color: transparent;
-    width: 280px;
-    height: 170px;
+    width: 350px;
+    height: 220px;
     perspective: 1000px;
 }
 
 .heading-create {
     position: absolute;
     letter-spacing: .2em;
-    font-size: 0.7em;
-    top: 2em;
-    left: 18em;
+    font-size: 1em;
+    top: 1.5em;
+    left: 15em;
 }
 
 .logo-numba-card-create {
-    width: 7rem;
+    width: 9rem;
     position: absolute;
-    top: .5em;
-    left: 0.5em;
+    top: 1em;
+    left: 0.9em;
 }
 
 .logo-card-visa-create {
-    width: 4.5em;
+    width: 6em;
     position: absolute;
-    top: 6.5em;
-    left: 12em;
+    top: 7.5em;
+    left: 15em;
+}
+
+.type-create-card {
+    position: absolute;
+    top: 12em;
+    left: 16em;
 }
 
 .chip-create {
     position: absolute;
-    top: 2.8em;
+    top: 3.5em;
     left: 1.5em;
 }
 
 .contactless-create {
     position: absolute;
-    top: 3.5em;
-    left: 14em;
+    top: 4.5em;
+    left: 17em;
 }
 
 .number-create {
     position: absolute;
-    font-weight: bold;
-    font-size: .9em;
+    font-weight: 600;
+    font-size: 1.1em;
     top: 5.8em;
-    left: 1.5em;
+    left: 1.8em;
     letter-spacing: 0.1em;
 }
 
 .valid_thru-create {
     position: absolute;
     font-weight: bold;
-    top: 9.5em;
-    font-size: .7em;
+    top: 8em;
+    font-size: 1em;
     left: 1.9em;
     letter-spacing: 0.1em;
 }
@@ -488,40 +724,26 @@ main {
 .fromDate-create {
     position: absolute;
     font-weight: bold;
-    font-size: 0.7em;
-    top: 11.2em;
+    font-size: 1em;
+    top: 9.8em;
     left: 2.1em;
 }
 
 .thruDate-create {
     position: absolute;
     font-weight: bold;
-    font-size: 0.7em;
-    top: 11.2em;
-    left: 11.5em;
+    font-size: 1em;
+    top: 9.8em;
+    left: 11em;
 }
 
 .name-create {
     position: absolute;
-    font-weight: bold;
-    font-size: 0.7em;
-    top: 13em;
-    left: 2em;
+    font-weight: 600;
+    font-size: 1.1em;
+    top: 10.5em;
+    left: 1.8em;
     letter-spacing: 0.1em;
-}
-
-.strip-create {
-    position: absolute;
-    background-color: black;
-    width: 100%;
-    height: 1.8em;
-    top: 2em;
-
-    background: repeating-linear-gradient(45deg,
-            #303030,
-            #303030 10px,
-            #202020 10px,
-            #202020 20px);
 }
 
 
@@ -536,7 +758,9 @@ main {
 
 
 .flip-card-front-create {
-    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+    background-color: #00ff7735;
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -559,7 +783,8 @@ main {
 
 
 .gold {
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323;
     background: url(https://cdn.wallpapersafari.com/23/18/RH9ua1.jpg);
     background-position: center;
     background-size: cover;
@@ -567,14 +792,16 @@ main {
 
 
 .titanium {
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323;
     background: url(../images/luxury-abstract-background-with-golden-and-black-shapes-metal-texture-steel-background-vactor-design-illustration-free-vector.jpg);
     background-position: center;
     background-size: cover;
 }
 
 .silver {
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323;
     background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREBGmx3jd_kPyqbj4hgCyOFPNOKb40yiU0xQ&usqp=CAU);
     background-position: center;
     background-size: cover;
@@ -668,6 +895,24 @@ footer {
     .container-cards {
         width: 100%;
     }
+
+    td {
+        text-align: center;
+    }
+
+    th {
+        text-align: center;
+    }
+
+    .container-card-section {
+        flex-wrap: wrap;
+        gap: 4rem;
+    }
+
+    .container-cards-render {
+        flex-wrap: wrap;
+    }
+
 }
 
 @media(max-width:470px) {
@@ -681,6 +926,10 @@ footer {
         justify-content: center;
     }
 
+    .big-box-account div {
+        text-align: center;
+    }
+
     .container-account {
         width: 100%;
     }
@@ -688,4 +937,302 @@ footer {
     .head-table {
         font-size: 1rem;
     }
+
+    .container-main-transactions table {
+        width: 100% !important;
+
+    }
+
+    .container-main-transactions {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    .box-only-accounts {
+        gap: 2rem;
+    }
+
+    .container-accounts {
+        gap: 2.5rem;
+    }
+}
+
+
+
+.continue-application {
+    --color: #fff;
+    --background-hover: #3A4059;
+    --folder: #F3E9CB;
+    --folder-inner: #BEB393;
+    --paper: #FFFFFF;
+    --paper-lines: #BBC1E1;
+    --paper-behind: #E1E6F9;
+    --pencil-cap: #fff;
+    --pencil-top: #275EFE;
+    --pencil-middle: #fff;
+    --pencil-bottom: #5C86FF;
+    --shadow: rgba(13, 15, 25, .2);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 19px;
+    -webkit-tap-highlight-color: transparent;
+    padding: 17px 29px 17px 69px;
+    transition: 0.3s;
+    color: var(--color);
+    background: var(--bg, var(--background));
+}
+
+.continue-application>div {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 53px;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 5px 0 0 5px;
+    background: var(--background-left);
+}
+
+.continue-application>div .folder {
+    width: 23px;
+    height: 27px;
+    position: absolute;
+    left: 15px;
+    top: 13px;
+}
+
+.continue-application>div .folder .top {
+    left: 0;
+    top: 0;
+    z-index: 2;
+    position: absolute;
+    transform: translateX(var(--fx, 0));
+    transition: transform 0.4s ease var(--fd, 0.3s);
+}
+
+.continue-application>div .folder .top svg {
+    width: 24px;
+    height: 27px;
+    display: block;
+    fill: var(--folder);
+    transform-origin: 0 50%;
+    transition: transform 0.3s ease var(--fds, 0.45s);
+    transform: perspective(120px) rotateY(var(--fr, 0deg));
+}
+
+.continue-application>div .folder:before,
+.continue-application>div .folder:after,
+.continue-application>div .folder .paper {
+    content: "";
+    position: absolute;
+    left: var(--l, 0);
+    top: var(--t, 0);
+    width: var(--w, 100%);
+    height: var(--h, 100%);
+    border-radius: 1px;
+    background: var(--b, var(--folder-inner));
+}
+
+.continue-application>div .folder:before {
+    box-shadow: 0 1.5px 3px var(--shadow), 0 2.5px 5px var(--shadow), 0 3.5px 7px var(--shadow);
+    transform: translateX(var(--fx, 0));
+    transition: transform 0.4s ease var(--fd, 0.3s);
+}
+
+.continue-application>div .folder:after,
+.continue-application>div .folder .paper {
+    --l: 1px;
+    --t: 1px;
+    --w: 21px;
+    --h: 25px;
+    --b: var(--paper-behind);
+}
+
+.continue-application>div .folder:after {
+    transform: translate(var(--pbx, 0), var(--pby, 0));
+    transition: transform 0.4s ease var(--pbd, 0s);
+}
+
+.continue-application>div .folder .paper {
+    z-index: 1;
+    --b: var(--paper);
+}
+
+.continue-application>div .folder .paper:before,
+.continue-application>div .folder .paper:after {
+    content: "";
+    width: var(--wp, 14px);
+    height: 2px;
+    border-radius: 1px;
+    transform: scaleY(0.5);
+    left: 3px;
+    top: var(--tp, 3px);
+    position: absolute;
+    background: var(--paper-lines);
+    box-shadow: 0 12px 0 0 var(--paper-lines), 0 24px 0 0 var(--paper-lines);
+}
+
+.continue-application>div .folder .paper:after {
+    --tp: 6px;
+    --wp: 10px;
+}
+
+.continue-application>div .pencil {
+    height: 2px;
+    width: 3px;
+    border-radius: 1px 1px 0 0;
+    top: 8px;
+    left: 105%;
+    position: absolute;
+    z-index: 3;
+    transform-origin: 50% 19px;
+    background: var(--pencil-cap);
+    transform: translateX(var(--pex, 0)) rotate(35deg);
+    transition: transform 0.4s ease var(--pbd, 0s);
+}
+
+.continue-application>div .pencil:before,
+.continue-application>div .pencil:after {
+    content: "";
+    position: absolute;
+    display: block;
+    background: var(--b, linear-gradient(var(--pencil-top) 55%, var(--pencil-middle) 55.1%, var(--pencil-middle) 60%, var(--pencil-bottom) 60.1%));
+    width: var(--w, 5px);
+    height: var(--h, 20px);
+    border-radius: var(--br, 2px 2px 0 0);
+    top: var(--t, 2px);
+    left: var(--l, -1px);
+}
+
+.continue-application>div .pencil:before {
+    -webkit-clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px);
+    clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px);
+}
+
+.continue-application>div .pencil:after {
+    --b: none;
+    --w: 3px;
+    --h: 6px;
+    --br: 0 2px 1px 0;
+    --t: 3px;
+    --l: 3px;
+    border-top: 1px solid var(--pencil-top);
+    border-right: 1px solid var(--pencil-top);
+}
+
+.continue-application:before,
+.continue-application:after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--color);
+    transform-origin: 9px 1px;
+    transform: translateX(var(--cx, 0)) scale(0.5) rotate(var(--r, -45deg));
+    top: 26px;
+    right: 16px;
+    transition: transform 0.3s;
+}
+
+.continue-application:after {
+    --r: 45deg;
+}
+
+.continue-application:hover {
+    --cx: 2px;
+    --bg: var(--background-hover);
+    --fx: -40px;
+    --fr: -60deg;
+    --fd: .15s;
+    --fds: 0s;
+    --pbx: 3px;
+    --pby: -3px;
+    --pbd: .15s;
+    --pex: -24px;
+}
+
+
+
+
+.button-create-card {
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 7px;
+    border: 1px solid rgb(61, 106, 255);
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    background: transparent;
+    color: #fff;
+    overflow: hidden;
+    box-shadow: 0 0 0 0 transparent;
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+}
+
+.button-create-card:hover {
+    background: rgb(61, 106, 255);
+    box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+.button-create-card::before {
+    -webkit-animation: sh02 0.5s 0s linear;
+    -moz-animation: sh02 0.5s 0s linear;
+    animation: sh02 0.5s 0s linear;
+}
+
+.button-create-card::before {
+    content: '';
+    display: block;
+    width: 0px;
+    height: 86%;
+    position: absolute;
+    top: 7%;
+    left: 0%;
+    opacity: 0;
+    background: #fff;
+    box-shadow: 0 0 50px 30px #fff;
+    -webkit-transform: skewX(-20deg);
+    -moz-transform: skewX(-20deg);
+    -ms-transform: skewX(-20deg);
+    -o-transform: skewX(-20deg);
+    transform: skewX(-20deg);
+}
+
+@keyframes sh02 {
+    from {
+        opacity: 0;
+        left: 0%;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        left: 100%;
+    }
+}
+
+.button-create-card:active {
+    box-shadow: 0 0 0 0 transparent;
+    -webkit-transition: box-shadow 0.2s ease-in;
+    -moz-transition: box-shadow 0.2s ease-in;
+    transition: box-shadow 0.2s ease-in;
 }

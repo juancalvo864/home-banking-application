@@ -2,11 +2,16 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            dataClients: [],
+            dataClient: [],
             clients: [],
             cards: [],
-            type: "",
-            color: ""
+            type: "Select Type",
+            color: "Select color",
+            selectColor: "",
+            selectType: "",
+            debit: null,
+            credit: null
+
 
         }
     },
@@ -14,21 +19,26 @@ createApp({
         this.loadData();
 
 
-
     },
+
+
     methods: {
         loadData() {
             axios.get("http://localhost:8080/api/clients/current")
                 .then(res => {
-                    this.dataClients = res.data
-                    this.cards = this.clients.cards
-
+                    this.dataClient = res.data
+                    this.debitFilter()
                 })
         },
 
         cardCreate() {
             axios.post('/api/clients/current/cards', `type=${this.type}&color=${this.color}`,
                 { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                .catch(error => {
+
+                    console.error(error)
+                    console.error(error.response.data)
+                })
         },
 
 
@@ -36,6 +46,32 @@ createApp({
             axios.post('/api/logout').then(response => console.log('signed out!!!'))
         },
 
+        selectCard() {
+            if (this.type == "DEBIT") {
+                this.selectType = "DEBIT"
+            }
+            if (this.type == "CREDIT") {
+                this.selectType = "CREDIT"
+            }
+        },
+
+        colorCard() {
+            if (this.color == "GOLD") {
+                this.selectColor = "GOLD"
+            }
+            if (this.color == "SILVER") {
+                this.selectColor = "SILVER"
+            }
+            if (this.color == "TITANIUM") {
+                this.selectColor = "TITANIUM"
+            }
+        },
+
+        debitFilter() {
+            this.debit = this.dataClient.cards.filter(card => card.type == "DEBIT").map(card => card.color)
+            this.credit = this.dataClient.cards.filter(card => card.type == "CREDIT").map(card => card.color)
+
+        },
 
         alert() {
             Swal.fire({
@@ -56,9 +92,9 @@ createApp({
 
         creado() {
             Swal.fire({
-                position: 'top-end',
+                position: 'center',
                 icon: 'success',
-                title: 'Your work has been saved',
+                title: 'Successfully created',
                 showConfirmButton: false,
                 timer: 2500
             })
@@ -68,17 +104,16 @@ createApp({
         sureCreateCard() {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                text: "Create a new card?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'yes I want'
             }).then((result) => {
                 if (result.isConfirmed) {
                     this.creado()
                     this.cardCreate()
-
                 }
             }).then(() => {
                 // Espera 1000 milisegundos (1 segundo)
@@ -94,4 +129,5 @@ createApp({
 
 
     },
+
 }).mount("#app")

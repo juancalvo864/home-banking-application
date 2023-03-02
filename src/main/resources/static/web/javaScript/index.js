@@ -27,6 +27,7 @@ createApp({
                     window.location.href = '/web/accounts.html';
 
                 })
+                .catch(error => concole.error(error))
         },
 
         signUp() {

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>NUMBA | Create card</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -25,10 +25,10 @@
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle navbar-brand navbar-dark" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="img-usuario" src="./images/pexels-pixabay-358532.jpg" alt="">
+                            <img class="img-usuario" src="./images/nick-hillier-aQcE3gDSSTY-unsplash.jpg" alt="">
                             <div>
                                 <p>Welcome!</p>
-                                <p>{{dataClients.firstName + " "}} {{dataClients.lastName}} </p>
+                                <p>{{dataClient.firstName + " " +dataClient.lastName}} </p>
                             </div>
                         </button>
                         <ul class="dropdown-menu">
@@ -50,7 +50,7 @@
                                 <a class="nav-link" href="./cards.html">Cards</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Transactions</a>
+                                <a class="nav-link" href="#">Create cards</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -58,9 +58,9 @@
                                     More options
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="./loanApplication.html">Loan application</a></li>
+                                    <li><a class="dropdown-item" href="./transfers.html">Transfers</a></li>
+                                    <li><a class="dropdown-item" href="./servicePay.html">Service pay</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -69,17 +69,43 @@
             </nav>
         </header>
         <main>
-            <div class="container-create-card">
-                <div class="flip-card-create">
-                    <div class="flip-card-inner-create">
-                        <div class="flip-card-front-create">
-                            <p class="heading-create">VISA</p>
-                            <img class="logo-numba-card-create" src="./images/logo-homebanking.jpg" alt="">
-                            <img class="logo-card-visa-create" src="./images/visaCard.png" alt="">
-                            <svg xml:space="preserve" viewBox="0 0 50 50" height="30px" width="30px" y="0px" x="0px"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
-                                id="Layer_1" class="chip-create" version="1.1">
-                                <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+            <div class="general-container-create-card">
+                <div class="create-for-hover">
+                    <div class="container-create-card">
+                        <div class="container-select-card-create">
+                            <h2 style="color: white;">Create your card</h2>
+                            <select class="form-select select-card-create " aria-label="Default select example"
+                                v-model="type" @change="selectCard" required>
+                                <option disabled>Select Type</option>
+                                <option
+                                    v-show="!debit.includes('GOLD') || !debit.includes('TITANIUM') || !debit.includes('SILVER')"
+                                    value="DEBIT">Debit</option>
+                                <option
+                                    v-if="!credit.includes('GOLD') || !credit.includes('TITANIUM') || !credit.includes('SILVER')"
+                                    value="CREDIT">Credit</option>
+                            </select>
+                            <select class="form-select select-card-create" aria-label="Default select example"
+                                v-model="color" @change="colorCard">
+                                <option disabled>Select color</option>
+                                <option value="GOLD">Gold</option>
+                                <option value="SILVER">Silver</option>
+                                <option value="TITANIUM">Titanium</option>
+                            </select>
+                            <button class="button-create-card" type="submit" @click="sureCreateCard">create</button>
+
+                        </div>
+                        <div class="flip-card-create">
+                            <div class="flip-card-inner-create ">
+                                <div :class="'flip-card-front-create '+ color.toLowerCase()">
+                                    <p class="heading-create  ">{{selectColor}} </p>
+                                    <img class="logo-numba-card-create" src="./images/logo-homebanking.jpg" alt="">
+                                    <img class="logo-card-visa-create" src="./images/visaCard.png" alt="">
+                                    <p class="type-create-card">{{selectType}}</p>
+                                    <svg xml:space="preserve" viewBox="0 0 50 50" height="45px" width="45px" y="0px"
+                                        x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="chip-create"
+                                        version="1.1">
+                                        <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
               AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB6VBMVEUAAACNcTiVeUKVeUOY
               fEaafEeUeUSYfEWZfEaykleyklaXe0SWekSZZjOYfEWYe0WXfUWXe0WcgEicfkiXe0SVekSXekSW
               ekKYe0a9nF67m12ZfUWUeEaXfESVekOdgEmVeUWWekSniU+VeUKVeUOrjFKYfEWliE6WeESZe0GS
@@ -105,12 +131,13 @@
               cmVhdGUAMjAyMy0wMi0xM1QwODoxNToyOSswMDowMEUnN7UAAAAldEVYdGRhdGU6bW9kaWZ5ADIw
               MjMtMDItMTNUMDg6MTU6MjkrMDA6MDA0eo8JAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDIzLTAy
                                   LTEzVDA4OjE1OjI5KzAwOjAwY2+u1gAAAABJRU5ErkJggg==" y="0" x="0" height="50" width="50"
-                                    id="image0"></image>
-                            </svg>
-                            <svg xml:space="preserve" viewBox="0 0 50 50" height="20px" width="20px" y="0px" x="0px"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
-                                id="Layer_1" class="contactless-create" version="1.1">
-                                <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                                            id="image0"></image>
+                                    </svg>
+                                    <svg xml:space="preserve" viewBox="0 0 50 50" height="40px" width="40px" y="0px"
+                                        x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="contactless-create"
+                                        version="1.1">
+                                        <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
               AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZ
               cwAACxMAAAsTAQCanBgAAAAHdElNRQfnAg0IEzgIwaKTAAADDklEQVRYw+1XS0iUURQ+f5qPyjQf
               lGRFEEFK76koKGxRbWyVVLSOgsCgwjZBJJYuKogSIoOonUK4q3U0WVBWFPZYiIE6kuArG3VGzK/F
@@ -130,32 +157,19 @@
               MTNUMDg6MTk6NTYrMDA6MDCjlq7LAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTEzVDA4OjE5
               OjU2KzAwOjAw0ssWdwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0xM1QwODoxOTo1Nisw
                                  MDowMIXeN6gAAAAASUVORK5CYII=" y="0" x="0" height="50" width="50" id="image0"></image>
-                            </svg>
-                            <p class="number-create">9759 2484 5269 6576</p>
-                            <p class="valid_thru-create">VALID THRU</p>
-                            <p class="date-create">1 2 / 2 4</p>
-                            <p class="name-create">BRUCE WAYNE</p>
+                                    </svg>
+                                    <p class="number-create">**** **** **** 6576</p>
+                                    <p class="valid_thru-create">VALID THRU</p>
+                                    <p class="fromDate-create">** / **</p>
+                                    <p class="thruDate-create">** / **</p>
+                                    <p class="name-create">{{dataClient.firstName +" "+ dataClient.lastName}}</p>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
-                <div class="container-select-card-create">
-                    <select class="form-select select-card-create" aria-label="Default select example" v-model="type">
-                        <option selected>Open this select menu</option>
-                        <option value="DEBIT">Debit</option>
-                        <option value="CREDIT">Credit</option>
-                    </select>
-                    <select class="form-select select-card-create" aria-label="Default select example" v-model="color">
-                        <option selected>Open this select menu</option>
-                        <option value="GOLD">Gold</option>
-                        <option value="SILVER">Silver</option>
-                        <option value="TITANIUM">Titanium</option>
-                    </select>
-                    <button style="background-color: brown;" type="submit" @click="sureCreateCard">create</button>
-                </div>
             </div>
-            <p style="color: white;">
-                {{dataClients.cards}}
-            </p>
         </main>
         <footer>
             <div class="footer-logo">

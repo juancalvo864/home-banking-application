@@ -23,7 +23,7 @@ import static java.util.stream.Collectors.toList;
 public class ClientController {
 
     @Autowired
-    private ClientRepository repo;
+    private ClientRepository repoClient;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -35,16 +35,21 @@ public class ClientController {
 
     @RequestMapping("/clients")
     public List<ClientDTO> getAll() {
-        return repo.findAll().stream().map(ClientDTO::new).collect(toList());
+        return repoClient.findAll().stream().map(ClientDTO::new).collect(toList());
     }
 
     @RequestMapping("/clients/{id}")
 
     public ClientDTO getClientDTO(@PathVariable Long id) {
 
-        return new ClientDTO(repo.findById(id).orElse(null));
-
+        return new ClientDTO(repoClient.findById(id).orElse(null));
     }
+
+    @RequestMapping("/clients/current")
+    public ClientDTO getAll(Authentication authentication) {
+        return new ClientDTO( repoClient.findByEmail( authentication.getName()));
+    }
+
 
     @RequestMapping(path = "/clients", method = RequestMethod.POST)
     public ResponseEntity<Object> register(
@@ -52,12 +57,10 @@ public class ClientController {
             @RequestParam String email, @RequestParam String password) {
 
         if (firstName.isEmpty()) {
-
             return new ResponseEntity<>("Missing First Name", HttpStatus.BAD_REQUEST);
         }
         if(lastName.isEmpty()){
             return new ResponseEntity<>("Missing Last Name", HttpStatus.BAD_REQUEST);
-
         }
         if(email.isEmpty()){
             return new ResponseEntity<>("Missing Email", HttpStatus.BAD_REQUEST);
@@ -65,18 +68,14 @@ public class ClientController {
         if(password.isEmpty()){
             return new ResponseEntity<>("Missing Password", HttpStatus.BAD_REQUEST);
         }
-
-
-        if (repo.findByEmail(email) != null) {
-
+        if (repoClient.findByEmail(email) != null) {
             return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
-
         }
 
         Client newClient = new Client(firstName, lastName, email, passwordEncoder.encode(password));
         Account newAccount = new Account(getAccountNumber(),  LocalDateTime.now(), 0.0);
         newClient.addAccount(newAccount);
-        repo.save(newClient);
+        repoClient.save(newClient);
         repoAccounts.save(newAccount);
 
 
@@ -85,16 +84,19 @@ public class ClientController {
 
     }
 
-    @RequestMapping("/clients/current")
 
-    public ClientDTO getAll(Authentication authentication) {
-        return new ClientDTO( repo.findByEmail( authentication.getName()));
-    }
 
-    public static String getAccountNumber() {
-        Random rand = new Random();
-        int number = rand.nextInt(100000000);
-        String stringNumber = Integer.toString(number);
+    public String getAccountNumber() {
+        Random rand  ;
+        int number  ;
+        String stringNumber ;
+        Account account;
+        do {
+            rand = new Random();
+            number = rand.nextInt(100000000);
+            stringNumber = Integer.toString(number);
+            account =  repoAccounts.findByNumber(stringNumber);
+        }while (account != null && account.getNumber().equals(stringNumber));
         return "VIN-" + stringNumber;
     }
 
