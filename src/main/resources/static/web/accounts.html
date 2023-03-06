@@ -151,7 +151,7 @@
                     </thead>
                     <tbody>
                         <tr v-if="dataClients.accounts[0].transactions.length !== 0"
-                            v-for="(transaction,index) of dataClients.accounts[0].transactions.sort((a, b) => a.id - b.id)">
+                            v-for="(transaction,index) of dataClients.accounts[0].transactions.sort((a, b) => b.id - a.id)">
                             <template v-if="index <= 2">
                                 <th>{{dateTimeTransactions(transaction.date)}} </th>
                                 <td>{{transaction.description}} </td>

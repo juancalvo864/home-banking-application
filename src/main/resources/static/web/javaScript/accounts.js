@@ -34,6 +34,9 @@ createApp({
 
                 })
         },
+
+
+
         createAccount() {
             axios.post('/api/clients/current/accounts',
                 { headers: { 'content-type': 'application/x-www-form-urlencoded' } })

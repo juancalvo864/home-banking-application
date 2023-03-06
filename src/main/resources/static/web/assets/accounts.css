@@ -147,8 +147,6 @@ main {
     color: white;
     width: 350px;
     transition: all .2s;
-
-
 }
 
 .box-account:hover {
@@ -810,6 +808,67 @@ main {
 
 /*-------------------------END CREATE CARD------------------------*/
 
+/*-------------------------STAR TRANSFERS---------------------------*/
+
+.container-general-transfers {
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.accounts-transactions-title {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 30rem;
+    height: 30rem;
+}
+
+.accounts-transactions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.accounts-transactions img {
+    width: 6rem;
+    height: 6rem;
+}
+
+.container-account-transfer {
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323;
+    border-radius: 22px;
+    transition: all .3s;
+}
+
+.box-account-transfer {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    border-radius: 17px;
+    background: linear-gradient(145deg, #151414, #191818);
+    color: white;
+    width: 350px;
+    margin-left: 4rem;
+
+}
+
+
+/* .box-account-transfer:hover {
+    transform: scale(0.97);
+    border-radius: 20px;
+}
+
+.container-account-transfe:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+} */
+
+
 /* -------------------------START FOOTER-------------------------- */
 
 footer {
@@ -913,6 +972,24 @@ footer {
         flex-wrap: wrap;
     }
 
+    .container-general-transfers {
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    .form-transfers {
+        width: 63vw;
+    }
+
+    .form-select {
+
+        width: 63vw;
+    }
+
+    .accounts-transactions-title {
+        align-items: center;
+    }
 }
 
 @media(max-width:470px) {

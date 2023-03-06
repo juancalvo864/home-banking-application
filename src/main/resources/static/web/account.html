@@ -95,7 +95,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="transaction of accountSelect.transactions.sort((a, b) => a.id - b.id)">
+                        <tr v-for="transaction of accountSelect.transactions.sort((a, b) => b.id - a.id)">
                             <th> {{dateTransactions(transaction.date)}} </th>
                             <td> {{transaction.description}} </td>
                             <td v-if="transaction.type == `DEBIT`"><img src="./images/arrowDown.png" alt="" alt=""

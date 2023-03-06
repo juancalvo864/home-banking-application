@@ -33,7 +33,7 @@ public class AccountController {
     }
     @RequestMapping("/accounts/{id}")
     public AccountDTO getAccount(@PathVariable Long id){
-        return  new AccountDTO(repoAccount.findById( id).orElse(null)) ;
+        return  new AccountDTO(repoAccount.findById( id).orElse(null));
     }
 
     @RequestMapping("/clients/current/accounts")

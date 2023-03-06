@@ -24,19 +24,17 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
     }
 
 
 
     @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(inputName-> {
-            Client  client= clientRepository.findByEmail(inputName);
+        auth.userDetailsService(userNameParameter-> {
+            Client  client= clientRepository.findByEmail(userNameParameter);
             if(client != null) {
-                if (inputName.equals("admin@mindhub.com")) {
+                if (userNameParameter.equals("admin@mindhub.com")) {
                     return new User(client.getEmail(), client.getPassword(),
                             AuthorityUtils.createAuthorityList("ADMIN"));
                 } else {
@@ -44,7 +42,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
                             AuthorityUtils.createAuthorityList("CLIENT"));
                 }
             }else {
-                throw new UsernameNotFoundException("Unknown user: " + inputName);
+                throw new UsernameNotFoundException("Unknown user: " + userNameParameter);
             }
 
         });

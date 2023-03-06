@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
@@ -36,7 +33,7 @@ public class TransactionController {
 
 
     @Transactional
-    @RequestMapping(path = "/clients/current/transaction", method = RequestMethod.POST )
+    @PostMapping( "/clients/transaction" )
     public ResponseEntity<Object> createTransaction(Authentication authentication, @RequestParam Double amount,
                                                     @RequestParam String description,@RequestParam String numberAccountOut,
                                                     @RequestParam String numberAccountIn) {
@@ -46,8 +43,8 @@ public class TransactionController {
         if (amount == null || amount.isNaN()) {
             return new ResponseEntity<>("Missing amount", HttpStatus.BAD_REQUEST);
         }
-        if (numberAccountOut == numberAccountIn) {
-            return new ResponseEntity<>("Missing amount", HttpStatus.BAD_REQUEST);
+        if (numberAccountOut.equals(numberAccountIn)) {
+            return new ResponseEntity<>("the accounts are the same", HttpStatus.BAD_REQUEST);
         }
         if(description.isEmpty()){
             return new ResponseEntity<>("Missing description", HttpStatus.BAD_REQUEST);
@@ -70,6 +67,7 @@ public class TransactionController {
         if (repoAccount.findByNumber(numberAccountOut).getBalance() < amount ){
             return new ResponseEntity<>("Your balance is insufficient", HttpStatus.FORBIDDEN);
         }
+
 
         Transaction transactionDebit = new Transaction(TransactionType.DEBIT,-amount,description,LocalDateTime.now());
         Transaction transactionCredit = new Transaction(TransactionType.CREDIT,amount,description,LocalDateTime.now());
