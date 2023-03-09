@@ -27,8 +27,8 @@ createApp({
                     this.sortArray(this.dataClients.accounts)
                     this.loans = this.dataClients.loans
                     this.cards = this.dataClients.cards
-                    console.log(this.cards)
                     this.finalAmount(this.dataClients.accounts)
+                    console.log(this.dataClients.accounts[0].transactions.sort((a, b) => b.id - a.id).map(transaction => transaction.date))
 
 
 
@@ -53,6 +53,8 @@ createApp({
         logout() {
             axios.post('/api/logout').then(response => console.log('signed out!!!'))
         },
+
+
         dateTimeTransactions(date) {
             let template = date.split("T")
             return `${template[0]}`
@@ -87,17 +89,27 @@ createApp({
 
         charts() {
             let options = {
+                series: [this.dataClients.accounts[0].balance, this.dataClients.accounts[1].balance, this.dataClients.accounts[2].balance],
                 chart: {
-                    type: 'line'
+                    foreColor: '#e6e5de',
+                    width: 500,
+                    type: 'pie',
                 },
-                series: [{
-                    name: 'sales',
-                    data: [30, 40, 45, 50, 49, 60, 70, 91, 125]
-                }],
-                xaxis: {
-                    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-                }
-            }
+                labels: [this.dataClients.accounts[0].number, this.dataClients.accounts[1].number, this.dataClients.accounts[2].number],
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
+
 
             let chart = new ApexCharts(document.querySelector("#chart"), options);
             console.log(chart)
@@ -118,3 +130,32 @@ createApp({
 
 }).mount("#app")
 
+
+/* 
+let options = {
+    chart: {
+        type: 'line'
+    },
+    stroke: {
+        curve: 'smooth',
+    },
+    series: [{
+        name: 'Main account',
+        data: this.dataClients.accounts[0].transactions.sort((a, b) => b.id - a.id).map(transaction => transaction.amount.toFixed(0))
+    },
+    {
+        name: 'Other account',
+        data: this.dataClients.accounts[1].transactions.sort((a, b) => b.id - a.id).map(transaction => transaction.amount.toFixed(0))
+
+    ],
+    xaxis: {
+        categories: this.dataClients.accounts[0].transactions.sort((a, b) => b.id - a.id).map(transaction => this.dateTimeTransactions(transaction.date))
+    },
+    dropShadow: {
+        enabled: true,
+        top: 0,
+        left: 0,
+        blur: 3,
+        opacity: 0.5
+    }
+} */

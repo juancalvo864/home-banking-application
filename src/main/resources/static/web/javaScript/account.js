@@ -77,9 +77,95 @@ createApp({
                 }
             })
         },
+        charts() {
+            let optionsLine = {
+                chart: {
+                    foreColor: '#e6e5de',
+                    height: 328,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    },
+                    dropShadow: {
+                        enabled: true,
+                        top: 3,
+                        left: 2,
+                        blur: 4,
+                        opacity: 1,
+                    }
+                },
+                stroke: {
+                    curve: 'smooth',
+                    width: 2
+                },
+                colors: ["#44ca83", '#ff0a0a'],
+                series: [{
+
+                    name: "Credit",
+                    data: this.accountSelect.transactions.sort((a, b) => b.id - a.id).filter(transaction => transaction.type == "CREDIT").map(transaction => transaction.amount.toFixed(0))
+                },
+                {
+
+                    name: "Debit",
+                    data: this.accountSelect.transactions.filter(transaction => transaction.type == "DEBIT").map(transaction => transaction.amount.toFixed(0))
+                },
+
+
+
+
+
+                ],
+                title: {
+                    text: 'Transactions',
+                    align: 'center',
+                    offsetY: 25,
+                    offsetX: 20
+
+                },
+                subtitle: {
+                    text: 'Amount',
+                    offsetY: 55,
+                    offsetX: 20
+                },
+                markers: {
+                    size: 6,
+                    strokeWidth: 0,
+                    hover: {
+                        size: 9
+                    }
+                },
+                grid: {
+                    show: true,
+                    padding: {
+                        bottom: 0
+                    }
+                },
+                labels: Array.from(new Set(this.accountSelect.transactions.map(transaction => this.dateTransactions(transaction.date)))),
+                xaxis: {
+                    tooltip: {
+                        enabled: false
+                    }
+                },
+                legend: {
+                    position: 'top',
+                    horizontalAlign: 'right',
+                    offsetY: -20
+                }
+            }
+
+            let chartLine = new ApexCharts(document.querySelector('#line-adwords'), optionsLine);
+            chartLine.render();
+
+
+        },
+
 
 
     },
+    mounted() {
+        this.charts()
+
+    }
 
 
 

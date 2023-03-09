@@ -41,19 +41,22 @@ public class TransactionController {
 
 
         if (amount == null || amount.isNaN()) {
-            return new ResponseEntity<>("Missing amount", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Missing amount", HttpStatus.FORBIDDEN);
+        }
+        if (amount < 0) {
+            return new ResponseEntity<>("Missing amount", HttpStatus.FORBIDDEN);
         }
         if (numberAccountOut.equals(numberAccountIn)) {
-            return new ResponseEntity<>("the accounts are the same", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("the accounts are the same", HttpStatus.FORBIDDEN);
         }
         if(description.isEmpty()){
-            return new ResponseEntity<>("Missing description", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Missing description", HttpStatus.FORBIDDEN);
         }
         if(numberAccountOut.isEmpty()){
-            return new ResponseEntity<>("Missing Number account out", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Missing Number account out", HttpStatus.FORBIDDEN);
         }
         if(numberAccountIn.isEmpty()){
-            return new ResponseEntity<>("Missing Number account in", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Missing Number account in", HttpStatus.FORBIDDEN);
         }
         if (repoAccount.findByNumber(numberAccountOut) == null){
             return new ResponseEntity<>("the account doesn't exist", HttpStatus.FORBIDDEN);

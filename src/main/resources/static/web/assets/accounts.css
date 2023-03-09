@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
 
 * {
     box-sizing: border-box;
@@ -10,33 +11,72 @@
 
 body {
     font-family: Roboto, sans-serif;
-
 }
 
-#chart {
-    max-width: 650px;
-    margin: 35px auto;
-}
+
 
 main {
-    /* background-color: #1a1d2125; */
-    background-image: linear-gradient(rgba(1, 1, 1, 0.8), rgba(1, 1, 1, 0.9)), url(https://www.mckinsey.com/~/media/mckinsey/business%20functions/risk/our%20insights/the%20future%20of%20bank%20risk%20management/the-future-of-bank_1536x1536_300_standard.jpg);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    /*  background-color: #1a1d2125;
+    background-image: linear-gradient(rgba(1, 1, 1, 0.8), rgba(1, 1, 1, 0.9)), url(https://www.mckinsey.com/~/media/mckinsey/business%20functions/risk/our%20insights/the%20future%20of%20bank%20risk%20management/the-future-of-bank_1536x1536_300_standard.jpg); */
+    /* background-size: cover; */
+    /*  background-position: center;
+    background-attachment: fixed; */
+    /* background-image: url(../images/trianglify-lowres.png); */
 
+    /*    background-color: #060012;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='100%25' gradientTransform='rotate(240)'%3E%3Cstop offset='0' stop-color='%23060012'/%3E%3Cstop offset='1' stop-color='%23474A0D'/%3E%3C/linearGradient%3E%3Cpattern patternUnits='userSpaceOnUse' id='b' width='540' height='450' x='0' y='0' viewBox='0 0 1080 900'%3E%3Cg fill-opacity='0.1'%3E%3Cpolygon fill='%23444' points='90 150 0 300 180 300'/%3E%3Cpolygon points='90 150 180 0 0 0'/%3E%3Cpolygon fill='%23AAA' points='270 150 360 0 180 0'/%3E%3Cpolygon fill='%23DDD' points='450 150 360 300 540 300'/%3E%3Cpolygon fill='%23999' points='450 150 540 0 360 0'/%3E%3Cpolygon points='630 150 540 300 720 300'/%3E%3Cpolygon fill='%23DDD' points='630 150 720 0 540 0'/%3E%3Cpolygon fill='%23444' points='810 150 720 300 900 300'/%3E%3Cpolygon fill='%23FFF' points='810 150 900 0 720 0'/%3E%3Cpolygon fill='%23DDD' points='990 150 900 300 1080 300'/%3E%3Cpolygon fill='%23444' points='990 150 1080 0 900 0'/%3E%3Cpolygon fill='%23DDD' points='90 450 0 600 180 600'/%3E%3Cpolygon points='90 450 180 300 0 300'/%3E%3Cpolygon fill='%23666' points='270 450 180 600 360 600'/%3E%3Cpolygon fill='%23AAA' points='270 450 360 300 180 300'/%3E%3Cpolygon fill='%23DDD' points='450 450 360 600 540 600'/%3E%3Cpolygon fill='%23999' points='450 450 540 300 360 300'/%3E%3Cpolygon fill='%23999' points='630 450 540 600 720 600'/%3E%3Cpolygon fill='%23FFF' points='630 450 720 300 540 300'/%3E%3Cpolygon points='810 450 720 600 900 600'/%3E%3Cpolygon fill='%23DDD' points='810 450 900 300 720 300'/%3E%3Cpolygon fill='%23AAA' points='990 450 900 600 1080 600'/%3E%3Cpolygon fill='%23444' points='990 450 1080 300 900 300'/%3E%3Cpolygon fill='%23222' points='90 750 0 900 180 900'/%3E%3Cpolygon points='270 750 180 900 360 900'/%3E%3Cpolygon fill='%23DDD' points='270 750 360 600 180 600'/%3E%3Cpolygon points='450 750 540 600 360 600'/%3E%3Cpolygon points='630 750 540 900 720 900'/%3E%3Cpolygon fill='%23444' points='630 750 720 600 540 600'/%3E%3Cpolygon fill='%23AAA' points='810 750 720 900 900 900'/%3E%3Cpolygon fill='%23666' points='810 750 900 600 720 600'/%3E%3Cpolygon fill='%23999' points='990 750 900 900 1080 900'/%3E%3Cpolygon fill='%23999' points='180 0 90 150 270 150'/%3E%3Cpolygon fill='%23444' points='360 0 270 150 450 150'/%3E%3Cpolygon fill='%23FFF' points='540 0 450 150 630 150'/%3E%3Cpolygon points='900 0 810 150 990 150'/%3E%3Cpolygon fill='%23222' points='0 300 -90 450 90 450'/%3E%3Cpolygon fill='%23FFF' points='0 300 90 150 -90 150'/%3E%3Cpolygon fill='%23FFF' points='180 300 90 450 270 450'/%3E%3Cpolygon fill='%23666' points='180 300 270 150 90 150'/%3E%3Cpolygon fill='%23222' points='360 300 270 450 450 450'/%3E%3Cpolygon fill='%23FFF' points='360 300 450 150 270 150'/%3E%3Cpolygon fill='%23444' points='540 300 450 450 630 450'/%3E%3Cpolygon fill='%23222' points='540 300 630 150 450 150'/%3E%3Cpolygon fill='%23AAA' points='720 300 630 450 810 450'/%3E%3Cpolygon fill='%23666' points='720 300 810 150 630 150'/%3E%3Cpolygon fill='%23FFF' points='900 300 810 450 990 450'/%3E%3Cpolygon fill='%23999' points='900 300 990 150 810 150'/%3E%3Cpolygon points='0 600 -90 750 90 750'/%3E%3Cpolygon fill='%23666' points='0 600 90 450 -90 450'/%3E%3Cpolygon fill='%23AAA' points='180 600 90 750 270 750'/%3E%3Cpolygon fill='%23444' points='180 600 270 450 90 450'/%3E%3Cpolygon fill='%23444' points='360 600 270 750 450 750'/%3E%3Cpolygon fill='%23999' points='360 600 450 450 270 450'/%3E%3Cpolygon fill='%23666' points='540 600 630 450 450 450'/%3E%3Cpolygon fill='%23222' points='720 600 630 750 810 750'/%3E%3Cpolygon fill='%23FFF' points='900 600 810 750 990 750'/%3E%3Cpolygon fill='%23222' points='900 600 990 450 810 450'/%3E%3Cpolygon fill='%23DDD' points='0 900 90 750 -90 750'/%3E%3Cpolygon fill='%23444' points='180 900 270 750 90 750'/%3E%3Cpolygon fill='%23FFF' points='360 900 450 750 270 750'/%3E%3Cpolygon fill='%23AAA' points='540 900 630 750 450 750'/%3E%3Cpolygon fill='%23FFF' points='720 900 810 750 630 750'/%3E%3Cpolygon fill='%23222' points='900 900 990 750 810 750'/%3E%3Cpolygon fill='%23222' points='1080 300 990 450 1170 450'/%3E%3Cpolygon fill='%23FFF' points='1080 300 1170 150 990 150'/%3E%3Cpolygon points='1080 600 990 750 1170 750'/%3E%3Cpolygon fill='%23666' points='1080 600 1170 450 990 450'/%3E%3Cpolygon fill='%23DDD' points='1080 900 1170 750 990 750'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='100%25' height='100%25'/%3E%3Crect x='0' y='0' fill='url(%23b)' width='100%25' height='100%25'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover; */
+    background-color: #202033;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%233F3709' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23565401'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E");
     min-height: 100vh;
-    padding: 2rem 1rem;
+    /*    --u: 1.5vmin;
+    --c1: #363636;
+    --c2: #2b2b2b;
+    --c3: #1e1e1e;
+    --c4: #121212;
+    --c5: #050505;
+    --gp: 50%/calc(var(--u) * 10) calc(var(--u) * 17.67);
+    background:
+        conic-gradient(from 90deg at 99% 67%, var(--c5) 0 90deg, #fff0 0 360deg) var(--gp),
+        conic-gradient(from 180deg at 1% 67%, var(--c5) 0 90deg, #fff0 0 360deg) var(--gp),
+        conic-gradient(from 0deg at 99% 33%, var(--c5) 0 90deg, #fff0 0 360deg) var(--gp),
+        conic-gradient(from -90deg at 1% 33%, var(--c5) 0 90deg, #fff0 0 360deg) var(--gp),
+        conic-gradient(from -60deg at 50% 15.5%, var(--c3) 0 120deg, #fff0 0 360deg) var(--gp),
+        conic-gradient(from -60deg at 50% 16.75%, var(--c5) 0 120deg, #fff0 0 360deg) var(--gp),
+        conic-gradient(from 120deg at 50% 83.25%, var(--c5) 0 120deg, #fff0 0 360deg) var(--gp),
+        linear-gradient(32deg, #fff0 0 49.5%, var(--c5) 0 50.5%, #fff0 0 100%) var(--gp),
+        linear-gradient(-32deg, #fff0 0 49.5%, var(--c5) 0 50.5%, #fff0 0 100%) var(--gp),
+        linear-gradient(-90deg, #fff0 0 49%, var(--c5) 0 51%, #fff0 0 100%) var(--gp),
+        linear-gradient(60.5deg, #fff0 0 49.5%, var(--c5) 0 50.5%, #fff0 0 100%) var(--gp),
+        linear-gradient(-60.5deg, #fff0 0 49.5%, var(--c5) 0 50.5%, #fff0 0 100%) var(--gp),
+        conic-gradient(from -90deg at 50% 50%, var(--c5) 0 32deg, var(--c3) 0 60.5deg, var(--c4) 0 90deg, var(--c5) 0 119.5deg, var(--c1) 0 148deg, var(--c5) 0 180deg, #fff0 0 360deg) var(--gp),
+        conic-gradient(from 90deg at 50% 50%, var(--c2) 0 32deg, var(--c4) 0 60.5deg, var(--c3) 0 90deg, var(--c1) 0 119.5deg, var(--c5) 0 148deg, var(--c2) 0 180deg, #fff0 0 360deg) var(--gp);
+    background-color: var(--c5);
+    min-height: 100vh;
+    padding: 2rem 1rem; */
 }
 
 
 /* -------------------------start header-------------------------- */
 
+.navbar {
+    background-color: #212529;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+
+
+
+.navbar-nav {
+    color: white;
+}
 
 .header-logo {
     display: flex;
     align-items: center;
-    background-color: #21252950;
+    background-color: #21252900;
     height: 6rem;
 
 }
@@ -58,7 +98,7 @@ main {
 .nav-link {
     margin-right: 1rem;
     font-size: 1.1rem;
-
+    color: white;
     border-bottom: 1px solid white;
     border-radius: 2px;
 
@@ -66,6 +106,7 @@ main {
 
 .nav-link:hover {
     background: rgba(75, 110, 175, 0.233);
+    color: white;
     border-radius: 5px;
     transform: scale(1.1);
     border: 1px solid white;
@@ -75,6 +116,7 @@ main {
 
 
 .navbar-brand {
+    border: none;
     background-color: transparent !important;
     padding-right: 1rem;
     display: flex;
@@ -110,13 +152,20 @@ main {
 /* -------------------------start main-------------------------- */
 
 
-.container-accounts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 2rem;
-    gap: 8rem;
+#h1-home {
+    padding: 1.5rem;
+}
 
+#h1-home h2 {
+    color: white;
+    padding: .5rem;
+    border-bottom: 1px solid white;
+    width: fit-content;
+}
+
+
+.container-accounts {
+    padding: 2rem;
 }
 
 
@@ -124,8 +173,7 @@ main {
 .box-only-accounts {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 5rem;
+    justify-content: space-around;
 
 }
 
@@ -137,13 +185,19 @@ main {
     transition: all .3s;
 }
 
+.box-account-title-info {
+    display: flex;
+    justify-content: space-between;
+}
+
 .box-account {
     padding: 1rem;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     height: 100%;
     border-radius: 17px;
-    background: linear-gradient(145deg, #151414, #191818);
+    /* background: linear-gradient(145deg, #151414, #191818); */
+    background-color: #212529 !important;
     color: white;
     width: 350px;
     transition: all .2s;
@@ -167,23 +221,50 @@ main {
     font-size: .8rem;
 }
 
+.balance-chart-main {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+
+
+
 .container-total-balance {
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    gap: 1.5rem;
     border-radius: 17px;
-    background: linear-gradient(145deg, #151414, #191818);
+    /* background: linear-gradient(145deg, #151414, #191818); */
+    background-color: #212529;
     box-shadow: 25px 25px 50px #090909,
         -25px -25px 50px #252323;
     color: white;
     width: 350px;
-    transition: all .3s;
+    height: 20rem;
+    transition: 1000ms;
 }
 
 .container-total-balance:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
+    transition: 1000ms;
     box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+
+.container-total-balance h3 {
+    text-align: center;
+    width: 100%;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid white;
+
+
 }
 
 .box-total-balance {
@@ -205,7 +286,7 @@ main {
 
 .container-main-transactions table {
     border-radius: 15px;
-    background: linear-gradient(145deg, #151414, #191818);
+    background-color: #2B2D3E !important;
     box-shadow: 25px 25px 50px #090909,
         -25px -25px 50px #252323;
     max-width: 90%;
@@ -246,7 +327,7 @@ main {
 }
 
 .box-loan {
-    background: linear-gradient(145deg, #151414, #191818);
+    background: #212529;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -554,6 +635,12 @@ main {
 
 /*------------------------start html ACCOUNT-------------------------*/
 
+.container-single-account {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
 .big-box-account {
     padding: 2rem;
     display: flex;
@@ -594,7 +681,17 @@ main {
     width: 80%;
 }
 
+.shadow {
+    border-radius: 17px;
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323 !important;
+}
 
+.box {
+    color: #090909 !important;
+    background-color: #2B2D3E;
+    padding: 25px 20px;
+}
 
 
 
@@ -808,7 +905,7 @@ main {
 
 /*-------------------------END CREATE CARD------------------------*/
 
-/*-------------------------STAR TRANSFERS---------------------------*/
+/*-------------------------START TRANSFERS---------------------------*/
 
 .container-general-transfers {
     color: white;
@@ -868,6 +965,159 @@ main {
     box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
 } */
 
+/*--------------------------END TRANSFERS-------------------------*/
+
+/*-------------------------START APPLICATION LOAN-------------------------*/
+
+.container-gral-application-loan {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+    gap: 4rem;
+}
+
+
+.container-gral-application-loan h1 {
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    border-bottom: 1px solid white;
+    font-size: 3rem;
+    padding-bottom: .5rem;
+    width: 80%;
+
+
+
+}
+
+.container-gral-application-loan section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    padding: 5rem 2rem;
+    width: 80vw;
+    border-radius: 15px;
+}
+
+.container-application-loan {
+    border-radius: 20px;
+    background: linear-gradient(145deg, #151414, #191818);
+    display: flex;
+    gap: 3rem;
+    color: white;
+    width: 100%;
+}
+
+.img-personal-loan-1 {
+    background: url(../images/pexels-andrea-piacquadio-920382.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    min-height: 20rem;
+    width: 22rem;
+}
+
+.img-personal-loan-2 {
+    background: url(../images/pexels-oleksandr-pidvalnyi-7599735.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    min-height: 20rem;
+    width: 22rem;
+}
+
+.img-personal-loan-3 {
+    background: url(../images/car-loan.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    min-height: 20rem;
+    width: 22rem;
+}
+
+.text-personal-loan {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 1rem;
+    width: 35vw;
+}
+
+.button-application-loans {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.internal-text-personal-loan {
+    display: flex;
+    flex-direction: column;
+}
+
+.internal-text-personal-loan h2 {
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    padding: .5rem .5rem;
+}
+
+.form-application-loan {
+    background-color: #3f50a9;
+    /*   box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323; */
+    margin-bottom: 4rem;
+    transition: 1000ms;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.form-application-loan:hover {
+    transform: scale(1.01);
+    transition: 1000ms;
+}
+
+
+.container-descriptions-loans div {
+    background: linear-gradient(145deg, #151414, #191818);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.form-application-loan h2 {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    margin-bottom: 2rem;
+}
+
+
+
+.installment-amount {
+    background-color: #355181;
+    font-size: 1.1rem;
+    color: #f7b84b;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 0;
+}
+
+
+
+
+
+
+/*-------------------------END APPLICATION LOAN-------------------------*/
 
 /* -------------------------START FOOTER-------------------------- */
 
@@ -900,9 +1150,9 @@ footer {
 /* -------------------------end footerr-------------------------- */
 
 @media(min-width:960px) {
-    .container-accounts {
+    /*     .container-accounts {
         justify-content: space-around;
-    }
+    } */
 }
 
 
@@ -990,7 +1240,28 @@ footer {
     .accounts-transactions-title {
         align-items: center;
     }
+
+    .balance-chart-main {
+        flex-direction: column;
+        align-items: center;
+        gap: 3.5rem;
+    }
+
+    .container-total-balance {
+        width: 70%;
+    }
+
+    .container-gral-application-loan section {
+        width: 100%;
+    }
+
+    .container-descriptions-loans {
+        display: flex;
+        align-items: center;
+        width: 75%;
+    }
 }
+
 
 @media(max-width:470px) {
     header {
@@ -1036,6 +1307,40 @@ footer {
     .container-accounts {
         gap: 2.5rem;
     }
+
+    .container-application-loan {
+        flex-direction: column;
+    }
+
+    .img-personal-loan-1 {
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 0%;
+        min-height: 20rem;
+        width: 100%;
+    }
+
+    .img-personal-loan-2 {
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 0%;
+        min-height: 20rem;
+        width: 100%;
+    }
+
+    .img-personal-loan-3 {
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 0%;
+        min-height: 20rem;
+        width: 100%;
+    }
+
+    .text-personal-loan {
+
+        width: 100%;
+    }
+
 }
 
 
@@ -1312,4 +1617,48 @@ footer {
     -webkit-transition: box-shadow 0.2s ease-in;
     -moz-transition: box-shadow 0.2s ease-in;
     transition: box-shadow 0.2s ease-in;
+}
+
+
+/*button application*/
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+
+.btn-application-loan {
+    font-family: Roboto, sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+    background-color: #40ac50;
+    padding: 10px 30px;
+    border: solid #40ac50 2px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 50px;
+    transition: 1000ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    cursor: pointer;
+}
+
+.a-btn-aplication {
+    color: #fff;
+    text-decoration: none
+}
+
+.a-btn-aplication:hover {
+    color: #0066cc;
+}
+
+.btn-application-loan:hover {
+
+    transition: 1000ms;
+    padding: 10px 50px;
+    transform: translateY(-0px);
+    background-color: #fff;
+    color: #0066cc;
+    border: solid 2px #0066cc;
 }

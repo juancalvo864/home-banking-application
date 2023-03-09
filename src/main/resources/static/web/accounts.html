@@ -15,7 +15,8 @@
 <body>
     <div id="app">
         <header>
-            <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <!--   bg-dark navbar-dark -->
+            <nav class="navbar navbar-expand-lg ">
                 <div class="header-logo">
                     <img class="logo-header" src="./images/logo.png" alt="">
                     <img class="logo-text-header" src="./images/texto logo.png" alt="">
@@ -24,14 +25,12 @@
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle navbar-brand navbar-dark button-navbar"
                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="img-usuario" src="./images/nick-hillier-aQcE3gDSSTY-unsplash.jpg" alt="">
+                            <img class="img-usuario" src="./images/paisaje-user.jpg" alt="">
                             <div>
-                                <p>Welcome!</p>
                                 <p>{{dataClients.firstName + " "}} {{dataClients.lastName}} </p>
                             </div>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href=""></a>
                             <li><button @click="alert" class="dropdown-item" type="button">LogOut</button></li>
                         </ul>
                     </div>
@@ -68,36 +67,21 @@
             </nav>
         </header>
         <main>
+            <div id="h1-home">
+                <h2>
+                    Welcome {{dataClients.firstName + " "}} {{dataClients.lastName}} !!
+                </h2>
+            </div>
+            <!-- ACCOUNTS MAIN -->
             <div class="container-accounts" v-if="dataClients.accounts">
                 <div class="box-only-accounts">
                     <div class="container-account">
                         <a class=" box-account" :href="'./account.html?id='+dataClients.accounts[0].id"
                             style="text-decoration: none;">
-                            <div>
-                                <h3>Main account</h3>
-                                <p style="font-size: 1.5rem;">{{dataClients.accounts[0].number}} </p>
-                                <h1 style="color: #4455a9;">u$s
-                                    {{dataClients.accounts[0].balance.toFixed(2)}}
-                                </h1>
-                            </div>
-                            <div class="d-flex flex-column justify-content-between">
-                                <img style="width: 4rem;" src="./images/cash-icon.png" alt="">
-                                <div class="click-here">
-                                    <p style="margin: 0;">FOR MORE</p>
-                                    <P style="margin: 0;">CLICK HERE</P>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="container-account" v-if="dataClients.accounts"
-                        v-for="(account,index) of dataClients.accounts">
-                        <template v-if="index !== 0">
-                            <a class=" box-account" :href="'./account.html?id='+account.id"
-                                style="text-decoration: none;">
+                            <div class="box-account-title-info">
                                 <div>
-                                    <h5>Other account</h5>
-                                    <p style="font-size: 1.5rem;">{{account.number}} </p>
-                                    <h1 style="color: #4455a9">u$s {{account.balance.toFixed(2)}}</h1>
+                                    <h3>Main account</h3>
+                                    <p style="font-size: 1.5rem;">{{dataClients.accounts[0].number}} </p>
                                 </div>
                                 <div class="d-flex flex-column justify-content-between">
                                     <img style="width: 4rem;" src="./images/cash-icon.png" alt="">
@@ -106,38 +90,43 @@
                                         <P style="margin: 0;">CLICK HERE</P>
                                     </div>
                                 </div>
-                            </a>
-                        </template>
-                    </div>
-                </div>
-                <div class="container-total-balance">
-                    <div class=" box-total-balance">
-                        <div class="">
-                            <h4>Total Balance</h4>
-                            <h1 style="color: orange;"> u$s {{totalBalance.toFixed(2)}} </h1>
-                        </div>
-                        <div>
-                            <img style="width: 4rem;" src="./images/final-amount.png" alt="">
-                        </div>
-                    </div>
-                    <button class="continue-application" type="submit" @click="createAccount"
-                        v-show="dataClients.accounts.length < 3">
-                        <div>
-                            <div class="pencil"></div>
-                            <div class="folder">
-                                <div class="top">
-                                </div>
-                                <div class="paper"></div>
                             </div>
+                            <h1 style="color: #d68443;">u$s
+                                {{dataClients.accounts[0].balance.toFixed(2)}}
+                            </h1>
+                        </a>
+                    </div>
+                    <!-- ACCOUNTS OTHER -->
+                    <template v-if="dataClients.accounts" v-for="(account,index) of dataClients.accounts">
+                        <div class="container-account" v-if="index !== 0">
+                            <a class=" box-account" :href="'./account.html?id='+account.id"
+                                style="text-decoration: none;">
+                                <div class="box-account-title-info">
+                                    <div>
+                                        <h3>Other account</h3>
+                                        <p style="font-size: 1.5rem;">{{account.number}} </p>
+
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-between">
+                                        <img style="width: 4rem;" src="./images/cash-icon.png" alt="">
+                                        <div class="click-here">
+                                            <p style="margin: 0;">FOR MORE</p>
+                                            <P style="margin: 0;">CLICK HERE</P>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h1 style="color: #d68443">u$s {{account.balance.toFixed(2)}}</h1>
+                            </a>
                         </div>
-                        Create new account
-                    </button>
+                    </template>
                 </div>
 
             </div>
             <div class="box-account" v-else>
                 <h1>Has no accounts!</h1>
             </div>
+            <!--  TRANSACTIONS MAIN -->
+
             <div class="container-main-transactions" v-if="dataClients.accounts">
                 <table class="table table-dark table-hover">
                     <fieldset style="font-size: 2rem;text-align: center;">Main account - Last transactions</fieldset>
@@ -146,7 +135,7 @@
                             <th scope="col" style="border-top-left-radius: 10px;">Date</th>
                             <th scope="col">Description</th>
                             <th scope="col">Type</th>
-                            <th scope="col" style="border-top-right-radius: 10px;">Amount</th>
+                            <th scope="col" style="border-top-right-radius: 10px;text-align: center;">Amount</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -158,7 +147,7 @@
                                 <td v-if="transaction.type == `DEBIT`"><img src="./images/arrowDown.png" alt="" alt=""
                                         style="width: 2rem;"></td>
                                 <td v-else=><img src="./images/arrowUp.png" alt="" style="width: 2rem;"></td>
-                                <td>u$s {{transaction.amount.toFixed(2)}} </td>
+                                <td style="text-align: center;">u$s {{transaction.amount.toFixed(2)}} </td>
                             </template>
                         </tr>
                         <tr v-else>
@@ -169,14 +158,49 @@
                         </tr>
                     </tbody>
                 </table>
+                <!-- CHART AND BALANCE AACOUNTS -->
+                <div class="balance-chart-main">
+                    <!-- BALANCE ACCOUNTS -->
+                    <div class="container-total-balance">
+                        <h3>Total Balance</h3>
+                        <div class=" box-total-balance">
+                            <div class="d-flex flex-column ">
+                                <template v-for="account of dataClients.accounts">
+                                    <ul>
+                                        <li>{{account.number + " : " + "u$s" + account.balance}} </li>
+                                    </ul>
+                                </template>
+                            </div>
+                            <div>
+                                <img style="width: 4rem;" src="./images/final-amount.png" alt="">
+                            </div>
+                        </div>
+                        <h2 style="color: orange;"> u$s {{totalBalance.toFixed(2)}} </h2>
+                        <button class="continue-application" type="submit" @click="createAccount"
+                            v-show="dataClients.accounts.length < 3">
+                            <div>
+                                <div class="pencil"></div>
+                                <div class="folder">
+                                    <div class="top">
+                                    </div>
+                                    <div class="paper"></div>
+                                </div>
+                            </div>
+                            Create new account
+                        </button>
+                    </div>
+                    <!--  CHART TRANSACTIONS -->
+                    <div id="chart">
+
+                    </div>
+                </div>
+
             </div>
             <div class="box-account" v-else>
                 <h1>Has no transaction!</h1>
             </div>
-            <div id="chart">
 
-            </div>
-
+            <!-- LOANS -->
             <div class="container-loans-and-title">
                 <h2>Loans</h2>
                 <div class="containter-loans" v-if="loans.length !== 0">
@@ -197,6 +221,7 @@
                     <h1>Has no Loan!</h1>
                 </div>
             </div>
+            <!--   CARDS -->
             <h2 style="text-align: center;color: white;margin-top: 5rem;">Cards</h2>
             <div class="container-cards">
                 <div class="d-flex flex-column">
@@ -369,13 +394,13 @@
                             </a>
                         </template>
                     </div>
-                    <div v-else class="d-flex justify-content-center">
-                        <div class="box-account ">
-                            <h1>Has no cards!</h1>
-                        </div>
+
+                </div>
+                <div v-else class="d-flex justify-content-center">
+                    <div class="box-account ">
+                        <h1>Has no cards!</h1>
                     </div>
                 </div>
-
 
             </div>
 

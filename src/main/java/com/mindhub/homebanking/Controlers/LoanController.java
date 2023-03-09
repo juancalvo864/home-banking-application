@@ -92,7 +92,7 @@ public class LoanController {
 
 
         ClientLoan newClientLoan= new ClientLoan(loanApplicationDTO.getAmount(), loanApplicationDTO.getPayments()) ;
-        Transaction transactionCredit = new Transaction(TransactionType.CREDIT, loanApplicationDTO.getAmount()*1.2, nameLoan + " Loan",LocalDateTime.now());
+        Transaction transactionCredit = new Transaction(TransactionType.CREDIT, loanApplicationDTO.getAmount()*1.2, nameLoan.getName() + " Loan",LocalDateTime.now());
 
 
 
