@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NUMBA | Transfers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./assets/accounts.css">
+</head>
+
+<body>
+    <div id="app">
+
+
+        <header>
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                <div class="header-logo">
+                    <img class="logo-header" src="./images/logo.png" alt="">
+                    <img class="logo-text-header" src="./images/texto logo.png" alt="">
+                </div>
+                <div class="container-fluid">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle navbar-brand navbar-dark" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="img-usuario" src="./images/nick-hillier-aQcE3gDSSTY-unsplash.jpg" alt="">
+                            <div>
+                                <p>Welcome!</p>
+                                <p>{{dataClient.firstName + " " +dataClient.lastName}} </p>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href=""></a>
+                            <li><button @click="alert" class="dropdown-item" type="button">LogOut</button></li>
+                        </ul>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse nav-menu" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="./accounts.html">Accounts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./cards.html">Cards</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./createCards.html">Create cards</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    More options
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="./loanApplication.html">Loan application</a></li>
+                                    <li><a class="dropdown-item" href="./transfers.html">Transfers</a></li>
+                                    <li><a class="dropdown-item" href="./servicePay.html">Service pay</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <!--    <div class="d-flex flex-column align-items-center">
+                <img style="width: 40vw;"
+                    src="https://familiavance.com/wp-content/uploads/2018/07/pagina-construccion.jpg" alt="">
+                <img style="width: 40vw;" src="https://i.pinimg.com/736x/95/b2/03/95b203c37eef67d19566baaaa5c31a84.jpg"
+                    alt="">
+
+            </div> -->
+            <div class="container-gral-application-loan">
+                <h1>Numba loans are what you need.</h1>
+                <section>
+                    <div class="container-application-loan">
+                        <div class="img-personal-loan-1">
+                        </div>
+                        <div class="text-personal-loan">
+                            <div class="internal-text-personal-loan">
+                                <h2>Personal loan</h2>
+                                <p>
+                                    With Numba's personal loans you can quickly complete a project and we give you
+                                    more
+                                    time to return the money.It is a credit that the bank or other financial entity
+                                    grants to
+                                    natural persons, which allows you to obtain cash to satisfy any economic need
+                                    such
+                                    as paying a debt, financing your children's studies, paying for services, taking
+                                    a
+                                    trip on your vacations and more.
+
+                                </p>
+                            </div>
+                            <div class="button-application-loans">
+                                <a href="#application" class="a-btn-aplication"><button class="btn-application-loan">
+                                        Application</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-descriptions-loans row justify-content-between gy-3">
+                        <div class="col-12 col-lg-3">
+                            <h3>Amount up to u$s100.000</h3>
+                            <p>
+                                Select the amount, the number of installments and when you start to return it.</p>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <h3>Term of up to 24 months</h3>
+                            <p>
+                                You can pay the first installment after 45 days.</p>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <h3>Automatic acreditation</h3>
+                            <p>We deposit the money in your account. You can cancel it totally or partially.</p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="container-application-loan">
+                        <div class="img-personal-loan-2">
+                        </div>
+                        <div class="text-personal-loan">
+                            <div class="internal-text-personal-loan">
+                                <h2>Mortgage loan</h2>
+                                <p>
+                                    With Numba's mortgage loan you will be able to access the home you so desire.
+                                    A Mortgage Credit is a financial product that allows you to receive money in
+                                    exchange for a personal commitment to repay said amount, along with the
+                                    corresponding interest, through periodic payments and putting a property as
+                                    collateral.
+
+                                </p>
+                            </div>
+                            <div class="button-application-loans">
+                                <a href="#application" class="a-btn-aplication"><button class="btn-application-loan">
+                                        Application</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-descriptions-loans row justify-content-between gy-3">
+                        <div class="col-12 col-lg-3">
+                            <h4>Amount up to u$s500.000</h4>
+                            <3>
+                                Select the amount, the number of installments and when you start to return it.</3>
+                        </div>
+                        <div class="col-12  col-lg-3">
+                            <h3>Term of up to 48 months</h3>
+                            <p>
+                                You can pay the first installment after 30 days.</p>
+                        </div>
+                        <div class="col-12  col-lg-3">
+                            <h3>Subject to evaluation</h3>
+                            <p>We deposit the money in your account. You can cancel it totally or partially.</p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="container-application-loan">
+                        <div class="img-personal-loan-3">
+                        </div>
+                        <div class="text-personal-loan">
+                            <div class="internal-text-personal-loan">
+                                <h2>Automotive loan</h2>
+                                <p>
+                                    With Numba's auto loans, change your old vehicle or acquire a new vehicle. A Pledge
+                                    Loan is a financing plan for the purchase of vehicles for private use. We
+                                    also have plans to finance 0 km utility vehicles for commercial use, except for
+                                    passenger transport vehicles (taxis, remises, minibus, ambulances, mail, etc.),
+                                    unloading of dangerous, corrosive, flammable or similar substances and rental
+                                    vehicles.
+
+                                </p>
+                            </div>
+                            <div class="button-application-loans">
+                                <a href="#application" class="a-btn-aplication"><button class="btn-application-loan">
+                                        Application</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-descriptions-loans row justify-content-between gy-3">
+                        <div class="col-12 col-lg-3">
+                            <h3>Amount up to $500.000</h3>
+                            <p>
+                                Select the amount, the number of installments and when you start to return it.</p>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <h3>Term of up to 36 months</h3>
+                            <p>
+                                You can pay the first installment after 15 days.</p>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <h3>Automatic acreditation</h3>
+                            <p>We deposit the money in your account. You can cancel it totally or partially.</p>
+                        </div>
+                    </div>
+                </section>
+                <!--     formulario de carga loan -->
+                <div class="form-application-loan">
+                    <h2 id="application">Request your credit here</h2>
+                    <form action="" class="d-flex flex-column justify-content-center gap-4">
+                        <label for="">Select type loan
+                            <select class="form-select" aria-label="Default select example" @change="selectPayment()"
+                                v-model="loanId">
+                                <option disabled>type loan</option>
+                                <template v-for="loan of dataLoans">
+                                    <option :value="loan.id">{{loan.name}} </option>
+                                </template>
+                            </select>
+                        </label>
+
+                        <label>
+                            <p style="margin-bottom: 0;">Enter amount up to: u$s {{maxAmount.toLocaleString()}}</p>
+                            <div class="input-group">
+                                <span class="input-group-text">u$s</span>
+                                <input type="number" min="1" @keyup="maxAmountValue(),interestPyment()"
+                                    class="form-control" aria-label="Amount (to the nearest dollar)"
+                                    v-model="amountLoan">
+                            </div>
+                        </label>
+                        <label>Select payments
+                            <select class="form-select" aria-label="Default select example" v-model="paymentsLoan"
+                                @change="interestPyment()">
+                                <template v-for="payment of dataPayments">
+                                    <option>{{payment}} </option>
+                                </template>
+                            </select>
+                        </label>
+                        <label for="">Select the account number to deposit
+                            <select class="form-select" aria-label="Default select example" v-model="accountIn">
+                                <template v-for="account of dataClient.accounts">
+                                    <option :value="account.number">{{account.number}} : u$S {{account.balance}}
+                                    </option>
+                                </template>
+                            </select>
+                        </label>
+                        <p class="installment-amount">Payment amount : u$s {{interestPay.toFixed(2)}}</p>
+                        <p class="installment-amount">Toal to return : u$s {{amountPercent}}
+                        </p>
+                    </form>
+                    </form>
+                    <button class="btn-application-loan mt-4" @click="newLoan">APPLICATION <img
+                            src="https://www.htmlcssbuttongenerator.com/iconExample-plus-square-multiple-lined.svg"
+                            style="width:26px; margin-left:3px; margin-right:6px; flex-direction: row-reverse;"></button>
+                </div>
+
+            </div>
+
+
+        </main>
+        <footer>
+            <div class="footer-logo">
+                <img class="footer-img-logo" src="./images/logo.png" alt="">
+                <img class="footer-img-textologo" src="././images/texto logo.png" alt="">
+            </div>
+            <p>Copyrigth - Calvo juan Calvo</p>
+
+        </footer>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./javaScript/loanApplication.js"></script>
+
+</body>
+
+</html>
