@@ -1,13 +1,9 @@
 package com.mindhub.homebanking.models;
 
-import com.mindhub.homebanking.repositories.CardRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Random;
 
 @Entity
 public class Card {
@@ -23,6 +19,7 @@ public class Card {
     private int cvv;
     private LocalDate fromDate;
     private LocalDate thruDate;
+    private CardAndAccountStatus status;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
@@ -31,7 +28,7 @@ public class Card {
 
 
     public Card(){}
-    public Card(Client client , CardType type, CardColor color, String number, int cvv, LocalDate fromDate, LocalDate thruDate) {
+    public Card(Client client , CardType type, CardColor color, String number, int cvv, LocalDate fromDate, LocalDate thruDate, CardAndAccountStatus status) {
         this.cardholder = client.getFirstName() + " "+ client.getLastName();
         this.type = type;
         this.color = color;
@@ -39,10 +36,17 @@ public class Card {
         this.cvv = cvv;
         this.fromDate = fromDate;
         this.thruDate = thruDate;
+        this.status = status;
     }
 
 
+    public CardAndAccountStatus getStatus() {
+        return status;
+    }
 
+    public void setStatus(CardAndAccountStatus status) {
+        this.status = status;
+    }
 
     public long getId() {
         return id;

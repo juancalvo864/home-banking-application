@@ -13,6 +13,7 @@ public class ClientLoan {
 
     private int amount;
     private byte payments;
+    private byte porcentage;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -24,12 +25,19 @@ public class ClientLoan {
     private Loan loan;
 
     public ClientLoan(){};
-    public ClientLoan( int amount, byte payments) {
+    public ClientLoan( int amount, byte payments,Loan loan) {
         this.amount = amount;
         this.payments = payments;
+        this.porcentage = loan.getPorcentage();
     }
 
+    public byte getPorcentage() {
+        return porcentage;
+    }
 
+    public void setPorcentage(byte porcentage) {
+        this.porcentage = porcentage;
+    }
 
     public long getId() {
         return id;

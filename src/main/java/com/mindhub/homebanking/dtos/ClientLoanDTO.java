@@ -8,6 +8,7 @@ public class ClientLoanDTO {
     private int amount;
     private byte payments;
     private String name;
+    private byte percentge;
 
     public ClientLoanDTO(){};
     public ClientLoanDTO(ClientLoan clientLoan) {
@@ -16,31 +17,29 @@ public class ClientLoanDTO {
         this.payments = clientLoan.getPayments();
         this.idLoan = clientLoan.getLoan().getId() ;
         this.name = clientLoan.getLoan().getName();
+        this.percentge = clientLoan.getPorcentage();
+    }
+
+
+    public byte getPercentge() {
+        return percentge;
     }
 
     public long getIdLoan() {
         return idLoan;
     }
 
-
-
     public long getIdClientLoan() {
         return idClientLoan;
     }
-
-
 
     public int getAmount() {
         return amount;
     }
 
-
-
     public byte getPayments() {
         return payments;
     }
-
-
 
     public String getName() {
         return name;

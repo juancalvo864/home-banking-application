@@ -5,12 +5,13 @@ createApp({
             dataClient: [],
             clients: [],
             cards: [],
-            type: "Select Type",
-            color: "Select color",
             selectColor: "",
             selectType: "",
+            type: "Select Type",
+            color: "Select color",
             debit: null,
-            credit: null
+            credit: null,
+
 
 
         }
@@ -34,16 +35,19 @@ createApp({
         cardCreate() {
             axios.post('/api/clients/current/cards', `type=${this.type}&color=${this.color}`,
                 { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                .then(res => {
+                    Swal.fire(res.data)
+                })
                 .catch(error => {
-
-                    console.error(error)
-                    console.error(error.response.data)
+                    Swal.fire(error.response.data)
                 })
         },
 
 
+
         logout() {
             axios.post('/api/logout').then(response => console.log('signed out!!!'))
+
         },
 
         selectCard() {
@@ -90,16 +94,7 @@ createApp({
             })
         },
 
-        creado() {
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Successfully created',
-                showConfirmButton: false,
-                timer: 2500
-            })
 
-        },
 
         sureCreateCard() {
             Swal.fire({
@@ -112,7 +107,6 @@ createApp({
                 confirmButtonText: 'yes I want'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    this.creado()
                     this.cardCreate()
                 }
             }).then(() => {
@@ -120,7 +114,7 @@ createApp({
                 return new Promise((resolve) => setTimeout(resolve, 2500));
             })
                 .then(res => {
-                    window.location.href = "/web/createCards.html"
+                    window.location.href = "/web/cards.html"
                 })
         }
 

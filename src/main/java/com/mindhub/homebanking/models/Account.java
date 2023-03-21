@@ -17,6 +17,10 @@ public class Account {
     private LocalDateTime creationDate;
     private Double balance;
 
+    private CardAndAccountStatus status;
+
+    private AccountType typeAccount;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
@@ -29,10 +33,12 @@ public class Account {
     public Account() {
     }
 
-    public Account( String number, LocalDateTime creationDate, Double balance) {
+    public Account(String number, LocalDateTime creationDate, Double balance, CardAndAccountStatus status, AccountType typeAccount) {
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
+        this.status = status;
+        this.typeAccount = typeAccount;
     }
 
     public void addTransaction(Transaction transaction) {
@@ -40,6 +46,15 @@ public class Account {
         transactions.add(transaction);
     }
 
+
+    public AccountType getTypeAccount() {
+        return typeAccount;
+    }
+
+
+    public CardAndAccountStatus getStatus() {
+        return status;
+    }
 
     public String getNumber() {
         return number;
@@ -79,6 +94,14 @@ public class Account {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public void setStatus(CardAndAccountStatus status) {
+        this.status = status;
+    }
+
+    public void setTypeAccount(AccountType typeAccount) {
+        this.typeAccount = typeAccount;
     }
 
 

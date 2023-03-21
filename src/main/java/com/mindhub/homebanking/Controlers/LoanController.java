@@ -1,10 +1,10 @@
 package com.mindhub.homebanking.Controlers;
 
 
-import com.mindhub.homebanking.dtos.AccountDTO;
-import com.mindhub.homebanking.dtos.ClientLoanDTO;
-import com.mindhub.homebanking.dtos.LoanApplicationDTO;
-import com.mindhub.homebanking.dtos.LoanDTO;
+import com.mindhub.homebanking.Services.AccountService;
+import com.mindhub.homebanking.Services.ClientService;
+import com.mindhub.homebanking.Services.LoanService;
+import com.mindhub.homebanking.dtos.*;
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +29,13 @@ import static java.util.stream.Collectors.toSet;
 public class LoanController {
 
     @Autowired
-    private LoanRepository repoLoan;
+    private LoanService loanService;
 
     @Autowired
-    private ClientRepository repoClient;
+    private ClientService clientService;
 
     @Autowired
-    private AccountRepository repoAccount;
+    private AccountService accountService;
 
     @Autowired
     private TransactionRepository repoTransaction;
@@ -49,20 +49,51 @@ public class LoanController {
 
     @RequestMapping("/clients/current/loans")
     public Set<ClientLoanDTO> getLoanCurrent(Authentication authentication){
-        return  repoClient.findByEmail(authentication.getName()).getClientLoans().stream().map(clientLoan-> new ClientLoanDTO(clientLoan)).collect(toSet());
+        return  clientService.findByEmail(authentication.getName()).getClientLoans().stream().map(clientLoan-> new ClientLoanDTO(clientLoan)).collect(toSet());
     }
 
     @RequestMapping("/loans")
     public List<LoanDTO> getLoans( ){
-        return  repoLoan.findAll() .stream().map(loan -> new LoanDTO(loan)).collect(Collectors.toList()) ;
+        return  loanService.findAll() .stream().map(loan -> new LoanDTO(loan)).collect(Collectors.toList()) ;
     }
+
+
+    @PostMapping( "/admin/loans/new" )
+    public ResponseEntity<Object> createLoan(@RequestBody NewLoanDto newLoanDto){
+
+        if(newLoanDto.getName().isEmpty()){
+            return new ResponseEntity<>("Missing name", HttpStatus.BAD_REQUEST);
+        }
+        if(newLoanDto.getAmount() == 0){
+            return new ResponseEntity<>("Missing number", HttpStatus.BAD_REQUEST);
+        }
+        if(newLoanDto.getPayments().isEmpty()){
+            return new ResponseEntity<>("Missing payment", HttpStatus.BAD_REQUEST);
+        }
+        if(newLoanDto.getPorcentage() == 0) {
+            return new ResponseEntity<>("Missing porcentage", HttpStatus.BAD_REQUEST);
+        }
+        if(!newLoanDto.getPayments().stream().anyMatch(number-> number >3 && number < 60)){
+            return new ResponseEntity<>("Missing porcentage", HttpStatus.BAD_REQUEST);
+        }
+
+        Loan newLoan = new Loan( newLoanDto.getName(), newLoanDto.getAmount(), newLoanDto.getPayments(), newLoanDto.getPorcentage());
+
+        loanService.save(newLoan);
+
+        return new ResponseEntity<>("The loan has been created",HttpStatus.CREATED);
+    }
+
+
+
 
     @Transactional
     @PostMapping( "/clients/current/loans" )
-    public ResponseEntity<Object> createTransaction(Authentication authentication, @RequestBody LoanApplicationDTO loanApplicationDTO) {
+    public ResponseEntity<Object> createClientLoan(Authentication authentication, @RequestBody LoanApplicationDTO loanApplicationDTO) {
 
-        Client client =  repoClient.findByEmail( authentication.getName());
-        Loan nameLoan = repoLoan.findById(loanApplicationDTO.getId()).orElse( null);
+        Client client =  clientService.findByEmail( authentication.getName());
+        Loan nameLoan = loanService.findById(loanApplicationDTO.getId());
+
 
         if (loanApplicationDTO.getAmount() == null || loanApplicationDTO.getAmount() == 0) {
             return new ResponseEntity<>("Missing amount", HttpStatus.BAD_REQUEST);
@@ -76,32 +107,35 @@ public class LoanController {
         if(nameLoan.getMaxAmount() < loanApplicationDTO.getAmount()){
             return new ResponseEntity<>("The requested amount exceeds the maximum", HttpStatus.BAD_REQUEST);
         }
-        if(repoLoan.findById (loanApplicationDTO.getId()) == null){
+        if(loanService.findById (loanApplicationDTO.getId()) == null){
             return new ResponseEntity<>("The loan doesn't exist.", HttpStatus.BAD_REQUEST);
         }
         if(loanApplicationDTO.getNumberAccountIn().isEmpty()){
             return new ResponseEntity<>("Missing Number account in", HttpStatus.BAD_REQUEST);
         }
-        if (repoAccount.findByNumber(loanApplicationDTO.getNumberAccountIn()) == null){
+        if (accountService.findByNumber(loanApplicationDTO.getNumberAccountIn()) == null){
             return new ResponseEntity<>("the account doesn't exist", HttpStatus.FORBIDDEN);
         }
         if (!client.getAccounts().stream().anyMatch(account -> account.getNumber().equals(loanApplicationDTO.getNumberAccountIn()))) {
             return new ResponseEntity<>("Its not your account", HttpStatus.FORBIDDEN);
         }
+        if( client.getLoans().stream().anyMatch(loan -> loan.equals(nameLoan)  ) ){
+            return new ResponseEntity<>("You can't get two thing that are the same", HttpStatus.FORBIDDEN);
+        }
 
-
-
-        ClientLoan newClientLoan= new ClientLoan(loanApplicationDTO.getAmount(), loanApplicationDTO.getPayments()) ;
-        Transaction transactionCredit = new Transaction(TransactionType.CREDIT, loanApplicationDTO.getAmount()*1.2, nameLoan.getName() + " Loan",LocalDateTime.now());
-
-
-
-        Account accountIn = repoAccount.findByNumber(loanApplicationDTO.getNumberAccountIn());
+        Account accountIn = accountService.findByNumber(loanApplicationDTO.getNumberAccountIn());
         Double amountIn = accountIn.getBalance() + loanApplicationDTO.getAmount();
         accountIn.setBalance(amountIn);
 
+        ClientLoan newClientLoan= new ClientLoan(loanApplicationDTO.getAmount(), loanApplicationDTO.getPayments(),nameLoan) ;
+        Transaction transactionCredit = new Transaction(TransactionType.CREDIT, loanApplicationDTO.getAmount()*1.2, nameLoan.getName() + " Loan",LocalDateTime.now(), accountIn.getBalance());
+
+
+
+
+
         client.addClientLoan(newClientLoan);
-        repoLoan.findByName(nameLoan.getName()).addClientLoan(newClientLoan);
+        loanService.findByName(nameLoan.getName()).addClientLoan(newClientLoan);
         accountIn.addTransaction(transactionCredit);
 
 

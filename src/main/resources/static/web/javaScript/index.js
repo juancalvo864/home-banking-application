@@ -24,8 +24,12 @@ createApp({
             axios.post('/api/login', `email=${this.user}&password=${this.password1}`,
                 { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
                 .then(response => {
-                    window.location.href = '/web/accounts.html';
-
+                    if (this.user === "admin@mindhub.com") {
+                        window.location.href = '/web/adminLoan.html';
+                    }
+                    else {
+                        window.location.href = '/web/accounts.html';
+                    }
                 })
                 .catch(error => concole.error(error))
         },

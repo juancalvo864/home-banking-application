@@ -4,11 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>NUMBA | ACCOUNT</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="./assets/accounts.css">
+
 </head>
 
 <body>
@@ -25,10 +30,9 @@
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle navbar-brand navbar-dark" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="img-usuario" src="./images/nick-hillier-aQcE3gDSSTY-unsplash.jpg" alt="">
+                            <img class="img-usuario" src="./images/paisaje-user.jpg" alt="">
                             <div>
-                                <p>Welcome!</p>
-                                <p>{{dataClients.firstName + " "}} {{dataClients.lastName}} </p>
+                                <p>{{dataClient.firstName + " "}} {{dataClient.lastName}} </p>
                             </div>
                         </button>
                         <ul class="dropdown-menu">
@@ -69,57 +73,136 @@
             </nav>
         </header>
         <main>
-
-            <div class="container-single-account">
-                <div class=" big-box-account" v-if="accountSelect.length !== 0 ">
-                    <div>
-                        <h2>Account Number : {{accountSelect.number}} </h2>
-                        <h3>Creation Date : {{dateTimeAccounts(accountSelect.creationDate)}} </h3>
+            <template v-if="dataClient">
+                <!-- ACCOUNT INFORMATION -->
+                <div class="container-general-select-account">
+                    <div class="container-single-account">
+                        <div class=" big-box-account">
+                            <div>
+                                <h2>Account Number : {{accountSelect.number}} </h2>
+                                <h3>Creation Date : {{dateTimeAccounts(accountSelect.creationDate)}} </h3>
+                                <h3 style="color: #00ff75;">Type account: {{accountSelect.accountType}}</h3>
+                            </div>
+                            <div>
+                                <img style="width: 7rem;" src="./images/cash-icon.png" alt="">
+                            </div>
+                        </div>
                         <h1 style="color:#ffbe0b ;">u$s {{accountSelect.balance.toFixed(2)}}</h1>
                     </div>
+                    <!--------------- FILTER AND PDF --------------------->
+                    <div class="form-filer-transaction">
+                        <h2 style="border-bottom: 1px solid white;width: 100%;text-align: center;">Date Filter &
+                            Download PDF</h2>
+                        <div class="box-filter-pdf">
+                            <div>
+                                <label>Select dates for the filter.
+                                    <input type="datetime-local" class="datepicker" v-model="dateValueCalendar">
+                                </label>
+                                <button @click="filterByDate" class="btn-application-loan">FILTER</button>
+                            </div>
+                            <div class="d-flex justify-content-center  gap-2">
+                                Click the button to download
+                                <button @click="pdf" class="btn-application-loan">pdf</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!----------------  TRANSACTIONS ------------->
+                <div class="container-transactions-account mt-5">
+                    <div class="container-table-account">
+                        <h1>Transactions</h1>
+                        <table class="table table-dark table-hover ">
+                            <thead>
+                                <tr>
+                                    <th class="head-table table-start" scope="col">Date</th>
+                                    <th class="head-table" scope="col">Description</th>
+                                    <th class="head-table" scope="col">Type</th>
+                                    <th class="head-table" scope="col">Amount</th>
+                                    <th class="head-table table-end" scope="col" style="text-align: center;">Balance
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="transaction of transactionFilter.sort((a, b) => b.id - a.id)">
+                                    <th> {{dateTransactions(transaction.date)}} </th>
+                                    <td> {{transaction.description}} </td>
+                                    <td v-if="transaction.type == `DEBIT`"><img src="./images/arrowDown.png" alt=""
+                                            alt="" style="width: 2rem;"></td>
+                                    <td v-else=><img src="./images/arrowUp.png" alt="" style="width: 2rem;"></td>
+                                    <td>u$s {{transaction.amount.toFixed(2)}} </td>
+                                    <td style="text-align: center;">u$s {{transaction.balance}} </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!----------- DELETE ACCOUNT ----------------->
+
                     <div>
-                        <img style="width: 7rem;" src="./images/cash-icon.png" alt="">
+                        <p>If you want to cancel an account, click on the button. Remember that your account must be
+                            at zero to be able to cancel it</p>
+                        <button class="btn-application-loan" @click="deleteAcoount">DELETE ACCOUNT</button>
                     </div>
-                </div>
-            </div>
-            <div class="container-transactions-account mt-5">
-                <table class="table table-dark table-hover ">
-                    <fieldset style="text-align: center;font-size: 2rem;padding-bottom: 2rem;">Transactions</fieldset>
-                    <thead>
-                        <tr>
-                            <th class="head-table table-start" scope="col">Date</th>
-                            <th class="head-table" scope="col">Description</th>
-                            <th class="head-table" scope="col">Type</th>
-                            <th class="head-table table-end" scope="col" style="text-align: center;">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="transaction of accountSelect.transactions.sort((a, b) => b.id - a.id)">
-                            <th> {{dateTransactions(transaction.date)}} </th>
-                            <td> {{transaction.description}} </td>
-                            <td v-if="transaction.type == `DEBIT`"><img src="./images/arrowDown.png" alt="" alt=""
-                                    style="width: 2rem;"></td>
-                            <td v-else=><img src="./images/arrowUp.png" alt="" style="width: 2rem;"></td>
-                            <td style="text-align: center;">u$s {{transaction.amount.toFixed(2)}} </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="col-md-7 ">
-                    <div class="box shadow mt-4 ">
-                        <div id="line-adwords" class=""></div>
-                    </div>
-                </div>
-            </div>
 
-        </main>
-        <footer>
-            <div class="footer-logo">
-                <img class="footer-img-logo" src="./images/logo.png" alt="">
-                <img class="footer-img-textologo" src="././images/texto logo.png" alt="">
-            </div>
-            <p>Copyrigth - Calvo juan Calvo</p>
-
-        </footer>
+                    <!---------------------CHART --------------------->
+                    <!-- <div class="col-md-7 box-chart-account ">
+                        <div class="box shadow mt-4 ">
+                            <div id="line-adwords" class=""></div>
+                        </div>
+                    </div> -->
+                </div>
+    </div>
+    </template>
+    <div v-else class="spiner">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <!--   TABLE TO PDF -->
+    <!--     <div id="pdf-table" class="pdf-table-none">
+        <div class="table-pdf-render">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="head-table table-start" scope="col">Date</th>
+                        <th class="head-table" scope="col">Description</th>
+                        <th class="head-table" scope="col">Type</th>
+                        <th class="head-table" scope="col">Amount</th>
+                        <th class="head-table table-end" scope="col" style="text-align: center;">Balance
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="transaction of transactionFilter.sort((a, b) => b.id - a.id)">
+                        <th> {{dateTransactions(transaction.date)}} </th>
+                        <td> {{transaction.description}} </td>
+                        <td v-if="transaction.type == `DEBIT`"><img src="./images/arrowDown.png" alt="" alt=""
+                                style="width: 2rem;"></td>
+                        <td v-else=><img src="./images/arrowUp.png" alt="" style="width: 2rem;"></td>
+                        <td>u$s {{transaction.amount.toFixed(2)}} </td>
+                        <td style="text-align: center;">u$s {{transaction.balance}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> -->
+    <!--   TABLE TO PDF -->
+    </main>
+    <footer>
+        <div class="footer-logo">
+            <img class="footer-img-logo" src="./images/logo.png" alt="">
+            <img class="footer-img-textologo" src="././images/texto logo.png" alt="">
+        </div>
+        <p>Copyrigth - Calvo juan Calvo</p>
+        <div class="redes-footer">
+            <a href="https://www.facebook.com/juancalvoo" target="_blank"><img src="./images/facebook1.png" alt=""
+                    class="icono-facebook"></a>
+            <a href="https://github.com/juancalvo864" target="_blank"><img src="./images/github.png" alt=""
+                    class="icono-github"></a>
+            <a href="https://www.instagram.com/juancalvoo/" target="_blank"><img src="./images/instagram1.png" alt=""
+                    class="icono-instagram"></a>
+        </div>
+    </footer>
     </div>
 
 
@@ -130,7 +213,11 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="./javaScript/account.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="./javaScript/account.js" type="module"></script>
 
 
 </body>

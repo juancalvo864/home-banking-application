@@ -29,13 +29,16 @@ createApp({
         },
 
         newtransfer() {
-
             axios.post('/api/clients/transaction', `description=${this.description}&amount=${this.amountTranfer}.0&numberAccountOut=${this.accountOut}&numberAccountIn=${this.accountIn}`,
                 { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
                 .then(response => {
+                    Swal.fire(response.data)
                     window.location.href = '/web/transfers.html';
                 })
-                .catch(error => console.error(error))
+                .catch(error => {
+                    Swal.fire(error.response.data)
+                    window.location.href = '/web/transfers.html';
+                })
         },
 
         finalAmount(accounts) {
@@ -45,8 +48,6 @@ createApp({
             }
             this.totalBalance = template
         },
-
-
 
         logout() {
             axios.post('/api/logout').then(response => console.log('signed out!!!'))
@@ -68,8 +69,25 @@ createApp({
             })
         },
 
+        newTrasferAlert() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Confirm the transaction",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirm!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.newtransfer()
 
+                }
+            })
+        }
     },
+
+
 
 
 

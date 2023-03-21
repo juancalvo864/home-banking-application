@@ -6,6 +6,9 @@ import com.mindhub.homebanking.models.Client;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.mindhub.homebanking.models.CardAndAccountStatus.ENABLED;
+import static java.util.stream.Collectors.toSet;
+
 public class ClientDTO {
 
     private long id;
@@ -32,9 +35,10 @@ public class ClientDTO {
         this.lastName = client.getLastName();
 
         this.email = client.getEmail();
-        this.accounts = client.getAccounts().stream().map(account -> new AccountDTO(account) ).collect(Collectors.toSet());
+        this.accounts = client.getAccounts().stream().filter(account-> account.getStatus().equals(ENABLED) ).map(account -> new AccountDTO(account) ).collect(Collectors.toSet());
         this.loans = client.getClientLoans().stream().map(clientloan -> new ClientLoanDTO(clientloan)).collect(Collectors.toSet());
-        this.cards = client.getCards().stream().map(CardDTO::new).collect(Collectors.toSet());
+        this.cards = client.getCards().stream().filter(card-> card.getStatus().equals(ENABLED) ).map(CardDTO::new).collect(Collectors.toSet());
+
     }
 
 

@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 * {
     box-sizing: border-box;
@@ -9,64 +10,45 @@
 
 
 
-body {
-    font-family: Roboto, sans-serif;
+/* body {
+    font-family: 'Roboto Slab', serif;
+} */
+
+/* label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
 }
 
+input,
+label {
+    margin: 0.4rem 0;
+} */
 
 
 main {
-    /*  background-color: #1a1d2125;
-    background-image: linear-gradient(rgba(1, 1, 1, 0.8), rgba(1, 1, 1, 0.9)), url(https://www.mckinsey.com/~/media/mckinsey/business%20functions/risk/our%20insights/the%20future%20of%20bank%20risk%20management/the-future-of-bank_1536x1536_300_standard.jpg); */
-    /* background-size: cover; */
-    /*  background-position: center;
-    background-attachment: fixed; */
-    /* background-image: url(../images/trianglify-lowres.png); */
 
-    /*    background-color: #060012;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='100%25' gradientTransform='rotate(240)'%3E%3Cstop offset='0' stop-color='%23060012'/%3E%3Cstop offset='1' stop-color='%23474A0D'/%3E%3C/linearGradient%3E%3Cpattern patternUnits='userSpaceOnUse' id='b' width='540' height='450' x='0' y='0' viewBox='0 0 1080 900'%3E%3Cg fill-opacity='0.1'%3E%3Cpolygon fill='%23444' points='90 150 0 300 180 300'/%3E%3Cpolygon points='90 150 180 0 0 0'/%3E%3Cpolygon fill='%23AAA' points='270 150 360 0 180 0'/%3E%3Cpolygon fill='%23DDD' points='450 150 360 300 540 300'/%3E%3Cpolygon fill='%23999' points='450 150 540 0 360 0'/%3E%3Cpolygon points='630 150 540 300 720 300'/%3E%3Cpolygon fill='%23DDD' points='630 150 720 0 540 0'/%3E%3Cpolygon fill='%23444' points='810 150 720 300 900 300'/%3E%3Cpolygon fill='%23FFF' points='810 150 900 0 720 0'/%3E%3Cpolygon fill='%23DDD' points='990 150 900 300 1080 300'/%3E%3Cpolygon fill='%23444' points='990 150 1080 0 900 0'/%3E%3Cpolygon fill='%23DDD' points='90 450 0 600 180 600'/%3E%3Cpolygon points='90 450 180 300 0 300'/%3E%3Cpolygon fill='%23666' points='270 450 180 600 360 600'/%3E%3Cpolygon fill='%23AAA' points='270 450 360 300 180 300'/%3E%3Cpolygon fill='%23DDD' points='450 450 360 600 540 600'/%3E%3Cpolygon fill='%23999' points='450 450 540 300 360 300'/%3E%3Cpolygon fill='%23999' points='630 450 540 600 720 600'/%3E%3Cpolygon fill='%23FFF' points='630 450 720 300 540 300'/%3E%3Cpolygon points='810 450 720 600 900 600'/%3E%3Cpolygon fill='%23DDD' points='810 450 900 300 720 300'/%3E%3Cpolygon fill='%23AAA' points='990 450 900 600 1080 600'/%3E%3Cpolygon fill='%23444' points='990 450 1080 300 900 300'/%3E%3Cpolygon fill='%23222' points='90 750 0 900 180 900'/%3E%3Cpolygon points='270 750 180 900 360 900'/%3E%3Cpolygon fill='%23DDD' points='270 750 360 600 180 600'/%3E%3Cpolygon points='450 750 540 600 360 600'/%3E%3Cpolygon points='630 750 540 900 720 900'/%3E%3Cpolygon fill='%23444' points='630 750 720 600 540 600'/%3E%3Cpolygon fill='%23AAA' points='810 750 720 900 900 900'/%3E%3Cpolygon fill='%23666' points='810 750 900 600 720 600'/%3E%3Cpolygon fill='%23999' points='990 750 900 900 1080 900'/%3E%3Cpolygon fill='%23999' points='180 0 90 150 270 150'/%3E%3Cpolygon fill='%23444' points='360 0 270 150 450 150'/%3E%3Cpolygon fill='%23FFF' points='540 0 450 150 630 150'/%3E%3Cpolygon points='900 0 810 150 990 150'/%3E%3Cpolygon fill='%23222' points='0 300 -90 450 90 450'/%3E%3Cpolygon fill='%23FFF' points='0 300 90 150 -90 150'/%3E%3Cpolygon fill='%23FFF' points='180 300 90 450 270 450'/%3E%3Cpolygon fill='%23666' points='180 300 270 150 90 150'/%3E%3Cpolygon fill='%23222' points='360 300 270 450 450 450'/%3E%3Cpolygon fill='%23FFF' points='360 300 450 150 270 150'/%3E%3Cpolygon fill='%23444' points='540 300 450 450 630 450'/%3E%3Cpolygon fill='%23222' points='540 300 630 150 450 150'/%3E%3Cpolygon fill='%23AAA' points='720 300 630 450 810 450'/%3E%3Cpolygon fill='%23666' points='720 300 810 150 630 150'/%3E%3Cpolygon fill='%23FFF' points='900 300 810 450 990 450'/%3E%3Cpolygon fill='%23999' points='900 300 990 150 810 150'/%3E%3Cpolygon points='0 600 -90 750 90 750'/%3E%3Cpolygon fill='%23666' points='0 600 90 450 -90 450'/%3E%3Cpolygon fill='%23AAA' points='180 600 90 750 270 750'/%3E%3Cpolygon fill='%23444' points='180 600 270 450 90 450'/%3E%3Cpolygon fill='%23444' points='360 600 270 750 450 750'/%3E%3Cpolygon fill='%23999' points='360 600 450 450 270 450'/%3E%3Cpolygon fill='%23666' points='540 600 630 450 450 450'/%3E%3Cpolygon fill='%23222' points='720 600 630 750 810 750'/%3E%3Cpolygon fill='%23FFF' points='900 600 810 750 990 750'/%3E%3Cpolygon fill='%23222' points='900 600 990 450 810 450'/%3E%3Cpolygon fill='%23DDD' points='0 900 90 750 -90 750'/%3E%3Cpolygon fill='%23444' points='180 900 270 750 90 750'/%3E%3Cpolygon fill='%23FFF' points='360 900 450 750 270 750'/%3E%3Cpolygon fill='%23AAA' points='540 900 630 750 450 750'/%3E%3Cpolygon fill='%23FFF' points='720 900 810 750 630 750'/%3E%3Cpolygon fill='%23222' points='900 900 990 750 810 750'/%3E%3Cpolygon fill='%23222' points='1080 300 990 450 1170 450'/%3E%3Cpolygon fill='%23FFF' points='1080 300 1170 150 990 150'/%3E%3Cpolygon points='1080 600 990 750 1170 750'/%3E%3Cpolygon fill='%23666' points='1080 600 1170 450 990 450'/%3E%3Cpolygon fill='%23DDD' points='1080 900 1170 750 990 750'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='100%25' height='100%25'/%3E%3Crect x='0' y='0' fill='url(%23b)' width='100%25' height='100%25'/%3E%3C/svg%3E");
+    /* background: rgb(17, 17, 30); */
+    background: rgb(13, 13, 19);
+    background-image: linear-gradient(rgba(1, 1, 1, 0.7), rgba(1, 1, 1, 0.7)), url(../images/Hexagon\ \(1\).svg);
     background-attachment: fixed;
-    background-size: cover; */
-    background-color: #202033;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%233F3709' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23565401'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E");
     min-height: 100vh;
-    /*    --u: 1.5vmin;
-    --c1: #363636;
-    --c2: #2b2b2b;
-    --c3: #1e1e1e;
-    --c4: #121212;
-    --c5: #050505;
-    --gp: 50%/calc(var(--u) * 10) calc(var(--u) * 17.67);
-    background:
-        conic-gradient(from 90deg at 99% 67%, var(--c5) 0 90deg, #fff0 0 360deg) var(--gp),
-        conic-gradient(from 180deg at 1% 67%, var(--c5) 0 90deg, #fff0 0 360deg) var(--gp),
-        conic-gradient(from 0deg at 99% 33%, var(--c5) 0 90deg, #fff0 0 360deg) var(--gp),
-        conic-gradient(from -90deg at 1% 33%, var(--c5) 0 90deg, #fff0 0 360deg) var(--gp),
-        conic-gradient(from -60deg at 50% 15.5%, var(--c3) 0 120deg, #fff0 0 360deg) var(--gp),
-        conic-gradient(from -60deg at 50% 16.75%, var(--c5) 0 120deg, #fff0 0 360deg) var(--gp),
-        conic-gradient(from 120deg at 50% 83.25%, var(--c5) 0 120deg, #fff0 0 360deg) var(--gp),
-        linear-gradient(32deg, #fff0 0 49.5%, var(--c5) 0 50.5%, #fff0 0 100%) var(--gp),
-        linear-gradient(-32deg, #fff0 0 49.5%, var(--c5) 0 50.5%, #fff0 0 100%) var(--gp),
-        linear-gradient(-90deg, #fff0 0 49%, var(--c5) 0 51%, #fff0 0 100%) var(--gp),
-        linear-gradient(60.5deg, #fff0 0 49.5%, var(--c5) 0 50.5%, #fff0 0 100%) var(--gp),
-        linear-gradient(-60.5deg, #fff0 0 49.5%, var(--c5) 0 50.5%, #fff0 0 100%) var(--gp),
-        conic-gradient(from -90deg at 50% 50%, var(--c5) 0 32deg, var(--c3) 0 60.5deg, var(--c4) 0 90deg, var(--c5) 0 119.5deg, var(--c1) 0 148deg, var(--c5) 0 180deg, #fff0 0 360deg) var(--gp),
-        conic-gradient(from 90deg at 50% 50%, var(--c2) 0 32deg, var(--c4) 0 60.5deg, var(--c3) 0 90deg, var(--c1) 0 119.5deg, var(--c5) 0 148deg, var(--c2) 0 180deg, #fff0 0 360deg) var(--gp);
-    background-color: var(--c5);
-    min-height: 100vh;
-    padding: 2rem 1rem; */
+    padding: 2rem 1rem;
 }
 
+.spiner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* -------------------------start header-------------------------- */
 
 .navbar {
     background-color: #212529;
+    background-image: url(../images/Hexagon\ \(1\).svg);
     color: white;
     border-bottom: 1px solid white;
 }
-
-
 
 
 .navbar-nav {
@@ -76,7 +58,7 @@ main {
 .header-logo {
     display: flex;
     align-items: center;
-    background-color: #21252900;
+    /*  background-color: #21252900; */
     height: 6rem;
 
 }
@@ -152,35 +134,20 @@ main {
 /* -------------------------start main-------------------------- */
 
 
-#h1-home {
-    padding: 1.5rem;
-}
-
-#h1-home h2 {
-    color: white;
-    padding: .5rem;
-    border-bottom: 1px solid white;
-    width: fit-content;
-}
-
-
 .container-accounts {
     padding: 2rem;
 }
-
-
 
 .box-only-accounts {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    gap: 1.5rem;
 
 }
 
 .container-account {
     background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
-    box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323;
     border-radius: 22px;
     transition: all .3s;
 }
@@ -196,12 +163,17 @@ main {
     flex-direction: column;
     height: 100%;
     border-radius: 17px;
-    /* background: linear-gradient(145deg, #151414, #191818); */
+    backdrop-filter: blur(0px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
     background-color: #212529 !important;
     color: white;
     width: 350px;
     transition: all .2s;
 }
+
+
 
 .box-account:hover {
     transform: scale(0.97);
@@ -227,11 +199,18 @@ main {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
 
 }
 
-
-
+#chart {
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    padding: 1.5rem;
+}
 
 .container-total-balance {
     padding: 1rem;
@@ -241,13 +220,14 @@ main {
     align-items: center;
     gap: 1.5rem;
     border-radius: 17px;
-    /* background: linear-gradient(145deg, #151414, #191818); */
     background-color: #212529;
-    box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323;
+    backdrop-filter: blur(0px);
+    background-color: rgba(0, 0, 0, 0.415);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
     color: white;
     width: 350px;
-    height: 20rem;
+    min-height: 20rem;
     transition: 1000ms;
 }
 
@@ -281,15 +261,37 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    /*  gap: 1rem; */
 }
+
+.table-and-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: #212529a9;
+    backdrop-filter: blur(0px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    border-radius: 17px;
+    text-align: center;
+    width: 90%;
+}
+
+.table-and-title h2 {
+    text-align: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid white;
+    width: 100%;
+    color: white;
+}
+
 
 .container-main-transactions table {
     border-radius: 15px;
-    background-color: #2B2D3E !important;
-    box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323;
     max-width: 90%;
+
 }
 
 .container-loans-and-cards {
@@ -301,32 +303,51 @@ main {
 }
 
 .container-loans-and-title {
+    background-color: #212529a9;
     color: white;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
     padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2.5rem;
-    min-width: 40%;
+    gap: 2rem;
+    width: 50vw;
+    border-radius: 17px;
+}
+
+.container-loans-and-title h2 {
+    text-align: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid white;
+    width: 100%;
+    color: white;
 }
 
 .containter-loans {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 5rem;
+    padding-bottom: 1rem;
 }
 
 .box-loans {
     border-radius: 18px;
     background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
     transition: all .3s;
-    box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323;
     color: white;
-    width: 300px;
+    width: 25rem;
 }
 
 .box-loan {
+
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
     background: #212529;
     padding: 1rem;
     display: flex;
@@ -344,21 +365,136 @@ main {
     border-radius: 20px;
 }
 
-
-.container-cards-render {
-
+.container-home-loan-exchange {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+}
+
+.exchanges-home {
+    padding: 1.5rem;
+    width: 25rem;
+    background-color: #212529a9;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    border-radius: 17px;
+}
+
+.exchanges-home h2 {
+    text-align: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid white;
+    width: 100%;
+    color: white;
+}
+
+.box-exchange {
+    padding: 1rem;
+    color: white;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    background-color: #212529;
+    display: flex;
+    justify-content: space-around;
+    width: 20rem;
+    /* border-top: 1px solid white; */
+    border-radius: 17px;
+}
+
+.class1 {
+    color: #f7666e;
+}
+
+.class2 {
+    color: #00ff75;
+}
+
+#chart-1 {
+    display: flex;
+    align-items: center;
+}
+
+#chart-2 {
+    display: flex;
+    align-items: center;
+}
+
+#chart-3 {
+    display: flex;
+    align-items: center;
+}
+
+
+.container-home-cardDebit-cardCredit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    margin-top: 3rem;
+    padding: 2rem;
+    border-radius: 17px;
+    width: 90%;
+}
+
+.container-home-cardDebit-cardCredit h1 {
+    margin-bottom: 3rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid white;
+    width: 100%;
+    text-align: center;
+}
+
+.box-cards-debit-credit {
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    background: #212529;
+    border-radius: 17px;
+    padding: 1.5rem;
+    width: 30rem;
+}
+
+.box-cards-debit-credit h2 {
+    padding: 0.5rem;
+    border-bottom: 1px solid white;
+    width: 100%;
+}
+
+.container-cards-render {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 2rem;
     gap: 4rem;
+}
+
+.container-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
 }
 
 .box-cards {
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    background-color: #212529;
-    color: white;
     border-radius: 10px;
     width: 350px;
 }
@@ -370,49 +506,151 @@ main {
 }
 
 
+
+/* ------END MAIN------------------------------ */
+/*------------------------finish html ACCOUNTS----------------------*/
+
+
+
+/*----------------------START CARDS--------------------*/
+
+
 .subContainer-cards {
-    border: 5px solid #212529;
     color: white;
     padding: 1rem;
     border-radius: 10px;
-    gap: 2rem;
-    min-width: 10rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 3rem;
 }
 
-.container-cards {
-    color: white;
-    padding: 1rem;
+.article-card-description {
     display: flex;
-    flex-direction: column;
-    gap: 5rem;
-}
-
-
-
-.Container-card {
-    display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap: 2rem;
+    padding: 2rem;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
 }
 
 
-/*--------CARD------*/
+.title-acquired-cards {
+    color: white;
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    border-bottom: 1px solid white;
+    font-size: 3rem;
+    padding-bottom: .5rem;
+    width: 80%;
+    margin-bottom: 5rem;
+}
 
-.container-card-section {
-    display: flex;
-    justify-content: space-around;
+.article-card-description div {
+    width: 40rem;
+}
+
+.article-card-description img {
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    width: 25rem;
+    height: 40vh;
+}
+
+.article-card-description p {
+    text-align: justify;
+    letter-spacing: .1rem;
+    font-size: 1.1rem;
+    text-indent: 20px;
+}
+
+
+
+.article-card-description h5 {
+    letter-spacing: .1rem;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    padding: .5rem;
+    margin-bottom: 1rem;
 }
 
 .Container-cards-section {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
     gap: 6rem;
 }
 
+.Container-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    width: 35rem;
+    gap: 2rem;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    min-height: 20rem;
+}
 
+.Container-card h3 {
+    padding: 1rem;
+    border-bottom: 1px solid white;
+    width: 100%;
+}
+
+.container-card-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.container-delete-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    width: 53vw;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+
+.container-delete-cards h5 {
+    padding: .5rem;
+    border-bottom: 1px solid white;
+}
+
+.box-input-button-delte-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 80%;
+}
+
+.box-none-card-credit {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    border-radius: 17px;
+    backdrop-filter: blur(0px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    background-color: #212529 !important;
+    color: white;
+    transition: all .2s;
+}
 
 
 .flip-card,
@@ -449,6 +687,12 @@ main {
     position: absolute;
     top: 2.8em;
     left: 1.5em;
+}
+
+.type-card-section {
+    position: absolute;
+    top: 6em;
+    left: 13em;
 }
 
 .contactless {
@@ -626,31 +870,61 @@ main {
 
 
 
-/*-------END CARD----------*/
+/*-------END CARDS----------*/
 
 
-/* ------END MAIN------------------------------ */
+/*------------------------START ACCOUNT-------------------------*/
 
-/*------------------------finish html ACCOUNTS----------------------*/
 
-/*------------------------start html ACCOUNT-------------------------*/
+.container-general-select-account {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
 
 .container-single-account {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(0px);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(100, 100, 100, 0.5), inset 5px -5px 16px 0px rgba(100, 100, 100, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    color: white;
     padding: 2rem;
 }
 
 .big-box-account {
-    padding: 2rem;
     display: flex;
     justify-content: space-between;
-    background-color: #4455a9;
-    border-radius: 17px;
-    box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323;
+    width: 80%;
+}
+
+.form-filer-transaction {
     color: white;
-    width: 85%;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    padding: 2rem;
+    margin-top: 3rem;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.form-filer-transaction div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 45rem;
+
 }
 
 .container-transactions-account {
@@ -660,6 +934,24 @@ main {
     border-radius: 10px;
     padding: 1rem;
     color: white;
+    width: 100%;
+}
+
+.container-table-account {
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    width: 80%;
+    padding: 2rem;
+}
+
+.container-table-account h1 {
+    margin-bottom: 2rem;
+    text-align: center;
+    padding: .5rem;
+    border-bottom: 1px solid white;
+    width: 100%;
 }
 
 .head-table {
@@ -674,25 +966,57 @@ main {
     border-top-right-radius: 17px;
 }
 
-.container-transactions-account table {
-    border-radius: 17px;
-    box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323;
-    width: 80%;
+.box-filter-pdf {
+    width: 100%;
 }
 
-.shadow {
+/*--------chart-------*/
+
+/* .shadow {
+      padding: 25px 20px;
+    color: #090909 !important;
     border-radius: 17px;
-    box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323 !important;
-}
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+} */
+
+
+
+/* .box-chart-account {
+    margin-top: 3rem;
+    padding: 2rem;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+} */
+
+
 
 .box {
-    color: #090909 !important;
-    background-color: #2B2D3E;
-    padding: 25px 20px;
+    color: black;
 }
 
+/*-----------chart-----------*/
+
+/*    TABLE TO PDF */
+
+/* .table-pdf-render {
+    width: 50rem;
+    height: 50rem;
+    position: sticky;
+    top: 1000rem;
+
+} */
+/* 
+.pdf-table-none {
+    display: none;
+} */
+
+
+/*    TABLE TO PDF */
 
 
 /*-------------------------FINISH ACCOUNT---------------------------*/
@@ -702,41 +1026,94 @@ main {
     width: 100%;
     min-height: 80vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-
+    gap: 4rem;
 }
 
+.general-container-create-card h1 {
+    color: white;
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    border-bottom: 1px solid white;
+    font-size: 3rem;
+    padding-bottom: .5rem;
+    width: 80%;
+}
 
 .container-create-card {
-    background-color: #151414;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     align-items: center;
     flex-wrap: wrap-reverse;
     gap: 5rem;
     width: 50rem;
-    height: 20rem;
+    min-height: 20rem;
     border-radius: 20px;
     transition: all .3s;
 }
 
+
 .container-create-card:hover {
-    background-color: #0f0e0e;
-    transform: scale(0.98);
-    border-radius: 20px;
-}
-
-.create-for-hover {
-    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
-    border-radius: 20px;
-    transition: all .4s;
-}
-
-.create-for-hover:hover {
     box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
 }
 
+.article-createCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    color: white;
+    margin-top: 4rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+
+.text-createdCard {
+
+    width: 40rem;
+}
+
+.text-createdCard h3 {
+    margin-bottom: 1rem;
+    letter-spacing: .1rem;
+    padding: .5rem;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+}
+
+.text-info-createCard {
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 1px;
+    text-align: justify;
+    text-indent: 20px;
+}
+
+
+.expired-card {
+    width: 6rem;
+    position: absolute;
+    letter-spacing: .2em;
+    top: 1.5em;
+    left: 5.8em;
+}
+
+
+.article-createCard img {
+    width: 30rem;
+    height: 23rem;
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
 
 .container-select-card-create {
     display: flex;
@@ -910,29 +1287,74 @@ main {
 .container-general-transfers {
     color: white;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
+    min-height: 100vh;
 }
 
-.accounts-transactions-title {
-    color: white;
+.container-general-transfers h1 {
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    border-bottom: 1px solid white;
+    font-size: 3rem;
+    padding-bottom: .5rem;
+    width: 80%;
+}
+
+.container-transfers-application {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+    min-height: 120vh;
+
+}
+
+
+.transfer-full-information {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    width: 30rem;
-    height: 30rem;
-}
-
-.accounts-transactions {
-    display: flex;
-    justify-content: space-around;
     align-items: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    width: 35rem;
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: 35px 35px 68px 0px rgba(21, 21, 40, 0.5), inset -12px -12px 16px 0px rgba(21, 21, 40, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
 }
 
-.accounts-transactions img {
+.transfer-balance-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.transfer-balance-total h3 {
+    padding: .5rem;
+    border-bottom: 1px solid white;
+    width: 80%;
+}
+
+.balance-and-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.transfer-balance-total img {
     width: 6rem;
     height: 6rem;
 }
+
+
 
 .container-account-transfer {
     background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
@@ -945,14 +1367,22 @@ main {
 .box-account-transfer {
     padding: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     height: 100%;
     border-radius: 17px;
     background: linear-gradient(145deg, #151414, #191818);
     color: white;
     width: 350px;
-    margin-left: 4rem;
 
+}
+
+.form-transfers {
+    height: 32rem;
+    padding: 2rem;
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: 35px 35px 68px 0px rgba(21, 21, 40, 0.5), inset -12px -12px 16px 0px rgba(21, 21, 40, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
 }
 
 
@@ -975,7 +1405,7 @@ main {
     flex-direction: column;
     align-items: center;
     padding-top: 3rem;
-    gap: 4rem;
+    gap: 2rem;
 }
 
 
@@ -986,9 +1416,6 @@ main {
     font-size: 3rem;
     padding-bottom: .5rem;
     width: 80%;
-
-
-
 }
 
 .container-gral-application-loan section {
@@ -999,48 +1426,41 @@ main {
     margin-top: 2rem;
     padding: 5rem 2rem;
     width: 80vw;
-    border-radius: 15px;
+    border-bottom: 1px solid white;
 }
 
 .container-application-loan {
+    padding: 2rem;
     border-radius: 20px;
-    background: linear-gradient(145deg, #151414, #191818);
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: 35px 35px 68px 0px rgba(21, 21, 40, 0.5), inset -12px -12px 16px 0px rgba(21, 21, 40, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 3rem;
     color: white;
     width: 100%;
 }
 
+
+
 .img-personal-loan-1 {
-    background: url(../images/pexels-andrea-piacquadio-920382.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
-    min-height: 20rem;
-    width: 22rem;
+    border-radius: 20px;
+    height: 20rem;
+    width: 25rem;
 }
 
 .img-personal-loan-2 {
-    background: url(../images/pexels-oleksandr-pidvalnyi-7599735.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
-    min-height: 20rem;
-    width: 22rem;
+    border-radius: 20px;
+    height: 20rem;
+    width: 25rem;
 }
 
 .img-personal-loan-3 {
-    background: url(../images/car-loan.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
-    min-height: 20rem;
+    border-radius: 20px;
+    height: 20rem;
     width: 22rem;
 }
 
@@ -1048,9 +1468,10 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 70%;
     padding: 1rem;
     gap: 1rem;
-    width: 35vw;
+
 }
 
 .button-application-loans {
@@ -1069,13 +1490,26 @@ main {
     padding: .5rem .5rem;
 }
 
+.internal-text-personal-loan p {
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 1px;
+    text-align: justify;
+    text-indent: 10px;
+}
+
+.container-descriptions-loans {
+
+    width: 95%;
+}
+
 .form-application-loan {
-    background-color: #3f50a9;
-    /*   box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323; */
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: 35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset -12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
     margin-bottom: 4rem;
     transition: 1000ms;
-    padding: 1rem;
+    padding: 3rem;
     border-radius: 10px;
 }
 
@@ -1085,12 +1519,23 @@ main {
 }
 
 
-.container-descriptions-loans div {
-    background: linear-gradient(145deg, #151414, #191818);
+.pro-loans {
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: 35px 35px 68px 0px rgba(21, 21, 40, 0.5), inset -12px -12px 16px 0px rgba(21, 21, 40, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
     color: white;
     text-align: center;
+    line-height: 100%;
     padding: 1rem;
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.pro-loans p {
+    text-align: center;
+    line-height: 100%;
 }
 
 .form-application-loan h2 {
@@ -1104,12 +1549,52 @@ main {
 
 
 .installment-amount {
-    background-color: #355181;
     font-size: 1.1rem;
-    color: #f7b84b;
-    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: 35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset -12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
     padding: 1rem;
     margin-bottom: 0;
+}
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+
+.a-btn-aplication {
+    text-decoration: none;
+}
+
+.btn-application-loan {
+    font-family: Roboto, sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(103deg, #007ecce0 0%, #0011cc 24%);
+    padding: 10px 30px;
+    border: solid #0066cc 1px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 10px;
+    transition: 687ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn-application-loan:hover {
+
+    transition: 687ms;
+    padding: 10px 39px;
+    transform: translateY(-0px);
+    background: linear-gradient(103deg, #007ecce0 0%, #0011cc 24%);
+    box-shadow: #1b253d -3px -1px 50px 5px;
+    color: #ffffff;
+    border: solid 1px #48cae4;
 }
 
 
@@ -1119,14 +1604,40 @@ main {
 
 /*-------------------------END APPLICATION LOAN-------------------------*/
 
+/*-------------------------------ADMIN----------------------------------*/
+
+.form-section-admin-createLoan {
+    color: white;
+    width: 50%;
+}
+
+.form-label-admin-1 {
+    width: 30rem;
+}
+
+.form-label-admin-2 {
+    width: 30rem;
+}
+
+.form-label-admin-3 {
+    width: 30rem;
+}
+
+.form-label-admin-4 {
+    width: 30rem;
+}
+
+/*-------------------------------ADMIN----------------------------------*/
+
 /* -------------------------START FOOTER-------------------------- */
 
 footer {
     font-size: 1.2rem;
-    height: 3rem;
-    background-color: #212529;
+    min-height: 5rem;
+    background-image: url(../images/Hexagon\ \(1\).svg);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
     padding-inline: 1rem;
     align-items: center;
     color: white;
@@ -1138,21 +1649,50 @@ footer {
 }
 
 .footer-img-logo {
-    width: 2.5rem;
+    width: 5rem;
 }
 
 .footer-img-textologo {
-    width: 7rem;
+    width: 10rem;
 }
 
+.redes-footer {
+    display: flex;
+    justify-content: space-around;
+    gap: 1.5rem;
+}
+
+.icono-facebook {
+    width: 3rem;
+}
+
+.icono-facebook:hover {
+    transform: scale(1.1);
+}
+
+.icono-instagram {
+    width: 3rem;
+}
+
+.icono-instagram:hover {
+    transform: scale(1.1);
+}
+
+.icono-github {
+    width: 3rem;
+}
+
+.icono-github:hover {
+    transform: scale(1.1);
+}
 
 
 /* -------------------------end footerr-------------------------- */
 
 @media(min-width:960px) {
-    /*     .container-accounts {
-        justify-content: space-around;
-    } */
+    .article-card-description {
+        width: 80%;
+    }
 }
 
 
@@ -1163,6 +1703,10 @@ footer {
 
     .box-loans {
         width: 100%;
+    }
+
+    .container-gral-application-loan section {
+        width: 90%;
     }
 }
 
@@ -1198,7 +1742,7 @@ footer {
 
     .container-loans-and-title {
 
-        width: 100%;
+        width: 90%;
     }
 
     .container-cards {
@@ -1233,11 +1777,10 @@ footer {
     }
 
     .form-select {
-
-        width: 63vw;
+        width: 100%;
     }
 
-    .accounts-transactions-title {
+    .transfer-balance-total-title {
         align-items: center;
     }
 
@@ -1248,38 +1791,127 @@ footer {
     }
 
     .container-total-balance {
-        width: 70%;
+        width: 100%;
     }
 
     .container-gral-application-loan section {
         width: 100%;
     }
 
-    .container-descriptions-loans {
-        display: flex;
-        align-items: center;
-        width: 75%;
+
+
+    .exchanges-home {
+        width: 90%;
     }
+
+    .container-loans,
+    .box-loans,
+    .box-loan {
+        justify-content: space-around;
+        width: 70vw;
+    }
+
+    .box-exchange {
+        width: 80%;
+    }
+
+    .container-create-card {
+        padding: 2rem;
+        width: 80%;
+    }
+
+    .container-descriptions-loans {
+        flex-wrap: wrap;
+    }
+
+    .container-application-loan {
+        flex-direction: column;
+    }
+
+
+
+    .transfer-full-information {
+        width: 80%;
+    }
+
+    .box-filter-pdf {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .box-filter-pdf div {
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        width: 50%;
+    }
+
+    .form-filer-transaction {
+        width: 95%;
+    }
+
+    .container-table-account {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin-bottom: 1.5rem;
+        width: 80vw;
+    }
+
+    .container-transactions-account {
+        padding: 0;
+    }
+
+    .box-chart-account {
+        width: 90%;
+    }
+
+    .container-table-account table {
+        width: 20rem;
+    }
+
+    .big-box-account {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
 }
 
 
-@media(max-width:470px) {
+@media(max-width:500px) {
     header {
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .big-box-account {
-        flex-wrap: wrap-reverse;
-        justify-content: center;
+    .container-table-account {
+        width: 100%;
     }
 
-    .big-box-account div {
+    .container-single-account {
+        padding: 0;
+        padding-bottom: 2rem;
+        width: 100%;
+    }
+
+
+
+
+    .big-box-account {
+        padding-top: 2rem;
+        width: 95%;
         text-align: center;
     }
 
+    /*
     .container-account {
         width: 100%;
+    } */
+    .box-account {
+        width: 20rem;
     }
 
     .head-table {
@@ -1300,47 +1932,105 @@ footer {
         text-align: center;
     }
 
-    .box-only-accounts {
-        gap: 2rem;
+    .table-and-title {
+        width: 100%;
     }
 
+    #chart {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* .box-only-accounts {
+        gap: 2rem;
+    } */
+
     .container-accounts {
-        gap: 2.5rem;
+        padding: 0;
+    }
+
+
+
+
+    /*-----admin--------------*/
+
+    .form-section-admin-createLoan {
+        width: 100%;
+    }
+
+
+    /*--------cards----------*/
+    .Container-cards-section {
+        width: 19rem;
+    }
+
+    .article-card-description {
+        width: 100%;
+    }
+
+    .article-card-description div {
+        width: 100%;
+    }
+
+    .article-card-description img {
+        width: 100%;
+    }
+
+    .container-delete-cards {
+        width: 90%;
+    }
+
+    /*----------created card---------*/
+
+    .article-createCard {
+        width: 100%;
+    }
+
+    .article-createCard img {
+        width: 100%;
+        height: 15rem;
+
+    }
+
+    .container-create-card {
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+        width: 100%;
+    }
+
+    /*-----application loan-------*/
+    .img-personal-loan-1,
+    .img-personal-loan-2,
+    .img-personal-loan-3 {
+        width: 90%;
+    }
+
+    .container-gral-application-loan section {
+        padding: 0;
+        padding-bottom: 2rem;
+        width: 100%;
     }
 
     .container-application-loan {
-        flex-direction: column;
-    }
-
-    .img-personal-loan-1 {
-        border-top-right-radius: 20px;
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 0%;
-        min-height: 20rem;
-        width: 100%;
-    }
-
-    .img-personal-loan-2 {
-        border-top-right-radius: 20px;
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 0%;
-        min-height: 20rem;
-        width: 100%;
-    }
-
-    .img-personal-loan-3 {
-        border-top-right-radius: 20px;
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 0%;
-        min-height: 20rem;
+        padding: 0;
         width: 100%;
     }
 
     .text-personal-loan {
-
         width: 100%;
     }
 
+    /*-------transfer-----*/
+    .transfer-full-information {
+        width: 100%;
+    }
+
+    .form-transfers {
+        width: 100%;
+    }
 }
 
 
@@ -1617,48 +2307,4 @@ footer {
     -webkit-transition: box-shadow 0.2s ease-in;
     -moz-transition: box-shadow 0.2s ease-in;
     transition: box-shadow 0.2s ease-in;
-}
-
-
-/*button application*/
-
-
-
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
-
-.btn-application-loan {
-    font-family: Roboto, sans-serif;
-    font-weight: 0;
-    font-size: 14px;
-    color: #fff;
-    background-color: #40ac50;
-    padding: 10px 30px;
-    border: solid #40ac50 2px;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    border-radius: 50px;
-    transition: 1000ms;
-    transform: translateY(0);
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    cursor: pointer;
-}
-
-.a-btn-aplication {
-    color: #fff;
-    text-decoration: none
-}
-
-.a-btn-aplication:hover {
-    color: #0066cc;
-}
-
-.btn-application-loan:hover {
-
-    transition: 1000ms;
-    padding: 10px 50px;
-    transform: translateY(-0px);
-    background-color: #fff;
-    color: #0066cc;
-    border: solid 2px #0066cc;
 }

@@ -20,6 +20,8 @@ public class Loan {
 
     private String name;
     private int maxAmount;
+
+    private byte porcentage;
 @ElementCollection
 @Column(name="payments")
     private List<Integer> payments = new ArrayList<>();
@@ -28,15 +30,26 @@ public class Loan {
     private Set<ClientLoan> clientLoans = new HashSet<>();
 
     public Loan(){};
-    public Loan(String name, int maxAmount, List<Integer> payments) {
+    public Loan(String name, int maxAmount, List<Integer> payments,byte porcentage) {
         this.name = name;
         this.maxAmount = maxAmount;
         this.payments = payments;
+        this.porcentage = porcentage;
+
     }
 
     public void addClientLoan(ClientLoan clientLoan) {
         clientLoan.setLoan(this);
         clientLoans.add(clientLoan);
+    }
+
+
+    public byte getPorcentage() {
+        return porcentage;
+    }
+
+    public void setPorcentage(byte porcentage) {
+        this.porcentage = porcentage;
     }
 
     public long getId() {

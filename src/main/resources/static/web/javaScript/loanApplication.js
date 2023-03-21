@@ -56,10 +56,16 @@ createApp({
                     return new Promise((resolve) => setTimeout(resolve, 1000));
                 })
                 .then(response => {
-
-                    window.location.href = '/web/loanApplication.html';
+                    window.location.href = '/web/accounts.html';
                 })
-                .catch(error => console.error(error))
+                .catch(error => {
+                    Swal.fire(error.response.data).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "/web/loanApplication.html"
+                        }
+                    })
+                    console.error(error.response.data)
+                })
         },
 
 
@@ -80,10 +86,9 @@ createApp({
         /*------------------INTEREST PYMENT--------------------*/
 
         interestPyment() {
-            this.interestPay = (this.amountLoan / this.paymentsLoan)
-            this.amountPercent = this.amountLoan * 1.2
-            console.log(this.amountLoan)
-            console.log(this.paymentsLoan)
+            let selectLoan = this.dataLoans.find(loan => loan.id == this.loanId)
+            this.amountPercent = (this.amountLoan * selectLoan.porcentage / 100) + this.amountLoan
+            this.interestPay = (this.amountPercent / this.paymentsLoan)
         },
 
 

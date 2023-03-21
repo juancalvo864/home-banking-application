@@ -10,6 +10,7 @@ public class LoanDTO {
 
     private String name;
     private int maxAmount;
+    private byte porcentage;
 
     private List<Integer> payments = new ArrayList<>();
 
@@ -19,6 +20,11 @@ public class LoanDTO {
         this.name = loan.getName();
         this.maxAmount = loan.getMaxAmount();
         this.payments = loan.getPayments();
+        this.porcentage = loan.getPorcentage();
+    }
+
+    public byte getPorcentage() {
+        return porcentage;
     }
 
     public long getId() {

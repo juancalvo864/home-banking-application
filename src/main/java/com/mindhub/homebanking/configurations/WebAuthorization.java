@@ -10,7 +10,7 @@ import org.springframework.security.web.authentication.logout.HttpStatusReturnin
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.net.http.HttpRequest;
+
 
 
 @EnableWebSecurity
@@ -22,16 +22,19 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests()
-                .antMatchers("/web/index.html","/web/assets/**","/web/javaScript/**","/web/images/**").permitAll()
+                .antMatchers("/web/index.html","/web/assets/**","/web/javaScript/**","/web/images/**","/clients/transaction/buy").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients/current/accounts").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.GET, "/api/clients/current/accounts").hasAuthority("CLIENT")
                 .antMatchers( HttpMethod.POST,"/api/clients/current/cards").hasAuthority("CLIENT")
                 .antMatchers( HttpMethod.GET,"/api/clients/current/cards").hasAuthority("CLIENT")
+                .antMatchers( HttpMethod.PATCH,"/api/clients/current/cards").hasAuthority("CLIENT")
                 .antMatchers( HttpMethod.POST,"/api/clients/transaction").hasAuthority("CLIENT")
                 .antMatchers( HttpMethod.GET,"/api/clients/current/transaction").hasAuthority("CLIENT")
                 .antMatchers( HttpMethod.POST,"/api/clients/current/loans").hasAuthority("CLIENT")
                 .antMatchers( HttpMethod.GET,"/api/clients/current/loans").hasAuthority("CLIENT")
+                .antMatchers( HttpMethod.POST,"/api/admin/loans/new").hasAuthority("ADMIN")
+                .antMatchers("/web/adminLoan.html").hasAuthority("ADMIN")
                 .antMatchers("/manager/**.html").hasAuthority("ADMIN")
                 .antMatchers("/api/clients").hasAuthority("ADMIN")
                 .antMatchers("/h2-console/**").hasAuthority("ADMIN")

@@ -1,14 +1,19 @@
 
 const { createApp } = Vue
 createApp({
+
+    components: { Datepicker: VueDatePicker },
     data() {
         return {
-            data: null,
-            dataClients: null,
+            dataExchange: null,
+            dataClient: null,
             accounts: null,
             loans: null,
             cards: null,
+            exchange: null,
             totalBalance: 0,
+            date: null,
+            type: ""
 
         }
     },
@@ -20,29 +25,45 @@ createApp({
     },
     methods: {
         loadData() {
-            axios.get("http://localhost:8080/api/clients/current")
+            axios.all([
+                axios.get('http://localhost:8080/api/clients/current'),
+                axios.get('https://api.apilayer.com/exchangerates_data/timeseries?base=USD&start_date=2023-03-01&end_date=2023-03-20&symbols=EUR,GBP,ARS', { headers: { 'apikey': 'bBUZoSyHTESo4H7elpuiGhpDcZMkVJok' } })
+
+            ])
+                .then(axios.spread((response1, response2) => {
+                    this.dataClient = response1.data
+                    this.dataExchange = response2.data
+                    this.loans = this.dataClient.loans
+                    this.cards = this.dataClient.cards
+                    this.finalAmount(this.dataClient.accounts)
+                    this.sortArray(this.dataClient.accounts)
+                    this.infoExchange()
+                    console.log(this.dataClient.accounts)
+
+
+                }))
+        },
+
+
+        createAccount() {
+            axios.post('/api/clients/current/accounts', `accountType=${this.type}`,
+                { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
                 .then(res => {
-                    this.data = res
-                    this.dataClients = res.data
-                    this.sortArray(this.dataClients.accounts)
-                    this.loans = this.dataClients.loans
-                    this.cards = this.dataClients.cards
-                    this.finalAmount(this.dataClients.accounts)
-                    console.log(this.dataClients.accounts[0].transactions.sort((a, b) => b.id - a.id).map(transaction => transaction.date))
-
-
-
+                    Swal.fire(res.data).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "/web/accounts.html"
+                        }
+                    })
+                })
+                .catch(error => {
+                    Swal.fire(error.response.data)
+                    console.error(error.response.data)
                 })
         },
 
 
-
-        createAccount() {
-            axios.post('/api/clients/current/accounts',
-                { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
-                .then(response => {
-                    window.location.href = '/web/accounts.html';
-                })
+        logout() {
+            axios.post('/api/logout').then(response => console.log('signed out!!!'))
         },
 
 
@@ -50,15 +71,18 @@ createApp({
             data.sort((a, b) => a.id - b.id)
         },
 
-        logout() {
-            axios.post('/api/logout').then(response => console.log('signed out!!!'))
+        infoExchange() {
+            let exchange = Object.entries(this.dataExchange.rates)
+            this.exchange = exchange.slice(-1)
+            this.exchange = this.exchange[0]
+            this.exchange = this.exchange[1]
+
         },
 
 
         dateTimeTransactions(date) {
             let template = date.split("T")
             return `${template[0]}`
-
         },
 
 
@@ -70,6 +94,10 @@ createApp({
             this.totalBalance = template
         },
 
+        checkExpire(info) {
+            let date = new Date()
+            return info.thruDate < date.toISOString()
+        },
 
         alert() {
             Swal.fire({
@@ -87,15 +115,20 @@ createApp({
             })
         },
 
+
+
         charts() {
+            let seriesBalance = this.dataClient.accounts.map(account => account.balance)
+            let labelsNumber = this.dataClient.accounts.map(account => account.number)
+
             let options = {
-                series: [this.dataClients.accounts[0].balance, this.dataClients.accounts[1].balance, this.dataClients.accounts[2].balance],
+                series: seriesBalance,
                 chart: {
                     foreColor: '#e6e5de',
                     width: 500,
                     type: 'pie',
                 },
-                labels: [this.dataClients.accounts[0].number, this.dataClients.accounts[1].number, this.dataClients.accounts[2].number],
+                labels: labelsNumber,
                 responsive: [{
                     breakpoint: 480,
                     options: {
@@ -109,53 +142,151 @@ createApp({
                     }
                 }]
             };
-
-
             let chart = new ApexCharts(document.querySelector("#chart"), options);
             console.log(chart)
             chart.render();
-
         },
 
 
+        chartEur() {
+            let fechasEur = [];
+            for (let [key, value] of Object.entries(this.dataExchange.rates)) {
+                fechasEur.push(value.EUR)
+            };
+
+            let options2 = {
+                series: [{
+                    data: fechasEur,
+                }],
+                chart: {
+                    type: 'line',
+                    width: 100,
+                    height: 35,
+                    sparkline: {
+                        enabled: true
+                    }
+                },
+                tooltip: {
+                    fixed: {
+                        enabled: false
+                    },
+                    x: {
+                        show: false
+                    },
+                    y: {
+                        title: {
+                            formatter: function (seriesName) {
+                                return ''
+                            }
+                        }
+                    },
+                    marker: {
+                        show: false
+                    }
+                }
+            };
+
+            var chart2 = new ApexCharts(document.querySelector("#chart-1"), options2);
+            chart2.render();
+        },
+
+        chartGbp() {
+            let fechasGbp = [];
+            for (let [key, value] of Object.entries(this.dataExchange.rates)) {
+                fechasGbp.push(value.GBP)
+            };
+
+            let options2 = {
+                series: [{
+                    data: fechasGbp,
+                }],
+                chart: {
+                    type: 'line',
+                    width: 100,
+                    height: 35,
+                    sparkline: {
+                        enabled: true
+                    }
+                },
+                tooltip: {
+                    fixed: {
+                        enabled: false
+                    },
+                    x: {
+                        show: false
+                    },
+                    y: {
+                        title: {
+                            formatter: function (seriesName) {
+                                return ''
+                            }
+                        }
+                    },
+                    marker: {
+                        show: false
+                    }
+                }
+            };
+
+            var chart2 = new ApexCharts(document.querySelector("#chart-2"), options2);
+            chart2.render();
+        },
+
+        chartArs() {
+            let fechasArs = [];
+            for (let [key, value] of Object.entries(this.dataExchange.rates)) {
+                fechasArs.push(value.ARS)
+            };
+
+            let options2 = {
+                series: [{
+                    data: fechasArs,
+                }],
+                chart: {
+                    type: 'line',
+                    width: 100,
+                    height: 35,
+                    sparkline: {
+                        enabled: true
+                    }
+                },
+                tooltip: {
+                    fixed: {
+                        enabled: false
+                    },
+                    x: {
+                        show: false
+                    },
+                    y: {
+                        title: {
+                            formatter: function (seriesName) {
+                                return ''
+                            }
+                        }
+                    },
+                    marker: {
+                        show: false
+                    }
+                }
+            };
+
+            var chart2 = new ApexCharts(document.querySelector("#chart-3"), options2);
+            chart2.render();
+        }
 
 
     },
     mounted() {
         this.charts()
+        this.chartEur()
+        this.chartGbp()
+        this.chartArs()
 
-    }
+    },
 
 
 
 }).mount("#app")
 
 
-/* 
-let options = {
-    chart: {
-        type: 'line'
-    },
-    stroke: {
-        curve: 'smooth',
-    },
-    series: [{
-        name: 'Main account',
-        data: this.dataClients.accounts[0].transactions.sort((a, b) => b.id - a.id).map(transaction => transaction.amount.toFixed(0))
-    },
-    {
-        name: 'Other account',
-        data: this.dataClients.accounts[1].transactions.sort((a, b) => b.id - a.id).map(transaction => transaction.amount.toFixed(0))
 
-    ],
-    xaxis: {
-        categories: this.dataClients.accounts[0].transactions.sort((a, b) => b.id - a.id).map(transaction => this.dateTimeTransactions(transaction.date))
-    },
-    dropShadow: {
-        enabled: true,
-        top: 0,
-        left: 0,
-        blur: 3,
-        opacity: 0.5
-    }
-} */

@@ -1,67 +1,119 @@
 
-
-
-
-
 const { createApp } = Vue
+
 createApp({
+
+
     data() {
         return {
-            dataClients: [],
+            dataClient: [],
             accounts: [],
-            clients: [],
-            transactions: null,
             accountSelect: null,
+            startDate: null,
+            endDate: null,
+            dateValueCalendar: null,
+            transactionFilter: [],
+            id: "",
 
         }
     },
     created() {
+        let parameterUrl = location.search
+        let parameters = new URLSearchParams(parameterUrl)
+        this.id = parameters.get("id")
         this.loadData();
-        this.params();
-
 
     },
+
     methods: {
         loadData() {
-            axios.get("http://localhost:8080/api/clients/1")
+            axios.get("http://localhost:8080/api/clients/current")
                 .then(res => {
-                    this.dataClients = res
-                    this.clients = this.dataClients.data
-                    this.accounts = this.clients.accounts
+                    this.dataClient = res.data
+                    this.accounts = this.dataClient.accounts
+                    this.params();
+
 
                 })
         },
+
+        filterByDate() {
+
+            this.dateValueCalendar = this.dateValueCalendar.split(" ")
+            this.startDate = this.dateValueCalendar[0].replace('Z', '')
+            this.endDate = this.dateValueCalendar[2].replace('Z', '')
+
+            axios.get(`/api/account/` + this.id + `?startDate=${this.startDate}&endDate=${this.endDate}`,
+                { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                .then(res => {
+                    this.transactionFilter = res.data
+                    console.log(this.transactionFilter)
+                })
+
+        },
+
+        deleteAcoount() {
+            axios.patch('/api/clients/current/accounts', `accountId=${this.id}`,
+                { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                .then(res => {
+                    Swal.fire(res.data).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "/web/accounts.html"
+                        }
+                    })
+
+                })
+                .catch(error => {
+                    Swal.fire(error.response.data)
+                    console.error(error.response.data)
+                })
+
+
+        },
+
         params() {
-            let parameterUrl = location.search
-            let parameters = new URLSearchParams(parameterUrl)
-            let id = parameters.get("id")
-            axios.get("http://localhost:8080/api/accounts/" + id)
+
+            axios.get("http://localhost:8080/api/accounts/" + this.id)
                 .then(res => {
                     this.accountSelect = res.data
-                    this.transactions = res.data.transactions.sort((a, b) => a.id - b.id);
+                    this.transactionFilter = this.accountSelect.transactions
 
-                    console.log(this.accountSelect)
-                    console.log(this.transactions)
                 })
         },
-        dateTimeTransactions(date) {
-            let template = date.split("T")
-            let time = template[1].split(".")[0]
-            return `${template[0]} / ${time} hs`
 
+        pdf() {
+            let element = document.getElementById('pdf-table');
+            let opt = {
+                margin: [0, 0, 5, 0],
+                filename: 'numbaTransaction.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 1 },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+            // New Promise-based usage:
+            html2pdf().from(element).set(opt).save();
         },
-        dateTransactions(date) {
-            let template = date.split("T")
-            return `${template[0]}`
 
+        flicker() {
+            flatpickr(".datepicker", {
+                mode: "range",
+                altInput: true,
+                altFormat: "F j, Y",
+                enableTime: true,
+                dateFormat: "Z",
+            });
         },
-        dateTimeAccounts(date) {
-            let template = date.split("T")
-            return `${template[0]}`
-        },
+
+
+
+
+
         logout() {
             axios.post('/api/logout').then(response => console.log('signed out!!!'))
         },
+
+
+
         alert() {
             Swal.fire({
                 title: 'Are you sure?',
@@ -78,7 +130,9 @@ createApp({
             })
         },
         charts() {
+
             let optionsLine = {
+
                 chart: {
                     foreColor: '#e6e5de',
                     height: 328,
@@ -100,20 +154,14 @@ createApp({
                 },
                 colors: ["#44ca83", '#ff0a0a'],
                 series: [{
-
                     name: "Credit",
-                    data: this.accountSelect.transactions.sort((a, b) => b.id - a.id).filter(transaction => transaction.type == "CREDIT").map(transaction => transaction.amount.toFixed(0))
+                    data: this.transactionFilter.sort((a, b) => b.id - a.id).filter(transaction => transaction.type == "CREDIT").map(transaction => transaction.amount.toFixed(0))
                 },
                 {
 
                     name: "Debit",
-                    data: this.accountSelect.transactions.filter(transaction => transaction.type == "DEBIT").map(transaction => transaction.amount.toFixed(0))
+                    data: this.transactionFilter.sort((a, b) => b.id - a.id).filter(transaction => transaction.type == "CREDIT").filter(transaction => transaction.type == "DEBIT").map(transaction => transaction.amount.toFixed(0))
                 },
-
-
-
-
-
                 ],
                 title: {
                     text: 'Transactions',
@@ -158,14 +206,30 @@ createApp({
 
 
         },
+        dateTimeTransactions(date) {
+            let template = date.split("T")
+            let time = template[1].split(".")[0]
+            return `${template[0]} / ${time} hs`
 
+        },
+        dateTransactions(date) {
+            let template = date.split("T")
+            return `${template[0]}`
+
+        },
+        dateTimeAccounts(date) {
+            let template = date.split("T")
+            return `${template[0]}`
+        },
 
 
     },
+
     mounted() {
+        this.flicker()
         this.charts()
 
-    }
+    },
 
 
 
