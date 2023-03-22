@@ -24,7 +24,7 @@ public class CardsUtils {
 
     public static int getCvvNumber() {
         Random rand = new Random();
-        int number = rand.nextInt(898)+100;
+        int number = rand.nextInt(899)+100;
         return number;
 
     }

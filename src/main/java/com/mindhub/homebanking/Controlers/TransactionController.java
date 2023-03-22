@@ -1,5 +1,6 @@
 package com.mindhub.homebanking.Controlers;
 
+import com.lowagie.text.DocumentException;
 import com.mindhub.homebanking.Services.AccountService;
 import com.mindhub.homebanking.Services.CardService;
 import com.mindhub.homebanking.Services.ClientService;
@@ -12,6 +13,7 @@ import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.CardRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.utils.PDFExporter;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,11 +22,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.mindhub.homebanking.models.CardAndAccountStatus.ENABLED;
 import static java.util.stream.Collectors.toSet;
@@ -63,8 +69,38 @@ public class TransactionController {
         }
     }
 
+    @GetMapping("/current/accounts/{id}/transaction/pdf")
+    public void exportToPDF(HttpServletResponse response , Authentication authentication,@PathVariable Long id, @RequestParam(required = false)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate, @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
 
-    @Transactional
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=users_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        Client client = clientService.findByEmail(authentication.getName());
+
+        List<TransactionDTO> setTransactions = new ArrayList<>();
+        if (!client.getAccounts().stream().anyMatch(account -> account.getId() == id)) {
+                response.sendError(200, "ID invalid");
+        } else if (startDate != null && endDate != null) {
+                setTransactions = accountService.findById(id).getTransactions().stream().filter(transaction -> transaction.getDate().isEqual(startDate) || transaction.getDate().isEqual(endDate) || transaction.getDate().isAfter(startDate) && transaction.getDate().isBefore(endDate)).map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toList());
+        } else if (accountService.findById(id) == null) {
+                response.sendError(200, "ID invalid");
+        } else if (startDate != null) {
+                setTransactions = accountService.findById(id).getTransactions().stream().filter(transaction -> transaction.getDate().isEqual(startDate) || transaction.getDate().isEqual(LocalDateTime.now()) || transaction.getDate().isAfter(startDate) && transaction.getDate().isBefore(LocalDateTime.now())).map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toList());
+        } else {
+                setTransactions = accountService.findById(id).getTransactions().stream().map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toList());
+        }
+
+            PDFExporter exporter = new PDFExporter(setTransactions);
+
+            exporter.export(response);
+        }
+
+
+        @Transactional
     @PostMapping( "/clients/transaction" )
     public ResponseEntity<Object> createTransaction(Authentication authentication, @RequestParam Double amount,
                                                     @RequestParam String description,@RequestParam String numberAccountOut,
@@ -146,7 +182,6 @@ public class TransactionController {
         if(cardTransactionDTO.getNumber().isEmpty()){
             return new ResponseEntity<>("You must enter a card number", HttpStatus.FORBIDDEN);
         }
-
         if (cardService.findByNumber(cardTransactionDTO.getNumber()) == null){
             return new ResponseEntity<>("The card number does not exist", HttpStatus.FORBIDDEN);
         }

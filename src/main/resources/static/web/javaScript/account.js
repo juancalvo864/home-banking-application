@@ -81,18 +81,7 @@ createApp({
                 })
         },
 
-        pdf() {
-            let element = document.getElementById('pdf-table');
-            let opt = {
-                margin: [0, 0, 5, 0],
-                filename: 'numbaTransaction.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 1 },
-                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-            };
-            // New Promise-based usage:
-            html2pdf().from(element).set(opt).save();
-        },
+
 
         flicker() {
             flatpickr(".datepicker", {
