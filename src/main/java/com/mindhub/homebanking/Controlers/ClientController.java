@@ -43,14 +43,12 @@ public class ClientController{
     }
 
     @RequestMapping("/clients/{id}")
-
-    public ClientDTO getClientDTO(@PathVariable Long id) {
-
+    public ClientDTO getClientDTOId(@PathVariable Long id) {
         return new ClientDTO(clientService.findById(id));
     }
 
     @RequestMapping("/clients/current")
-    public ClientDTO getAll(Authentication authentication) {
+    public ClientDTO getClientDTO(Authentication authentication) {
         return new ClientDTO( clientService.findByEmail( authentication.getName()));
     }
 
@@ -61,16 +59,16 @@ public class ClientController{
             @RequestParam String email, @RequestParam String password) {
 
         if (firstName.isEmpty()) {
-            return new ResponseEntity<>("Missing First Name", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Missing First Name", HttpStatus.FORBIDDEN);
         }
         if(lastName.isEmpty()){
-            return new ResponseEntity<>("Missing Last Name", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Missing Last Name", HttpStatus.FORBIDDEN);
         }
         if(email.isEmpty()){
-            return new ResponseEntity<>("Missing Email", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Missing Email", HttpStatus.FORBIDDEN);
         }
         if(password.isEmpty()){
-            return new ResponseEntity<>("Missing Password", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Missing Password", HttpStatus.FORBIDDEN);
         }
         if (clientService.findByEmail(email) != null) {
             return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
@@ -90,7 +88,7 @@ public class ClientController{
 
 
 
-    public String getAccountNumber() {
+    private String getAccountNumber() {
         Random rand  ;
         int number  ;
         String stringNumber ;

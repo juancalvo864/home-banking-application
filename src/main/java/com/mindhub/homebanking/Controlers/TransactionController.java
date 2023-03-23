@@ -54,8 +54,8 @@ public class TransactionController {
 
 
     @GetMapping("/account/{id}")
-    public ResponseEntity<Object> getAccountCurrent(@PathVariable Long id, @RequestParam(required = false)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate, @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate){
-        System.out.println(startDate +" " + endDate);
+    public ResponseEntity<Object> getFilterTransaction(@PathVariable Long id, @RequestParam(required = false)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate, @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate){
+
 
         if(startDate != null && endDate != null) {
             Set<TransactionDTO> setTransactions = accountService.findById(id).getTransactions().stream().filter(transaction -> transaction.getDate().isEqual(startDate) || transaction.getDate().isEqual(endDate) || transaction.getDate().isAfter(startDate) && transaction.getDate().isBefore(endDate)).map(transaction -> new TransactionDTO(transaction)).collect(toSet());
@@ -83,11 +83,11 @@ public class TransactionController {
 
         List<TransactionDTO> setTransactions = new ArrayList<>();
         if (!client.getAccounts().stream().anyMatch(account -> account.getId() == id)) {
-                response.sendError(200, "ID invalid");
+                response.sendError(403, "ID invalid");
         } else if (startDate != null && endDate != null) {
                 setTransactions = accountService.findById(id).getTransactions().stream().filter(transaction -> transaction.getDate().isEqual(startDate) || transaction.getDate().isEqual(endDate) || transaction.getDate().isAfter(startDate) && transaction.getDate().isBefore(endDate)).map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toList());
         } else if (accountService.findById(id) == null) {
-                response.sendError(200, "ID invalid");
+                response.sendError(403, "ID invalid");
         } else if (startDate != null) {
                 setTransactions = accountService.findById(id).getTransactions().stream().filter(transaction -> transaction.getDate().isEqual(startDate) || transaction.getDate().isEqual(LocalDateTime.now()) || transaction.getDate().isAfter(startDate) && transaction.getDate().isBefore(LocalDateTime.now())).map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toList());
         } else {
@@ -200,7 +200,7 @@ public class TransactionController {
             return new ResponseEntity<>("The amount avaible in your account is insufficient", HttpStatus.FORBIDDEN);
         }
 
-        Transaction newTransaction = new Transaction(TransactionType.DEBIT, - cardTransactionDTO.getTransactionAmount(), cardTransactionDTO.getNumber() + ":" + cardTransactionDTO.getDescription(), LocalDateTime.now(), selectAccount.getBalance());
+        Transaction newTransaction = new Transaction(TransactionType.DEBIT, - cardTransactionDTO.getTransactionAmount(), "card: " + cardTransactionDTO.getDescription(), LocalDateTime.now(), selectAccount.getBalance());
         Double newBalance = selectAccount.getBalance() - cardTransactionDTO.getTransactionAmount();
         selectAccount.setBalance(newBalance);
 

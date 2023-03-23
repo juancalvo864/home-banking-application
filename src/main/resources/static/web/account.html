@@ -112,6 +112,21 @@
                 <div class="container-transactions-account mt-5">
                     <div class="container-table-account">
                         <h1>Transactions</h1>
+                        <div class="list-transaction-home-mobil">
+                            <ul class="list-home-mobil">
+                                <template v-for="transaction of transactionFilter.sort((a, b) => b.id - a.id)">
+                                    <li class="d-flex justify-content-between" style="border-bottom: 1px solid white;">
+                                        <div>
+                                            <p style="text-align: start;">{{transaction.description}}</p>
+                                            <p style="text-align: start;">{{dateTimeTransactions(transaction.date)}}</p>
+                                        </div>
+                                        <div>
+                                            <p>u$s {{transaction.amount.toFixed(2)}}</p>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
                         <table class="table table-dark table-hover ">
                             <thead>
                                 <tr>

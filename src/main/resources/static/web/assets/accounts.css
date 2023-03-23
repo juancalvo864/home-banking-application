@@ -10,20 +10,6 @@
 
 
 
-/* body {
-    font-family: 'Roboto Slab', serif;
-} */
-
-/* label {
-    display: block;
-    font: 1rem 'Fira Sans', sans-serif;
-}
-
-input,
-label {
-    margin: 0.4rem 0;
-} */
-
 
 main {
 
@@ -966,9 +952,7 @@ main {
     border-top-right-radius: 17px;
 }
 
-.box-filter-pdf {
-    width: 100%;
-}
+
 
 /*--------chart-------*/
 
@@ -1835,8 +1819,9 @@ footer {
     }
 
     .box-filter-pdf {
-        display: flex;
+
         flex-direction: column;
+        width: 30rem !important;
     }
 
     .box-filter-pdf div {
@@ -1844,7 +1829,7 @@ footer {
         border-radius: 5px;
         padding: 1rem;
         margin-bottom: 2rem;
-        width: 50%;
+        width: 100%;
     }
 
     .form-filer-transaction {
@@ -1880,6 +1865,11 @@ footer {
 
 }
 
+@media(min-width:500px) {
+    .list-transaction-home-mobil {
+        display: none;
+    }
+}
 
 @media(max-width:500px) {
     header {
@@ -1897,19 +1887,12 @@ footer {
         width: 100%;
     }
 
-
-
-
     .big-box-account {
         padding-top: 2rem;
         width: 95%;
         text-align: center;
     }
 
-    /*
-    .container-account {
-        width: 100%;
-    } */
     .box-account {
         width: 20rem;
     }
@@ -1942,16 +1925,9 @@ footer {
         justify-content: center;
     }
 
-    /* .box-only-accounts {
-        gap: 2rem;
-    } */
-
     .container-accounts {
         padding: 0;
     }
-
-
-
 
     /*-----admin--------------*/
 
@@ -2031,6 +2007,33 @@ footer {
     .form-transfers {
         width: 100%;
     }
+
+    /*----------table accounts--------*/
+
+    .table-dark {
+        display: none;
+    }
+
+    .list-home-mobil {
+        width: 22rem;
+        padding: 0;
+        list-style-position: inside !important;
+        list-style: disc !important;
+    }
+
+    /*----------- account-----------*/
+    .box-filter-pdf {
+
+        width: 20rem !important;
+    }
+
+    .box-filter-pdf div {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+
 }
 
 

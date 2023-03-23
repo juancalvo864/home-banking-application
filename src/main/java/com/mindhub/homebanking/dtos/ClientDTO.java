@@ -23,21 +23,17 @@ public class ClientDTO {
 
     private Set<CardDTO> cards;
 
-    public ClientDTO() {
-    }
+
 
     public ClientDTO(Client client) {
 
         this.id = client.getId();
-
         this.firstName = client.getFirstName();
-
         this.lastName = client.getLastName();
-
         this.email = client.getEmail();
-        this.accounts = client.getAccounts().stream().filter(account-> account.getStatus().equals(ENABLED) ).map(account -> new AccountDTO(account) ).collect(Collectors.toSet());
-        this.loans = client.getClientLoans().stream().map(clientloan -> new ClientLoanDTO(clientloan)).collect(Collectors.toSet());
-        this.cards = client.getCards().stream().filter(card-> card.getStatus().equals(ENABLED) ).map(CardDTO::new).collect(Collectors.toSet());
+        this.accounts = client.getAccounts().stream().filter(account-> account.getStatus().equals(ENABLED) ).map(account -> new AccountDTO(account) ).collect(toSet());
+        this.loans = client.getClientLoans().stream().map(clientloan -> new ClientLoanDTO(clientloan)).collect(toSet());
+        this.cards = client.getCards().stream().filter(card-> card.getStatus().equals(ENABLED) ).map(CardDTO::new).collect(toSet());
 
     }
 

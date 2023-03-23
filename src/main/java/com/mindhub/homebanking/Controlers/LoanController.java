@@ -131,9 +131,6 @@ public class LoanController {
         Transaction transactionCredit = new Transaction(TransactionType.CREDIT, loanApplicationDTO.getAmount()*1.2, nameLoan.getName() + " Loan",LocalDateTime.now(), accountIn.getBalance());
 
 
-
-
-
         client.addClientLoan(newClientLoan);
         loanService.findByName(nameLoan.getName()).addClientLoan(newClientLoan);
         accountIn.addTransaction(transactionCredit);

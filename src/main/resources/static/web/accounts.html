@@ -130,6 +130,23 @@
             <div class="container-main-transactions" v-if="dataClient.accounts">
                 <div class="table-and-title">
                     <h2>Main account - Last transactions</h2>
+                    <div class="list-transaction-home-mobil">
+                        <ul class="list-home-mobil">
+                            <template
+                                v-for="(transaction,index) of dataClient.accounts[0].transactions.sort((a, b) => b.id - a.id)">
+                                <li v-if="index <= 2" class="d-flex justify-content-between"
+                                    style="border-bottom: 1px solid white;">
+                                    <div>
+                                        <p style="text-align: start;">{{transaction.description}}</p>
+                                        <p style="text-align: start;">{{dateTimeTransactions(transaction.date)}}</p>
+                                    </div>
+                                    <div>
+                                        <p>u$s {{transaction.amount.toFixed(2)}}</p>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>

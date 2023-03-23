@@ -94,6 +94,12 @@ createApp({
         },
 
 
+        dateTimeTransactions(date) {
+            let template = date.split("T")
+            return `${template[0]}`
+        },
+
+
 
 
 

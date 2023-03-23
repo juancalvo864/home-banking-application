@@ -13,7 +13,6 @@ public class LoanServiceImplementation implements LoanService {
     @Autowired
     private LoanRepository repoLoan;
 
-
     @Override
     public List<Loan> findAll() {
         return repoLoan.findAll();
