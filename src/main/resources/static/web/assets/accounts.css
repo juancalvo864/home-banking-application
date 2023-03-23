@@ -1,4 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 * {
     box-sizing: border-box;
@@ -8,35 +10,41 @@
 
 
 
-body {
-    font-family: Roboto, sans-serif;
-
-}
-
-#chart {
-    max-width: 650px;
-    margin: 35px auto;
-}
 
 main {
-    /* background-color: #1a1d2125; */
-    background-image: linear-gradient(rgba(1, 1, 1, 0.8), rgba(1, 1, 1, 0.9)), url(https://www.mckinsey.com/~/media/mckinsey/business%20functions/risk/our%20insights/the%20future%20of%20bank%20risk%20management/the-future-of-bank_1536x1536_300_standard.jpg);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
 
+    /* background: rgb(17, 17, 30); */
+    background: rgb(13, 13, 19);
+    background-image: linear-gradient(rgba(1, 1, 1, 0.7), rgba(1, 1, 1, 0.7)), url(../images/Hexagon\ \(1\).svg);
+    background-attachment: fixed;
     min-height: 100vh;
     padding: 2rem 1rem;
 }
 
+.spiner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* -------------------------start header-------------------------- */
 
+.navbar {
+    background-color: #212529;
+    background-image: url(../images/Hexagon\ \(1\).svg);
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+
+.navbar-nav {
+    color: white;
+}
 
 .header-logo {
     display: flex;
     align-items: center;
-    background-color: #21252950;
+    /*  background-color: #21252900; */
     height: 6rem;
 
 }
@@ -58,7 +66,7 @@ main {
 .nav-link {
     margin-right: 1rem;
     font-size: 1.1rem;
-
+    color: white;
     border-bottom: 1px solid white;
     border-radius: 2px;
 
@@ -66,6 +74,7 @@ main {
 
 .nav-link:hover {
     background: rgba(75, 110, 175, 0.233);
+    color: white;
     border-radius: 5px;
     transform: scale(1.1);
     border: 1px solid white;
@@ -75,6 +84,7 @@ main {
 
 
 .navbar-brand {
+    border: none;
     background-color: transparent !important;
     padding-right: 1rem;
     display: flex;
@@ -111,45 +121,45 @@ main {
 
 
 .container-accounts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     padding: 2rem;
-    gap: 8rem;
-
 }
-
-
 
 .box-only-accounts {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 5rem;
+    justify-content: space-around;
+    gap: 1.5rem;
 
 }
 
 .container-account {
     background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
-    box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323;
     border-radius: 22px;
     transition: all .3s;
+}
+
+.box-account-title-info {
+    display: flex;
+    justify-content: space-between;
 }
 
 .box-account {
     padding: 1rem;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     height: 100%;
     border-radius: 17px;
-    background: linear-gradient(145deg, #151414, #191818);
+    backdrop-filter: blur(0px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    background-color: #212529 !important;
     color: white;
     width: 350px;
     transition: all .2s;
-
-
 }
+
+
 
 .box-account:hover {
     transform: scale(0.97);
@@ -169,23 +179,58 @@ main {
     font-size: .8rem;
 }
 
+.balance-chart-main {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+}
+
+#chart {
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    padding: 1.5rem;
+}
+
 .container-total-balance {
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    gap: 1.5rem;
     border-radius: 17px;
-    background: linear-gradient(145deg, #151414, #191818);
-    box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323;
+    background-color: #212529;
+    backdrop-filter: blur(0px);
+    background-color: rgba(0, 0, 0, 0.415);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
     color: white;
     width: 350px;
-    transition: all .3s;
+    min-height: 20rem;
+    transition: 1000ms;
 }
 
 .container-total-balance:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
+    transition: 1000ms;
     box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+
+.container-total-balance h3 {
+    text-align: center;
+    width: 100%;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid white;
+
+
 }
 
 .box-total-balance {
@@ -202,15 +247,37 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    /*  gap: 1rem; */
 }
+
+.table-and-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: #212529a9;
+    backdrop-filter: blur(0px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    border-radius: 17px;
+    text-align: center;
+    width: 90%;
+}
+
+.table-and-title h2 {
+    text-align: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid white;
+    width: 100%;
+    color: white;
+}
+
 
 .container-main-transactions table {
     border-radius: 15px;
-    background: linear-gradient(145deg, #151414, #191818);
-    box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323;
     max-width: 90%;
+
 }
 
 .container-loans-and-cards {
@@ -222,33 +289,52 @@ main {
 }
 
 .container-loans-and-title {
+    background-color: #212529a9;
     color: white;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
     padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2.5rem;
-    min-width: 40%;
+    gap: 2rem;
+    width: 50vw;
+    border-radius: 17px;
+}
+
+.container-loans-and-title h2 {
+    text-align: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid white;
+    width: 100%;
+    color: white;
 }
 
 .containter-loans {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 5rem;
+    padding-bottom: 1rem;
 }
 
 .box-loans {
     border-radius: 18px;
     background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
     transition: all .3s;
-    box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323;
     color: white;
-    width: 300px;
+    width: 25rem;
 }
 
 .box-loan {
-    background: linear-gradient(145deg, #151414, #191818);
+
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    background: #212529;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -265,21 +351,136 @@ main {
     border-radius: 20px;
 }
 
-
-.container-cards-render {
-
+.container-home-loan-exchange {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+}
+
+.exchanges-home {
+    padding: 1.5rem;
+    width: 25rem;
+    background-color: #212529a9;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    border-radius: 17px;
+}
+
+.exchanges-home h2 {
+    text-align: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid white;
+    width: 100%;
+    color: white;
+}
+
+.box-exchange {
+    padding: 1rem;
+    color: white;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    background-color: #212529;
+    display: flex;
+    justify-content: space-around;
+    width: 20rem;
+    /* border-top: 1px solid white; */
+    border-radius: 17px;
+}
+
+.class1 {
+    color: #f7666e;
+}
+
+.class2 {
+    color: #00ff75;
+}
+
+#chart-1 {
+    display: flex;
+    align-items: center;
+}
+
+#chart-2 {
+    display: flex;
+    align-items: center;
+}
+
+#chart-3 {
+    display: flex;
+    align-items: center;
+}
+
+
+.container-home-cardDebit-cardCredit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    margin-top: 3rem;
+    padding: 2rem;
+    border-radius: 17px;
+    width: 90%;
+}
+
+.container-home-cardDebit-cardCredit h1 {
+    margin-bottom: 3rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid white;
+    width: 100%;
+    text-align: center;
+}
+
+.box-cards-debit-credit {
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    background: #212529;
+    border-radius: 17px;
+    padding: 1.5rem;
+    width: 30rem;
+}
+
+.box-cards-debit-credit h2 {
+    padding: 0.5rem;
+    border-bottom: 1px solid white;
+    width: 100%;
+}
+
+.container-cards-render {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 2rem;
     gap: 4rem;
+}
+
+.container-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
 }
 
 .box-cards {
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    background-color: #212529;
-    color: white;
     border-radius: 10px;
     width: 350px;
 }
@@ -291,49 +492,151 @@ main {
 }
 
 
+
+/* ------END MAIN------------------------------ */
+/*------------------------finish html ACCOUNTS----------------------*/
+
+
+
+/*----------------------START CARDS--------------------*/
+
+
 .subContainer-cards {
-    border: 5px solid #212529;
     color: white;
     padding: 1rem;
     border-radius: 10px;
-    gap: 2rem;
-    min-width: 10rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 3rem;
 }
 
-.container-cards {
-    color: white;
-    padding: 1rem;
+.article-card-description {
     display: flex;
-    flex-direction: column;
-    gap: 5rem;
-}
-
-
-
-.Container-card {
-    display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap: 2rem;
+    padding: 2rem;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
 }
 
 
-/*--------CARD------*/
+.title-acquired-cards {
+    color: white;
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    border-bottom: 1px solid white;
+    font-size: 3rem;
+    padding-bottom: .5rem;
+    width: 80%;
+    margin-bottom: 5rem;
+}
 
-.container-card-section {
-    display: flex;
-    justify-content: space-around;
+.article-card-description div {
+    width: 40rem;
+}
+
+.article-card-description img {
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    width: 25rem;
+    height: 40vh;
+}
+
+.article-card-description p {
+    text-align: justify;
+    letter-spacing: .1rem;
+    font-size: 1.1rem;
+    text-indent: 20px;
+}
+
+
+
+.article-card-description h5 {
+    letter-spacing: .1rem;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    padding: .5rem;
+    margin-bottom: 1rem;
 }
 
 .Container-cards-section {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
     gap: 6rem;
 }
 
+.Container-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    width: 35rem;
+    gap: 2rem;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    min-height: 20rem;
+}
 
+.Container-card h3 {
+    padding: 1rem;
+    border-bottom: 1px solid white;
+    width: 100%;
+}
+
+.container-card-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.container-delete-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    width: 53vw;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+
+.container-delete-cards h5 {
+    padding: .5rem;
+    border-bottom: 1px solid white;
+}
+
+.box-input-button-delte-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 80%;
+}
+
+.box-none-card-credit {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    border-radius: 17px;
+    backdrop-filter: blur(0px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    background-color: #212529 !important;
+    color: white;
+    transition: all .2s;
+}
 
 
 .flip-card,
@@ -370,6 +673,12 @@ main {
     position: absolute;
     top: 2.8em;
     left: 1.5em;
+}
+
+.type-card-section {
+    position: absolute;
+    top: 6em;
+    left: 13em;
 }
 
 .contactless {
@@ -547,25 +856,61 @@ main {
 
 
 
-/*-------END CARD----------*/
+/*-------END CARDS----------*/
 
 
-/* ------END MAIN------------------------------ */
+/*------------------------START ACCOUNT-------------------------*/
 
-/*------------------------finish html ACCOUNTS----------------------*/
 
-/*------------------------start html ACCOUNT-------------------------*/
+.container-general-select-account {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.container-single-account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(0px);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(100, 100, 100, 0.5), inset 5px -5px 16px 0px rgba(100, 100, 100, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    color: white;
+    padding: 2rem;
+}
 
 .big-box-account {
-    padding: 2rem;
     display: flex;
     justify-content: space-between;
-    background-color: #4455a9;
-    border-radius: 17px;
-    box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323;
+    width: 80%;
+}
+
+.form-filer-transaction {
     color: white;
-    width: 85%;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    padding: 2rem;
+    margin-top: 3rem;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.form-filer-transaction div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 45rem;
+
 }
 
 .container-transactions-account {
@@ -575,6 +920,24 @@ main {
     border-radius: 10px;
     padding: 1rem;
     color: white;
+    width: 100%;
+}
+
+.container-table-account {
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    width: 80%;
+    padding: 2rem;
+}
+
+.container-table-account h1 {
+    margin-bottom: 2rem;
+    text-align: center;
+    padding: .5rem;
+    border-bottom: 1px solid white;
+    width: 100%;
 }
 
 .head-table {
@@ -589,15 +952,55 @@ main {
     border-top-right-radius: 17px;
 }
 
-.container-transactions-account table {
+
+
+/*--------chart-------*/
+
+/* .shadow {
+      padding: 25px 20px;
+    color: #090909 !important;
     border-radius: 17px;
-    box-shadow: 25px 25px 50px #090909,
-        -25px -25px 50px #252323;
-    width: 80%;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+} */
+
+
+
+/* .box-chart-account {
+    margin-top: 3rem;
+    padding: 2rem;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+} */
+
+
+
+.box {
+    color: black;
 }
 
+/*-----------chart-----------*/
+
+/*    TABLE TO PDF */
+
+/* .table-pdf-render {
+    width: 50rem;
+    height: 50rem;
+    position: sticky;
+    top: 1000rem;
+
+} */
+/* 
+.pdf-table-none {
+    display: none;
+} */
 
 
+/*    TABLE TO PDF */
 
 
 /*-------------------------FINISH ACCOUNT---------------------------*/
@@ -607,41 +1010,94 @@ main {
     width: 100%;
     min-height: 80vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-
+    gap: 4rem;
 }
 
+.general-container-create-card h1 {
+    color: white;
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    border-bottom: 1px solid white;
+    font-size: 3rem;
+    padding-bottom: .5rem;
+    width: 80%;
+}
 
 .container-create-card {
-    background-color: #151414;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     align-items: center;
     flex-wrap: wrap-reverse;
     gap: 5rem;
     width: 50rem;
-    height: 20rem;
+    min-height: 20rem;
     border-radius: 20px;
     transition: all .3s;
 }
 
+
 .container-create-card:hover {
-    background-color: #0f0e0e;
-    transform: scale(0.98);
-    border-radius: 20px;
-}
-
-.create-for-hover {
-    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
-    border-radius: 20px;
-    transition: all .4s;
-}
-
-.create-for-hover:hover {
     box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
 }
 
+.article-createCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    color: white;
+    margin-top: 4rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+
+.text-createdCard {
+
+    width: 40rem;
+}
+
+.text-createdCard h3 {
+    margin-bottom: 1rem;
+    letter-spacing: .1rem;
+    padding: .5rem;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+}
+
+.text-info-createCard {
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 1px;
+    text-align: justify;
+    text-indent: 20px;
+}
+
+
+.expired-card {
+    width: 6rem;
+    position: absolute;
+    letter-spacing: .2em;
+    top: 1.5em;
+    left: 5.8em;
+}
+
+
+.article-createCard img {
+    width: 30rem;
+    height: 23rem;
+    border-radius: 20px;
+    box-shadow: -35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset 12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
 
 .container-select-card-create {
     display: flex;
@@ -810,14 +1266,362 @@ main {
 
 /*-------------------------END CREATE CARD------------------------*/
 
+/*-------------------------START TRANSFERS---------------------------*/
+
+.container-general-transfers {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container-general-transfers h1 {
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    border-bottom: 1px solid white;
+    font-size: 3rem;
+    padding-bottom: .5rem;
+    width: 80%;
+}
+
+.container-transfers-application {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+    min-height: 120vh;
+
+}
+
+
+.transfer-full-information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    width: 35rem;
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: 35px 35px 68px 0px rgba(21, 21, 40, 0.5), inset -12px -12px 16px 0px rgba(21, 21, 40, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+
+.transfer-balance-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.transfer-balance-total h3 {
+    padding: .5rem;
+    border-bottom: 1px solid white;
+    width: 80%;
+}
+
+.balance-and-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.transfer-balance-total img {
+    width: 6rem;
+    height: 6rem;
+}
+
+
+
+.container-account-transfer {
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    box-shadow: 25px 25px 50px #090909,
+        -25px -25px 50px #252323;
+    border-radius: 22px;
+    transition: all .3s;
+}
+
+.box-account-transfer {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    border-radius: 17px;
+    background: linear-gradient(145deg, #151414, #191818);
+    color: white;
+    width: 350px;
+
+}
+
+.form-transfers {
+    height: 32rem;
+    padding: 2rem;
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: 35px 35px 68px 0px rgba(21, 21, 40, 0.5), inset -12px -12px 16px 0px rgba(21, 21, 40, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+
+
+/* .box-account-transfer:hover {
+    transform: scale(0.97);
+    border-radius: 20px;
+}
+
+.container-account-transfe:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+} */
+
+/*--------------------------END TRANSFERS-------------------------*/
+
+/*-------------------------START APPLICATION LOAN-------------------------*/
+
+.container-gral-application-loan {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+    gap: 2rem;
+}
+
+
+.container-gral-application-loan h1 {
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    border-bottom: 1px solid white;
+    font-size: 3rem;
+    padding-bottom: .5rem;
+    width: 80%;
+}
+
+.container-gral-application-loan section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    padding: 5rem 2rem;
+    width: 80vw;
+    border-bottom: 1px solid white;
+}
+
+.container-application-loan {
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: 35px 35px 68px 0px rgba(21, 21, 40, 0.5), inset -12px -12px 16px 0px rgba(21, 21, 40, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    color: white;
+    width: 100%;
+}
+
+
+
+.img-personal-loan-1 {
+    border-radius: 20px;
+    height: 20rem;
+    width: 25rem;
+}
+
+.img-personal-loan-2 {
+    border-radius: 20px;
+    height: 20rem;
+    width: 25rem;
+}
+
+.img-personal-loan-3 {
+    border-radius: 20px;
+    height: 20rem;
+    width: 22rem;
+}
+
+.text-personal-loan {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 70%;
+    padding: 1rem;
+    gap: 1rem;
+
+}
+
+.button-application-loans {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.internal-text-personal-loan {
+    display: flex;
+    flex-direction: column;
+}
+
+.internal-text-personal-loan h2 {
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    padding: .5rem .5rem;
+}
+
+.internal-text-personal-loan p {
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 1px;
+    text-align: justify;
+    text-indent: 10px;
+}
+
+.container-descriptions-loans {
+
+    width: 95%;
+}
+
+.form-application-loan {
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: 35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset -12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    margin-bottom: 4rem;
+    transition: 1000ms;
+    padding: 3rem;
+    border-radius: 10px;
+}
+
+.form-application-loan:hover {
+    transform: scale(1.01);
+    transition: 1000ms;
+}
+
+
+.pro-loans {
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: 35px 35px 68px 0px rgba(21, 21, 40, 0.5), inset -12px -12px 16px 0px rgba(21, 21, 40, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    color: white;
+    text-align: center;
+    line-height: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.pro-loans p {
+    text-align: center;
+    line-height: 100%;
+}
+
+.form-application-loan h2 {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    margin-bottom: 2rem;
+}
+
+
+
+.installment-amount {
+    font-size: 1.1rem;
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    box-shadow: 35px 35px 68px 0px rgba(0, 0, 0, 0.5), inset -12px -12px 16px 0px rgba(0, 0, 0, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+    padding: 1rem;
+    margin-bottom: 0;
+}
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+
+.a-btn-aplication {
+    text-decoration: none;
+}
+
+.btn-application-loan {
+    font-family: Roboto, sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(103deg, #007ecce0 0%, #0011cc 24%);
+    padding: 10px 30px;
+    border: solid #0066cc 1px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 10px;
+    transition: 687ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn-application-loan:hover {
+
+    transition: 687ms;
+    padding: 10px 39px;
+    transform: translateY(-0px);
+    background: linear-gradient(103deg, #007ecce0 0%, #0011cc 24%);
+    box-shadow: #1b253d -3px -1px 50px 5px;
+    color: #ffffff;
+    border: solid 1px #48cae4;
+}
+
+
+
+
+
+
+/*-------------------------END APPLICATION LOAN-------------------------*/
+
+/*-------------------------------ADMIN----------------------------------*/
+
+.form-section-admin-createLoan {
+    color: white;
+    width: 50%;
+}
+
+.form-label-admin-1 {
+    width: 30rem;
+}
+
+.form-label-admin-2 {
+    width: 30rem;
+}
+
+.form-label-admin-3 {
+    width: 30rem;
+}
+
+.form-label-admin-4 {
+    width: 30rem;
+}
+
+/*-------------------------------ADMIN----------------------------------*/
+
 /* -------------------------START FOOTER-------------------------- */
 
 footer {
     font-size: 1.2rem;
-    height: 3rem;
-    background-color: #212529;
+    min-height: 5rem;
+    background-image: url(../images/Hexagon\ \(1\).svg);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
     padding-inline: 1rem;
     align-items: center;
     color: white;
@@ -829,20 +1633,49 @@ footer {
 }
 
 .footer-img-logo {
-    width: 2.5rem;
+    width: 5rem;
 }
 
 .footer-img-textologo {
-    width: 7rem;
+    width: 10rem;
 }
 
+.redes-footer {
+    display: flex;
+    justify-content: space-around;
+    gap: 1.5rem;
+}
+
+.icono-facebook {
+    width: 3rem;
+}
+
+.icono-facebook:hover {
+    transform: scale(1.1);
+}
+
+.icono-instagram {
+    width: 3rem;
+}
+
+.icono-instagram:hover {
+    transform: scale(1.1);
+}
+
+.icono-github {
+    width: 3rem;
+}
+
+.icono-github:hover {
+    transform: scale(1.1);
+}
 
 
 /* -------------------------end footerr-------------------------- */
 
 @media(min-width:960px) {
-    .container-accounts {
-        justify-content: space-around;
+    .article-card-description {
+        width: 80%;
     }
 }
 
@@ -854,6 +1687,10 @@ footer {
 
     .box-loans {
         width: 100%;
+    }
+
+    .container-gral-application-loan section {
+        width: 90%;
     }
 }
 
@@ -889,7 +1726,7 @@ footer {
 
     .container-loans-and-title {
 
-        width: 100%;
+        width: 90%;
     }
 
     .container-cards {
@@ -913,25 +1750,151 @@ footer {
         flex-wrap: wrap;
     }
 
+    .container-general-transfers {
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    .form-transfers {
+        width: 63vw;
+    }
+
+    .form-select {
+        width: 100%;
+    }
+
+    .transfer-balance-total-title {
+        align-items: center;
+    }
+
+    .balance-chart-main {
+        flex-direction: column;
+        align-items: center;
+        gap: 3.5rem;
+    }
+
+    .container-total-balance {
+        width: 100%;
+    }
+
+    .container-gral-application-loan section {
+        width: 100%;
+    }
+
+
+
+    .exchanges-home {
+        width: 90%;
+    }
+
+    .container-loans,
+    .box-loans,
+    .box-loan {
+        justify-content: space-around;
+        width: 70vw;
+    }
+
+    .box-exchange {
+        width: 80%;
+    }
+
+    .container-create-card {
+        padding: 2rem;
+        width: 80%;
+    }
+
+    .container-descriptions-loans {
+        flex-wrap: wrap;
+    }
+
+    .container-application-loan {
+        flex-direction: column;
+    }
+
+
+
+    .transfer-full-information {
+        width: 80%;
+    }
+
+    .box-filter-pdf {
+
+        flex-direction: column;
+        width: 30rem !important;
+    }
+
+    .box-filter-pdf div {
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+
+    .form-filer-transaction {
+        width: 95%;
+    }
+
+    .container-table-account {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin-bottom: 1.5rem;
+        width: 80vw;
+    }
+
+    .container-transactions-account {
+        padding: 0;
+    }
+
+    .box-chart-account {
+        width: 90%;
+    }
+
+    .container-table-account table {
+        width: 20rem;
+    }
+
+    .big-box-account {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
 }
 
-@media(max-width:470px) {
+@media(min-width:500px) {
+    .list-transaction-home-mobil {
+        display: none;
+    }
+}
+
+@media(max-width:500px) {
     header {
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .big-box-account {
-        flex-wrap: wrap-reverse;
-        justify-content: center;
+    .container-table-account {
+        width: 100%;
     }
 
-    .big-box-account div {
+    .container-single-account {
+        padding: 0;
+        padding-bottom: 2rem;
+        width: 100%;
+    }
+
+    .big-box-account {
+        padding-top: 2rem;
+        width: 95%;
         text-align: center;
     }
 
-    .container-account {
-        width: 100%;
+    .box-account {
+        width: 20rem;
     }
 
     .head-table {
@@ -952,13 +1915,125 @@ footer {
         text-align: center;
     }
 
-    .box-only-accounts {
-        gap: 2rem;
+    .table-and-title {
+        width: 100%;
+    }
+
+    #chart {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
     .container-accounts {
-        gap: 2.5rem;
+        padding: 0;
     }
+
+    /*-----admin--------------*/
+
+    .form-section-admin-createLoan {
+        width: 100%;
+    }
+
+
+    /*--------cards----------*/
+    .Container-cards-section {
+        width: 19rem;
+    }
+
+    .article-card-description {
+        width: 100%;
+    }
+
+    .article-card-description div {
+        width: 100%;
+    }
+
+    .article-card-description img {
+        width: 100%;
+    }
+
+    .container-delete-cards {
+        width: 90%;
+    }
+
+    /*----------created card---------*/
+
+    .article-createCard {
+        width: 100%;
+    }
+
+    .article-createCard img {
+        width: 100%;
+        height: 15rem;
+
+    }
+
+    .container-create-card {
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+        width: 100%;
+    }
+
+    /*-----application loan-------*/
+    .img-personal-loan-1,
+    .img-personal-loan-2,
+    .img-personal-loan-3 {
+        width: 90%;
+    }
+
+    .container-gral-application-loan section {
+        padding: 0;
+        padding-bottom: 2rem;
+        width: 100%;
+    }
+
+    .container-application-loan {
+        padding: 0;
+        width: 100%;
+    }
+
+    .text-personal-loan {
+        width: 100%;
+    }
+
+    /*-------transfer-----*/
+    .transfer-full-information {
+        width: 100%;
+    }
+
+    .form-transfers {
+        width: 100%;
+    }
+
+    /*----------table accounts--------*/
+
+    .table-dark {
+        display: none;
+    }
+
+    .list-home-mobil {
+        width: 22rem;
+        padding: 0;
+        list-style-position: inside !important;
+        list-style: disc !important;
+    }
+
+    /*----------- account-----------*/
+    .box-filter-pdf {
+
+        width: 20rem !important;
+    }
+
+    .box-filter-pdf div {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+
 }
 
 

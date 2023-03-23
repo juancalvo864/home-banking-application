@@ -45,7 +45,6 @@ public class Client {
         this.lastName = last;
         this.email = email;
         this.password = password;
-
     }
 
 

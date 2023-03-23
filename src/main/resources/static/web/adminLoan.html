@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NUMBA | LOAN APPLICATION</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./assets/accounts.css">
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app">
+
+
+        <header>
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                <div class="header-logo">
+                    <img class="logo-header" src="./images/logo.png" alt="">
+                    <img class="logo-text-header" src="./images/texto logo.png" alt="">
+                </div>
+                <div class="container-fluid">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle navbar-brand navbar-dark" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="img-usuario" src="./images/paisaje-user.jpg" alt="">
+                            <div>
+                                <p>LogOUT</p>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href=""></a>
+                            <li><button @click="alert" class="dropdown-item" type="button">LogOut</button></li>
+                        </ul>
+                    </div>
+        </header>
+        <main class="d-flex justify-content-center">
+            <!--     formulario de carga loan -->
+            <div class="form-section-admin-createLoan">
+                <h2 id="application">Request your credit here</h2>
+                <form action="" class="d-flex flex-column justify-content-center gap-4">
+                    <div class="mb-3">
+                        <label class="form-label-admin-1">Write name of the loan
+                            <input type="text" class="form-control" aria-describedby="emailHelp" v-model="nameLoan">
+                        </label>
+                    </div>
+                    <label>
+                        <p style="margin-bottom: 0;">Enter amount</p>
+                        <div class="input-group form-control form-label-admin-2">
+                            <span class="input-group-text">u$s</span>
+                            <input type="number" min="1" class="form-control form-label-admin-2"
+                                aria-label="Amount (to the nearest dollar)" v-model="amountLoan">
+                        </div>
+                    </label>
+                    <div class="mb-3">
+                        <label class="form-label">Enter payments follow commas ","
+                            <input type="text" class="form-control form-label-admin-3" aria-describedby="emailHelp"
+                                v-model="payment">
+                        </label>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Enter interest rate
+                            <input type="number" class="form-control form-label-admin-4" aria-describedby="emailHelp"
+                                v-model="interest">
+                        </label>
+                    </div>
+
+                    <!-- <p class="installment-amount form-label-admin-4">Toal to return : u$s {{amountPercent}}
+                    </p> -->
+                </form>
+                <button class="btn-application-loan mt-4" @click="newLoanAdmin">APPLICATION <img
+                        src="https://www.htmlcssbuttongenerator.com/iconExample-plus-square-multiple-lined.svg"
+                        style="width:26px; margin-left:3px; margin-right:6px; flex-direction: row-reverse;"></button>
+            </div>
+    </div>
+
+
+    </main>
+    <footer>
+        <div class="footer-logo">
+            <img class="footer-img-logo" src="./images/logo.png" alt="">
+            <img class="footer-img-textologo" src="././images/texto logo.png" alt="">
+        </div>
+        <p>Copyrigth - Calvo juan Calvo</p>
+        <div class="redes-footer">
+            <a href="https://www.facebook.com/juancalvoo" target="_blank"><img src="./images/facebook1.png" alt=""
+                    class="icono-facebook"></a>
+            <a href="https://github.com/juancalvo864" target="_blank"><img src="./images/github.png" alt=""
+                    class="icono-github"></a>
+            <a href="https://www.instagram.com/juancalvoo/" target="_blank"><img src="./images/instagram1.png" alt=""
+                    class="icono-instagram"></a>
+        </div>
+    </footer>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./javaScript/loanAdmin.js"></script>
+
+</body>
+
+</html>

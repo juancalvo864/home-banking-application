@@ -9,6 +9,7 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./assets/accounts.css">
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
 </head>
 
 <body>
@@ -25,7 +26,7 @@
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle navbar-brand navbar-dark" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="img-usuario" src="./images/nick-hillier-aQcE3gDSSTY-unsplash.jpg" alt="">
+                            <img class="img-usuario" src="./images/paisaje-user.jpg" alt="">
                             <div>
                                 <p>Welcome!</p>
                                 <p>{{dataClient.firstName + " " +dataClient.lastName}} </p>
@@ -70,42 +71,80 @@
         </header>
         <main>
             <div class="general-container-create-card">
-                <div class="create-for-hover">
-                    <div class="container-create-card">
-                        <div class="container-select-card-create">
-                            <h2 style="color: white;">Create your card</h2>
-                            <select class="form-select select-card-create " aria-label="Default select example"
-                                v-model="type" @change="selectCard" required>
-                                <option disabled>Select Type</option>
-                                <option
-                                    v-show="!debit.includes('GOLD') || !debit.includes('TITANIUM') || !debit.includes('SILVER')"
-                                    value="DEBIT">Debit</option>
-                                <option
-                                    v-if="!credit.includes('GOLD') || !credit.includes('TITANIUM') || !credit.includes('SILVER')"
-                                    value="CREDIT">Credit</option>
-                            </select>
-                            <select class="form-select select-card-create" aria-label="Default select example"
-                                v-model="color" @change="colorCard">
-                                <option disabled>Select color</option>
-                                <option value="GOLD">Gold</option>
-                                <option value="SILVER">Silver</option>
-                                <option value="TITANIUM">Titanium</option>
-                            </select>
-                            <button class="button-create-card" type="submit" @click="sureCreateCard">create</button>
+                <h1>Upgrade Your Wallet with Our New Credit Cards</h1>
+                <article class="article-createCard">
+                    <div class="text-createdCard">
+                        <h3>Welcome to our credit card section!</h3>
+                        <p class="text-info-createCard">Here you will find a variety of options to meet your financial
+                            needs. Credit cards are a
+                            useful
+                            financial tool that allows you to make purchases and pay for them later, as well as helping
+                            you
+                            build your credit history.
+                        </p>
+                        <p class="text-info-createCard">
+                            We offer a wide range of credit cards to meet your financial needs, from cards with low
+                            interest
+                            rates to cards with exclusive rewards programs and discounts. Our credit cards are designed
+                            to
+                            provide you with flexibility and control over your expenses.
+                        </p>
+                        <p class="text-info-createCard">
+                            We pride ourselves on offering exceptional customer service and we will assist you with
+                            anything
+                            you need. From answering your questions to helping you choose the best credit card for you,
+                            our
+                            goal is to ensure that you are completely satisfied with our services.
+                        </p>
+                        <p class="text-info-createCard">
+                            In addition, we are committed to the security of your financial information. We use advanced
+                            technologies and security measures to protect your data and ensure that your transactions
+                            are
+                            secure.
+                        </p>
+                        <p class="text-info-createCard">
+                            In summary, our credit card section is a reliable and secure option to meet your financial
+                            needs. We are here to help you choose the best option for you and answer all your questions.
+                            Don't hesitate to contact us if you need more information or assistance!
+                        </p>
+                    </div>
+                    <img src="./images/tarjeta-credito-debito-1140x703.jpg" alt="">
+                </article>
 
-                        </div>
-                        <div class="flip-card-create">
-                            <div class="flip-card-inner-create ">
-                                <div :class="'flip-card-front-create '+ color.toLowerCase()">
-                                    <p class="heading-create  ">{{selectColor}} </p>
-                                    <img class="logo-numba-card-create" src="./images/logo-homebanking.jpg" alt="">
-                                    <img class="logo-card-visa-create" src="./images/visaCard.png" alt="">
-                                    <p class="type-create-card">{{selectType}}</p>
-                                    <svg xml:space="preserve" viewBox="0 0 50 50" height="45px" width="45px" y="0px"
-                                        x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                        xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="chip-create"
-                                        version="1.1">
-                                        <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                <div class="container-create-card">
+                    <div class="container-select-card-create">
+                        <h2 style="color: white;">Create your card</h2>
+                        <select class="form-select select-card-create " aria-label="Default select example"
+                            v-model="type" @change="selectCard" required>
+                            <option disabled>Select Type</option>
+                            <option
+                                v-show="!debit.includes('GOLD') || !debit.includes('TITANIUM') || !debit.includes('SILVER')"
+                                value="DEBIT">Debit</option>
+                            <option
+                                v-if="!credit.includes('GOLD') || !credit.includes('TITANIUM') || !credit.includes('SILVER')"
+                                value="CREDIT">Credit</option>
+                        </select>
+                        <select class="form-select select-card-create" aria-label="Default select example"
+                            v-model="color" @change="colorCard">
+                            <option disabled>Select color</option>
+                            <option value="GOLD">Gold</option>
+                            <option value="SILVER">Silver</option>
+                            <option value="TITANIUM">Titanium</option>
+                        </select>
+                        <button class="button-create-card" type="submit" @click="sureCreateCard">create</button>
+
+                    </div>
+                    <div class="flip-card-create">
+                        <div class="flip-card-inner-create ">
+                            <div :class="'flip-card-front-create '+ color.toLowerCase()">
+                                <p class="heading-create  ">{{selectColor}} </p>
+                                <img class="logo-numba-card-create" src="./images/logo-homebanking.jpg" alt="">
+                                <img class="logo-card-visa-create" src="./images/visaCard.png" alt="">
+                                <p class="type-create-card">{{selectType}}</p>
+                                <svg xml:space="preserve" viewBox="0 0 50 50" height="45px" width="45px" y="0px" x="0px"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                                    id="Layer_1" class="chip-create" version="1.1">
+                                    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
               AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB6VBMVEUAAACNcTiVeUKVeUOY
               fEaafEeUeUSYfEWZfEaykleyklaXe0SWekSZZjOYfEWYe0WXfUWXe0WcgEicfkiXe0SVekSXekSW
               ekKYe0a9nF67m12ZfUWUeEaXfESVekOdgEmVeUWWekSniU+VeUKVeUOrjFKYfEWliE6WeESZe0GS
@@ -131,13 +170,12 @@
               cmVhdGUAMjAyMy0wMi0xM1QwODoxNToyOSswMDowMEUnN7UAAAAldEVYdGRhdGU6bW9kaWZ5ADIw
               MjMtMDItMTNUMDg6MTU6MjkrMDA6MDA0eo8JAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDIzLTAy
                                   LTEzVDA4OjE1OjI5KzAwOjAwY2+u1gAAAABJRU5ErkJggg==" y="0" x="0" height="50" width="50"
-                                            id="image0"></image>
-                                    </svg>
-                                    <svg xml:space="preserve" viewBox="0 0 50 50" height="40px" width="40px" y="0px"
-                                        x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                        xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="contactless-create"
-                                        version="1.1">
-                                        <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                                        id="image0"></image>
+                                </svg>
+                                <svg xml:space="preserve" viewBox="0 0 50 50" height="40px" width="40px" y="0px" x="0px"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                                    id="Layer_1" class="contactless-create" version="1.1">
+                                    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
               AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZ
               cwAACxMAAAsTAQCanBgAAAAHdElNRQfnAg0IEzgIwaKTAAADDklEQVRYw+1XS0iUURQ+f5qPyjQf
               lGRFEEFK76koKGxRbWyVVLSOgsCgwjZBJJYuKogSIoOonUK4q3U0WVBWFPZYiIE6kuArG3VGzK/F
@@ -157,19 +195,19 @@
               MTNUMDg6MTk6NTYrMDA6MDCjlq7LAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTEzVDA4OjE5
               OjU2KzAwOjAw0ssWdwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0xM1QwODoxOTo1Nisw
                                  MDowMIXeN6gAAAAASUVORK5CYII=" y="0" x="0" height="50" width="50" id="image0"></image>
-                                    </svg>
-                                    <p class="number-create">**** **** **** 6576</p>
-                                    <p class="valid_thru-create">VALID THRU</p>
-                                    <p class="fromDate-create">** / **</p>
-                                    <p class="thruDate-create">** / **</p>
-                                    <p class="name-create">{{dataClient.firstName +" "+ dataClient.lastName}}</p>
-                                </div>
+                                </svg>
+                                <p class="number-create">**** **** **** 6576</p>
+                                <p class="valid_thru-create">VALID THRU</p>
+                                <p class="fromDate-create">** / **</p>
+                                <p class="thruDate-create">** / **</p>
+                                <p class="name-create">{{dataClient.firstName +" "+ dataClient.lastName}}</p>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
             </div>
+
         </main>
         <footer>
             <div class="footer-logo">
@@ -177,7 +215,14 @@
                 <img class="footer-img-textologo" src="././images/texto logo.png" alt="">
             </div>
             <p>Copyrigth - Calvo juan Calvo</p>
-
+            <div class="redes-footer">
+                <a href="https://www.facebook.com/juancalvoo" target="_blank"><img src="./images/facebook1.png" alt=""
+                        class="icono-facebook"></a>
+                <a href="https://github.com/juancalvo864" target="_blank"><img src="./images/github.png" alt=""
+                        class="icono-github"></a>
+                <a href="https://www.instagram.com/juancalvoo/" target="_blank"><img src="./images/instagram1.png"
+                        alt="" class="icono-instagram"></a>
+            </div>
         </footer>
     </div>
 

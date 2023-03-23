@@ -1,8 +1,12 @@
 package com.mindhub.homebanking.Controlers;
 
+import com.mindhub.homebanking.Services.AccountService;
+import com.mindhub.homebanking.Services.ClientService;
 import com.mindhub.homebanking.dtos.ClientDTO;
 import com.mindhub.homebanking.models.Account;
+import com.mindhub.homebanking.models.CardAndAccountStatus;
 import com.mindhub.homebanking.models.Client;
+import com.mindhub.homebanking.models.AccountType;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,63 +24,61 @@ import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/api")
-public class ClientController {
+public class ClientController{
 
     @Autowired
-    private ClientRepository repoClient;
+    private ClientService clientService;
+
+    @Autowired
+    private AccountService accountService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private AccountRepository repoAccounts;
 
 
 
     @RequestMapping("/clients")
     public List<ClientDTO> getAll() {
-        return repoClient.findAll().stream().map(ClientDTO::new).collect(toList());
+        return clientService.findAll().stream().map(ClientDTO::new).collect(toList());
     }
 
     @RequestMapping("/clients/{id}")
-
-    public ClientDTO getClientDTO(@PathVariable Long id) {
-
-        return new ClientDTO(repoClient.findById(id).orElse(null));
+    public ClientDTO getClientDTOId(@PathVariable Long id) {
+        return new ClientDTO(clientService.findById(id));
     }
 
     @RequestMapping("/clients/current")
-    public ClientDTO getAll(Authentication authentication) {
-        return new ClientDTO( repoClient.findByEmail( authentication.getName()));
+    public ClientDTO getClientDTO(Authentication authentication) {
+        return new ClientDTO( clientService.findByEmail( authentication.getName()));
     }
 
 
-    @RequestMapping(path = "/clients", method = RequestMethod.POST)
+    @PostMapping( "/clients")
     public ResponseEntity<Object> register(
             @RequestParam String firstName, @RequestParam String lastName,
             @RequestParam String email, @RequestParam String password) {
 
         if (firstName.isEmpty()) {
-            return new ResponseEntity<>("Missing First Name", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Missing First Name", HttpStatus.FORBIDDEN);
         }
         if(lastName.isEmpty()){
-            return new ResponseEntity<>("Missing Last Name", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Missing Last Name", HttpStatus.FORBIDDEN);
         }
         if(email.isEmpty()){
-            return new ResponseEntity<>("Missing Email", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Missing Email", HttpStatus.FORBIDDEN);
         }
         if(password.isEmpty()){
-            return new ResponseEntity<>("Missing Password", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Missing Password", HttpStatus.FORBIDDEN);
         }
-        if (repoClient.findByEmail(email) != null) {
+        if (clientService.findByEmail(email) != null) {
             return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
         }
 
         Client newClient = new Client(firstName, lastName, email, passwordEncoder.encode(password));
-        Account newAccount = new Account(getAccountNumber(),  LocalDateTime.now(), 0.0);
+        Account newAccount = new Account(getAccountNumber(),  LocalDateTime.now(), 0.0, CardAndAccountStatus.ENABLED, AccountType.SAVING);
         newClient.addAccount(newAccount);
-        repoClient.save(newClient);
-        repoAccounts.save(newAccount);
+        clientService.save(newClient);
+        accountService.save(newAccount);
 
 
 
@@ -86,7 +88,7 @@ public class ClientController {
 
 
 
-    public String getAccountNumber() {
+    private String getAccountNumber() {
         Random rand  ;
         int number  ;
         String stringNumber ;
@@ -95,7 +97,7 @@ public class ClientController {
             rand = new Random();
             number = rand.nextInt(100000000);
             stringNumber = Integer.toString(number);
-            account =  repoAccounts.findByNumber(stringNumber);
+            account =  accountService.findByNumber(stringNumber);
         }while (account != null && account.getNumber().equals(stringNumber));
         return "VIN-" + stringNumber;
     }

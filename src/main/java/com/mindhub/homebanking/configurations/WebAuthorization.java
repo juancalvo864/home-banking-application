@@ -10,7 +10,7 @@ import org.springframework.security.web.authentication.logout.HttpStatusReturnin
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.net.http.HttpRequest;
+
 
 
 @EnableWebSecurity
@@ -22,19 +22,26 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests()
-                .antMatchers("/web/index.html","/web/assets/**","/web/javaScript/**","/web/images/**").permitAll()
+                .antMatchers("/web/index.html","/web/assets/**","/web/javaScript/**","/web/images/**","/clients/transaction/buy").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients/current/accounts").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.GET, "/api/clients/current/accounts").hasAuthority("CLIENT")
                 .antMatchers( HttpMethod.POST,"/api/clients/current/cards").hasAuthority("CLIENT")
                 .antMatchers( HttpMethod.GET,"/api/clients/current/cards").hasAuthority("CLIENT")
-                .antMatchers( HttpMethod.POST,"/api/clients/current/transaction").hasAuthority("CLIENT")
-                .antMatchers( HttpMethod.PATCH,"/api/clients/current/transaction").hasAuthority("CLIENT")
+                .antMatchers( HttpMethod.PATCH,"/api/clients/current/cards").hasAuthority("CLIENT")
+                .antMatchers( HttpMethod.POST,"/api/clients/transaction").hasAuthority("CLIENT")
+                .antMatchers( HttpMethod.GET,"/api/clients/current/transaction").hasAuthority("CLIENT")
+                .antMatchers( HttpMethod.POST,"/api/clients/current/loans").hasAuthority("CLIENT")
+                .antMatchers( HttpMethod.GET,"/api/clients/current/loans").hasAuthority("CLIENT")
+                .antMatchers( HttpMethod.GET,"/current/accounts/{id}/transaction/pdf").hasAuthority("CLIENT")
+                .antMatchers( HttpMethod.POST,"/api/admin/loans/new").hasAuthority("ADMIN")
+                .antMatchers("/web/adminLoan.html").hasAuthority("ADMIN")
                 .antMatchers("/manager/**.html").hasAuthority("ADMIN")
                 .antMatchers("/api/clients").hasAuthority("ADMIN")
                 .antMatchers("/h2-console/**").hasAuthority("ADMIN")
                 .antMatchers("/rest/**").hasAuthority("ADMIN")
-                .antMatchers("/api/client/current").hasAuthority("CLIENT")
+                .antMatchers("/api/clients/current").hasAuthority("CLIENT")
+                .antMatchers("/api/accounts").hasAuthority("ADMIN")
                 .antMatchers("/web/**").hasAuthority("CLIENT");
 
 
@@ -46,9 +53,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
         http.formLogin()
 
                 .usernameParameter("email")
-
                 .passwordParameter("password")
-
                 .loginPage("/api/login");
 
 
@@ -59,23 +64,18 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         //disabling frameOptions so h2-console can be accessed
-
         http.headers().frameOptions().disable();
 
         // if user is not authenticated, just send an authentication failure response
-
         http.exceptionHandling().authenticationEntryPoint((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
 
         // if login is successful, just clear the flags asking for authentication
-
         http.formLogin().successHandler((req, res, auth) -> clearAuthenticationAttributes(req));
 
         // if login fails, just send an authentication failure response
-
         http.formLogin().failureHandler((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
 
         // if logout is successful, just send a success response
-
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
 
 

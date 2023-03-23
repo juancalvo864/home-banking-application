@@ -1,8 +1,9 @@
 package com.mindhub.homebanking.Controlers;
 
+import com.mindhub.homebanking.Services.AccountService;
+import com.mindhub.homebanking.Services.ClientService;
 import com.mindhub.homebanking.dtos.AccountDTO;
-import com.mindhub.homebanking.models.Account;
-import com.mindhub.homebanking.models.Client;
+import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,41 +17,79 @@ import java.util.Random;
 import java.util.Set;
 
 
+import static com.mindhub.homebanking.models.CardAndAccountStatus.DISABLED;
+import static com.mindhub.homebanking.models.CardAndAccountStatus.ENABLED;
 import static java.util.stream.Collectors.toSet;
 
 @RestController
 @RequestMapping("/api")
 public class AccountController {
     @Autowired
-    private AccountRepository repoAccount;
+    private AccountService accountService;
+
     @Autowired
-    private ClientRepository repoClient;
+    private ClientService clientService;
 
 
-    @RequestMapping("/accounts")
+    @GetMapping("/accounts")
     public Set<AccountDTO> getAll() {
-        return repoAccount.findAll().stream().map(AccountDTO::new).collect(toSet());
+        return accountService.findAll().stream().map(AccountDTO::new).collect(toSet());
     }
-    @RequestMapping("/accounts/{id}")
+    @GetMapping("/accounts/{id}")
     public AccountDTO getAccount(@PathVariable Long id){
-        return  new AccountDTO(repoAccount.findById( id).orElse(null)) ;
+        return  new AccountDTO(accountService.findById(id));
     }
 
-    @RequestMapping("/clients/current/accounts")
+    @GetMapping("/clients/current/accounts")
     public  Set<AccountDTO> getAccountCurrent(Authentication authentication){
-        return  repoClient.findByEmail(authentication.getName()).getAccounts().stream().map(account-> new AccountDTO(account)).collect(toSet());
+        return  clientService.findByEmail(authentication.getName()).getAccounts().stream().filter(account-> account.getStatus().equals(ENABLED) ).map(account-> new AccountDTO(account)).collect(toSet());
     }
 
-    @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)
-    public ResponseEntity<Object> createAccount(Authentication authentication) {
-         Client client =  repoClient.findByEmail( authentication.getName());
-         Set <Account> accounts = client.getAccounts();
-         if(accounts.size() < 3 ) {
-             Account newAccount = new Account(getAccountNumber(), LocalDateTime.now(), 0.0);
-             client.addAccount(newAccount);
-             repoAccount.save(newAccount);
+    @PatchMapping("/clients/current/accounts")
+    public ResponseEntity<Object> deleteAccount(Authentication authentication, @RequestParam Long accountId) {
 
-             return new ResponseEntity<>(HttpStatus.CREATED);
+        Client client =  clientService.findByEmail( authentication.getName());
+        Account accountSelect = client.getAccounts().stream().filter(account -> account.getId() == accountId).findAny().orElse(null);
+
+        if(accountSelect.getStatus() == DISABLED ) {
+            return new ResponseEntity<>("Your account has alredy been canceled", HttpStatus.FORBIDDEN);
+        }
+        if(accountId == null){
+            return new ResponseEntity<>("Missing card id", HttpStatus.FORBIDDEN);
+        }
+        if(!client.getAccounts().stream().anyMatch(account-> account.getId() == accountId)){
+            return new ResponseEntity<>("The number is wrong", HttpStatus.FORBIDDEN);
+        }
+        if(accountSelect.getBalance() != 0) {
+            return new ResponseEntity<>("To delete the account,the balance must be zero", HttpStatus.FORBIDDEN);
+        };
+
+
+        accountSelect.setStatus(DISABLED);
+        accountService.save(accountSelect);
+        return new ResponseEntity<>("The account was deleted",HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping( "/clients/current/accounts")
+    public ResponseEntity<Object> createAccount(Authentication authentication,@RequestParam  AccountType accountType) {
+
+         Client client =  clientService.findByEmail( authentication.getName());
+         Set <Account> accounts = client.getAccounts().stream().filter(account-> account.getStatus().equals(ENABLED) ).collect(toSet());
+
+        if(accountType == null){
+            return new ResponseEntity<>("You have not entered an account type", HttpStatus.FORBIDDEN);
+        }
+         if(accounts.size() < 3 && accountType.equals(AccountType.SAVING) ) {
+             Account newAccount = new Account(getAccountNumber(), LocalDateTime.now(), 0.0, CardAndAccountStatus.ENABLED, AccountType.SAVING);
+             client.addAccount(newAccount);
+             accountService.save(newAccount);
+             return new ResponseEntity<>("The account has been created successfully",HttpStatus.CREATED);
+         }
+         if(accounts.size() < 3 && accountType.equals(AccountType.CHECKING) ) {
+             Account newAccount = new Account(getAccountNumber(), LocalDateTime.now(), 0.0, CardAndAccountStatus.ENABLED, AccountType.CHECKING);
+             client.addAccount(newAccount);
+             accountService.save(newAccount);
+             return new ResponseEntity<>("The account has been created successfully",HttpStatus.CREATED);
          }
         return new ResponseEntity<>("You can't have more than 3 accounts", HttpStatus.FORBIDDEN);
     }
@@ -64,7 +103,7 @@ public class AccountController {
              rand = new Random();
              number = rand.nextInt(100000000);
              stringNumber = Integer.toString(number);
-            account =  repoAccount.findByNumber(stringNumber);
+            account =  accountService.findByNumber(stringNumber);
         }while (account != null && account.getNumber().equals(stringNumber));
         return "VIN-" + stringNumber;
     }

@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unpkg.com/@vuepic/vue-datepicker@latest/dist/main.css">
     <link rel="stylesheet" href="./assets/accounts.css">
     <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
 </head>
@@ -15,7 +16,8 @@
 <body>
     <div id="app">
         <header>
-            <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <!--   bg-dark navbar-dark -->
+            <nav class="navbar navbar-expand-lg navbar-dark ">
                 <div class="header-logo">
                     <img class="logo-header" src="./images/logo.png" alt="">
                     <img class="logo-text-header" src="./images/texto logo.png" alt="">
@@ -24,18 +26,16 @@
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle navbar-brand navbar-dark button-navbar"
                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="img-usuario" src="./images/nick-hillier-aQcE3gDSSTY-unsplash.jpg" alt="">
+                            <img class="img-usuario" src="./images/paisaje-user.jpg" alt="">
                             <div>
-                                <p>Welcome!</p>
-                                <p>{{dataClients.firstName + " "}} {{dataClients.lastName}} </p>
+                                <p>{{dataClient.firstName + " "}} {{dataClient.lastName}} </p>
                             </div>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href=""></a>
                             <li><button @click="alert" class="dropdown-item" type="button">LogOut</button></li>
                         </ul>
                     </div>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -57,7 +57,8 @@
                                     More options
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="./loanApplication.html">Loan Application</a></li>
+                                    <li><a class="dropdown-item" href="./loanApplication.html">Loan Application</a>
+                                    </li>
                                     <li><a class="dropdown-item" href="./transfers.html">Transfers</a></li>
                                     <li><a class="dropdown-item" href="./servicePay.html">Service pay</a></li>
                                 </ul>
@@ -68,36 +69,18 @@
             </nav>
         </header>
         <main>
-            <div class="container-accounts" v-if="dataClients.accounts">
+
+            <!-- ACCOUNTS MAIN -->
+            <div class="container-accounts" v-if="dataClient.accounts">
                 <div class="box-only-accounts">
                     <div class="container-account">
-                        <a class=" box-account" :href="'./account.html?id='+dataClients.accounts[0].id"
+                        <a class=" box-account" :href="'./account.html?id='+dataClient.accounts[0].id"
                             style="text-decoration: none;">
-                            <div>
-                                <h3>Main account</h3>
-                                <p style="font-size: 1.5rem;">{{dataClients.accounts[0].number}} </p>
-                                <h1 style="color: #4455a9;">u$s
-                                    {{dataClients.accounts[0].balance.toFixed(2)}}
-                                </h1>
-                            </div>
-                            <div class="d-flex flex-column justify-content-between">
-                                <img style="width: 4rem;" src="./images/cash-icon.png" alt="">
-                                <div class="click-here">
-                                    <p style="margin: 0;">FOR MORE</p>
-                                    <P style="margin: 0;">CLICK HERE</P>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="container-account" v-if="dataClients.accounts"
-                        v-for="(account,index) of dataClients.accounts">
-                        <template v-if="index !== 0">
-                            <a class=" box-account" :href="'./account.html?id='+account.id"
-                                style="text-decoration: none;">
+                            <div class="box-account-title-info">
                                 <div>
-                                    <h5>Other account</h5>
-                                    <p style="font-size: 1.5rem;">{{account.number}} </p>
-                                    <h1 style="color: #4455a9">u$s {{account.balance.toFixed(2)}}</h1>
+                                    <h3>Main account</h3>
+                                    <p style="font-size: 1.5rem;">{{dataClient.accounts[0].number}} </p>
+                                    <p style="color:#00ff75">Account {{dataClient.accounts[0].accountType}}</p>
                                 </div>
                                 <div class="d-flex flex-column justify-content-between">
                                     <img style="width: 4rem;" src="./images/cash-icon.png" alt="">
@@ -106,117 +89,248 @@
                                         <P style="margin: 0;">CLICK HERE</P>
                                     </div>
                                 </div>
-                            </a>
-                        </template>
-                    </div>
-                </div>
-                <div class="container-total-balance">
-                    <div class=" box-total-balance">
-                        <div class="">
-                            <h4>Total Balance</h4>
-                            <h1 style="color: orange;"> u$s {{totalBalance.toFixed(2)}} </h1>
-                        </div>
-                        <div>
-                            <img style="width: 4rem;" src="./images/final-amount.png" alt="">
-                        </div>
-                    </div>
-                    <button class="continue-application" type="submit" @click="createAccount"
-                        v-show="dataClients.accounts.length < 3">
-                        <div>
-                            <div class="pencil"></div>
-                            <div class="folder">
-                                <div class="top">
-                                </div>
-                                <div class="paper"></div>
                             </div>
+                            <h1 style="color: #d68443;">u$s
+                                {{dataClient.accounts[0].balance.toFixed(2)}}
+                            </h1>
+                        </a>
+                    </div>
+                    <!-- ACCOUNTS OTHER -->
+                    <template v-if="dataClient.accounts" v-for="(account,index) of dataClient.accounts">
+                        <div class="container-account" v-if="index !== 0">
+                            <a class=" box-account" :href="'./account.html?id='+account.id"
+                                style="text-decoration: none;">
+                                <div class="box-account-title-info">
+                                    <div>
+                                        <h3>Other account</h3>
+                                        <p style="font-size: 1.5rem;">{{account.number}} </p>
+                                        <p style="color:#00ff75">Account {{account.accountType}}</p>
+
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-between">
+                                        <img style="width: 4rem;" src="./images/cash-icon.png" alt="">
+                                        <div class="click-here">
+                                            <p style="margin: 0;">FOR MORE</p>
+                                            <P style="margin: 0;">CLICK HERE</P>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h1 style="color: #d68443">u$s {{account.balance.toFixed(2)}}</h1>
+                            </a>
                         </div>
-                        Create new account
-                    </button>
+                    </template>
                 </div>
 
             </div>
             <div class="box-account" v-else>
                 <h1>Has no accounts!</h1>
             </div>
-            <div class="container-main-transactions" v-if="dataClients.accounts">
-                <table class="table table-dark table-hover">
-                    <fieldset style="font-size: 2rem;text-align: center;">Main account - Last transactions</fieldset>
-                    <thead>
-                        <tr>
-                            <th scope="col" style="border-top-left-radius: 10px;">Date</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Type</th>
-                            <th scope="col" style="border-top-right-radius: 10px;">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-if="dataClients.accounts[0].transactions.length !== 0"
-                            v-for="(transaction,index) of dataClients.accounts[0].transactions.sort((a, b) => a.id - b.id)">
-                            <template v-if="index <= 2">
-                                <th>{{dateTimeTransactions(transaction.date)}} </th>
-                                <td>{{transaction.description}} </td>
-                                <td v-if="transaction.type == `DEBIT`"><img src="./images/arrowDown.png" alt="" alt=""
-                                        style="width: 2rem;"></td>
-                                <td v-else=><img src="./images/arrowUp.png" alt="" style="width: 2rem;"></td>
-                                <td>u$s {{transaction.amount.toFixed(2)}} </td>
+            <!--  TRANSACTIONS MAIN -->
+
+            <div class="container-main-transactions" v-if="dataClient.accounts">
+                <div class="table-and-title">
+                    <h2>Main account - Last transactions</h2>
+                    <div class="list-transaction-home-mobil">
+                        <ul class="list-home-mobil">
+                            <template
+                                v-for="(transaction,index) of dataClient.accounts[0].transactions.sort((a, b) => b.id - a.id)">
+                                <li v-if="index <= 2" class="d-flex justify-content-between"
+                                    style="border-bottom: 1px solid white;">
+                                    <div>
+                                        <p style="text-align: start;">{{transaction.description}}</p>
+                                        <p style="text-align: start;">{{dateTimeTransactions(transaction.date)}}</p>
+                                    </div>
+                                    <div>
+                                        <p>u$s {{transaction.amount.toFixed(2)}}</p>
+                                    </div>
+                                </li>
                             </template>
-                        </tr>
-                        <tr v-else>
-                            <th>dont have transactions </th>
-                            <td>dont have transactions </td>
-                            <td>dont have transactions </td>
-                            <td>dont have transactions </td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </ul>
+                    </div>
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="border-top-left-radius: 10px;">Date</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Type</th>
+                                <th scope="col" style="text-align: center;">Amount</th>
+                                <th scope="col" style="border-top-right-radius: 10px;text-align: center;">Balance
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-if="dataClient.accounts[0].transactions.length !== 0"
+                                v-for="(transaction,index) of dataClient.accounts[0].transactions.sort((a, b) => b.id - a.id)">
+                                <template v-if="index <= 2">
+                                    <th>{{dateTimeTransactions(transaction.date)}} </th>
+                                    <td>{{transaction.description}} </td>
+                                    <td v-if="transaction.type == `DEBIT`"><img src="./images/arrowDown.png" alt=""
+                                            alt="" style="width: 2rem;"></td>
+                                    <td v-else=><img src="./images/arrowUp.png" alt="" style="width: 2rem;"></td>
+                                    <td style="text-align: center;">u$s {{transaction.amount.toFixed(2)}} </td>
+                                    <td style="text-align: center;">u$s {{dataClient.accounts[0].balance}} </td>
+                                </template>
+                            </tr>
+                            <tr v-else>
+                                <th>dont have transactions </th>
+                                <td>dont have transactions </td>
+                                <td>dont have transactions </td>
+                                <td>dont have transactions </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- CHART AND BALANCE AACOUNTS -->
+                <div class="balance-chart-main">
+                    <!-- BALANCE ACCOUNTS -->
+                    <div class="container-total-balance">
+                        <h3>Total Balance</h3>
+                        <div class=" box-total-balance">
+                            <div class="d-flex flex-column ">
+                                <template v-for="account of dataClient.accounts">
+                                    <ul>
+                                        <li>{{account.number + " : " + "u$s" + account.balance}} </li>
+                                    </ul>
+                                </template>
+                            </div>
+                            <div>
+                                <img style="width: 4rem;" src="./images/final-amount.png" alt="">
+                            </div>
+                        </div>
+                        <h2 style="color: #00ff75;"> u$s {{totalBalance.toFixed(2)}} </h2>
+                        <button v-show="dataClient.accounts.length < 3" type="button" class="btn btn-primary"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            CREATE ACCOUNT
+                        </button>
+
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel"
+                                        style="color: black !important;">Create account</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-check">
+                                        <label class="form-check-label" style="color: black !important;">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                v-model="type" value="SAVING">
+
+                                            SAVING ACCOUNT
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label" style="color: black !important;">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                v-model="type" value="CHECKING">
+                                            CHECKING ACCOUNT
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" @click="createAccount">Save
+                                        changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  CHART TRANSACTIONS -->
+                    <div id="chart">
+                    </div>
+                </div>
+
             </div>
             <div class="box-account" v-else>
                 <h1>Has no transaction!</h1>
             </div>
-            <div id="chart">
 
-            </div>
-
-            <div class="container-loans-and-title">
-                <h2>Loans</h2>
-                <div class="containter-loans" v-if="loans.length !== 0">
-                    <div class=" box-loans" v-for="loan of loans ">
-                        <div class="box-loan">
-                            <div>
-                                <h3>{{loan.name}}</h3>
-                                <p>payments : {{loan.payments}} </p>
-                                <h2 style="color: #45cb85;">u$S {{loan.amount.toLocaleString()}} </h2>
-                            </div>
-                            <div>
-                                <img style="width: 4rem;" src="./images/bankLoan.png" alt="">
+            <!-- LOANS AND EXCHANGE -->
+            <div class="container-home-loan-exchange">
+                <div class="container-loans-and-title">
+                    <h2>Your acquired Loans</h2>
+                    <a href="./loanApplication.html" style="text-decoration: none;" class="containter-loans"
+                        v-if="loans.length !== 0" v-for="loan of loans ">
+                        <div class=" box-loans">
+                            <div class="box-loan">
+                                <div>
+                                    <h3>{{loan.name}}</h3>
+                                    <p>payments : {{loan.payments}} </p>
+                                    <h1 style="color: #45cb85;">u$S {{loan.amount.toLocaleString()}} </h1>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <img style="width: 4rem;" src="./images/bankLoan.png" alt="">
+                                </div>
                             </div>
                         </div>
+                    </a>
+                    <div v-else class="box-account">
+                        <h1>Has no Loan!</h1>
                     </div>
                 </div>
-                <div v-else class="box-account">
-                    <h1>Has no Loan!</h1>
+                <!------------ START EXCHANGE ------------>
+                <div class="exchanges-home">
+                    <h2>Exchange</h2>
+                    <div class="box-exchange">
+                        <div class="details-exchange">
+                            <h3>EUR</h3>
+                            <h4 :class="{ 'class1' : exchange.EUR > 1, 'class2': exchange.EUR <= 1}">
+                                {{exchange.EUR}}</h4>
+                        </div>
+                        <div id="chart-1"></div>
+                    </div>
+                    <div class="box-exchange">
+                        <div class="details-exchange">
+                            <h3>GBP</h3>
+                            <h4 :class="{ class1 : exchange.GBP > 1, class2: exchange.GBP <= 1}">
+                                {{exchange.GBP}}</h4>
+                        </div>
+                        <div id="chart-2"></div>
+                    </div>
+                    <div class="box-exchange">
+                        <div class="details-exchange">
+                            <h3>ARS</h3>
+                            <h4 :class="{ class1 : exchange.ARS > 1, class2: exchange.ARS <= 1}">
+                                {{exchange.ARS}}</h4>
+                        </div>
+                        <div id="chart-3"></div>
+                    </div>
                 </div>
+                <!------------ END EXCHANGE ------------>
             </div>
-            <h2 style="text-align: center;color: white;margin-top: 5rem;">Cards</h2>
-            <div class="container-cards">
-                <div class="d-flex flex-column">
-                    <h3 style="text-align: center;">Debit Card</h3>
-                    <div class="container-cards-render">
-                        <template v-if="cards.length !== 0" v-for="card of cards">
-                            <a v-if="card.type == `DEBIT`" style="text-decoration: none;color: white;"
-                                href="./cards.html">
-                                <div class="flip-cards">
-                                    <div class="flip-cards-inner">
-                                        <div :class="'flip-card-front '+ card.color.toLowerCase()">
-                                            <p class="heading">{{card.color}} </p>
-                                            <img class="logo-numba-card" src="./images/logo-homebanking.jpg" alt="">
-                                            <img class="logo-card-visa" src="./images/visaCard.png" alt="">
-                                            <p class="type-card-front">{{card.type}}</p>
-                                            <svg xml:space="preserve" viewBox="0 0 50 50" height="35px" width="35px"
-                                                y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="chip"
-                                                version="1.1">
-                                                <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+            <!------------ START CARDS ------------>
+            <div class="d-flex justify-content-center">
+                <div class="container-home-cardDebit-cardCredit">
+                    <h1>Your cards</h1>
+                    <div class="container-cards">
+                        <div class="box-cards-debit-credit">
+                            <h2 style="text-align: center;">Debit Card</h2>
+                            <div class="container-cards-render">
+                                <template v-if="cards.length !== 0" v-for="card of cards">
+                                    <a v-if="card.type == `DEBIT`" style="text-decoration: none;color: white;"
+                                        href="./cards.html">
+                                        <div class="flip-cards">
+                                            <div class="flip-cards-inner">
+                                                <div :class="'flip-card-front '+ card.color.toLowerCase()">
+                                                    <p class="heading">{{card.color}} </p>
+                                                    <img class="logo-numba-card" src="./images/logo-homebanking.jpg"
+                                                        alt="">
+                                                    <img class="logo-card-visa" src="./images/visaCard.png" alt="">
+                                                    <img v-show="checkExpire(card)" class="expired-card"
+                                                        src="./images/pngwing.com (1).png" alt="">
+                                                    <p class="type-card-front">{{card.type}}</p>
+                                                    <svg xml:space="preserve" viewBox="0 0 50 50" height="35px"
+                                                        width="35px" y="0px" x="0px"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                        xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="chip"
+                                                        version="1.1">
+                                                        <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
                                       AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB6VBMVEUAAACNcTiVeUKVeUOY
                                       fEaafEeUeUSYfEWZfEaykleyklaXe0SWekSZZjOYfEWYe0WXfUWXe0WcgEicfkiXe0SVekSXekSW
                                       ekKYe0a9nF67m12ZfUWUeEaXfESVekOdgEmVeUWWekSniU+VeUKVeUOrjFKYfEWliE6WeESZe0GS
@@ -242,13 +356,14 @@
                                       cmVhdGUAMjAyMy0wMi0xM1QwODoxNToyOSswMDowMEUnN7UAAAAldEVYdGRhdGU6bW9kaWZ5ADIw
                                       MjMtMDItMTNUMDg6MTU6MjkrMDA6MDA0eo8JAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDIzLTAy
                                       LTEzVDA4OjE1OjI5KzAwOjAwY2+u1gAAAABJRU5ErkJggg==" y="0" x="0" height="50"
-                                                    width="50" id="image0"></image>
-                                            </svg>
-                                            <svg xml:space="preserve" viewBox="0 0 50 50" height="30px" width="30px"
-                                                y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="contactless"
-                                                version="1.1">
-                                                <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                                                            width="50" id="image0"></image>
+                                                    </svg>
+                                                    <svg xml:space="preserve" viewBox="0 0 50 50" height="30px"
+                                                        width="30px" y="0px" x="0px"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                        xmlns="http://www.w3.org/2000/svg" id="Layer_1"
+                                                        class="contactless" version="1.1">
+                                                        <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
                                       AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZ
                                       cwAACxMAAAsTAQCanBgAAAAHdElNRQfnAg0IEzgIwaKTAAADDklEQVRYw+1XS0iUURQ+f5qPyjQf
                                       lGRFEEFK76koKGxRbWyVVLSOgsCgwjZBJJYuKogSIoOonUK4q3U0WVBWFPZYiIE6kuArG3VGzK/F
@@ -268,42 +383,45 @@
                                       MTNUMDg6MTk6NTYrMDA6MDCjlq7LAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTEzVDA4OjE5
                                       OjU2KzAwOjAw0ssWdwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0xM1QwODoxOTo1Nisw
                                       MDowMIXeN6gAAAAASUVORK5CYII=" y="0" x="0" height="50" width="50" id="image0">
-                                                </image>
-                                            </svg>
-                                            <p class="number">{{card.number}} </p>
-                                            <p class="valid_thru "> Valid dates </p>
-                                            <p class="fromDate">{{card.fromDate}} </p>
-                                            <p class="thruDate">{{card.thruDate}} </p>
-                                            <p class="name">{{card.cardholder}}</p>
+                                                        </image>
+                                                    </svg>
+                                                    <p class="number">{{card.number}} </p>
+                                                    <p class="valid_thru "> Valid dates </p>
+                                                    <p class="fromDate">{{card.fromDate}} </p>
+                                                    <p class="thruDate">{{card.thruDate}} </p>
+                                                    <p class="name">{{card.cardholder}}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
+                                </template>
+                                <div v-else="" class="box-account">
+                                    <h1>Has no cards!</h1>
                                 </div>
-                            </a>
-                        </template>
-                        <div v-else="" class="box-account">
-                            <h1>Has no cards!</h1>
+                            </div>
                         </div>
-                    </div>
-
-                </div>
-                <div class="d-flex flex-column">
-                    <h3 style="text-align: center;">Credit card</h3>
-                    <div v-if="cards.length !== 0" class="container-cards-render">
-                        <template v-for="card of cards">
-                            <a v-if="card.type == `CREDIT`" style="text-decoration: none;color: white;"
-                                href="./cards.html">
-                                <div class="flip-cards">
-                                    <div class="flip-cards-inner">
-                                        <div :class="'flip-card-front '+ card.color.toLowerCase()">
-                                            <p class="heading">{{card.color}} </p>
-                                            <img class="logo-numba-card" src="./images/logo-homebanking.jpg" alt="">
-                                            <img class="logo-card-visa" src="./images/visaCard.png" alt="">
-                                            <p class="type-card-front">{{card.type}}</p>
-                                            <svg xml:space="preserve" viewBox="0 0 50 50" height="30px" width="30px"
-                                                y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="chip"
-                                                version="1.1">
-                                                <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                        <div class="box-cards-debit-credit">
+                            <h2 style="text-align: center;">Credit card</h2>
+                            <div v-if="cards.length !== 0" class="container-cards-render">
+                                <template v-for="card of cards">
+                                    <a v-if="card.type == `CREDIT`" style="text-decoration: none;color: white;"
+                                        href="./cards.html">
+                                        <div class="flip-cards">
+                                            <div class="flip-cards-inner">
+                                                <div :class="'flip-card-front '+ card.color.toLowerCase()">
+                                                    <p class="heading">{{card.color}} </p>
+                                                    <img class="logo-numba-card" src="./images/logo-homebanking.jpg"
+                                                        alt="">
+                                                    <img class="logo-card-visa" src="./images/visaCard.png" alt="">
+                                                    <img v-show="checkExpire(card)" class="expired-card"
+                                                        src="./images/pngwing.com (1).png" alt="">
+                                                    <p class="type-card-front">{{card.type}}</p>
+                                                    <svg xml:space="preserve" viewBox="0 0 50 50" height="30px"
+                                                        width="30px" y="0px" x="0px"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                        xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="chip"
+                                                        version="1.1">
+                                                        <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
                                             AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB6VBMVEUAAACNcTiVeUKVeUOY
                                             fEaafEeUeUSYfEWZfEaykleyklaXe0SWekSZZjOYfEWYe0WXfUWXe0WcgEicfkiXe0SVekSXekSW
                                             ekKYe0a9nF67m12ZfUWUeEaXfESVekOdgEmVeUWWekSniU+VeUKVeUOrjFKYfEWliE6WeESZe0GS
@@ -329,13 +447,14 @@
                                             cmVhdGUAMjAyMy0wMi0xM1QwODoxNToyOSswMDowMEUnN7UAAAAldEVYdGRhdGU6bW9kaWZ5ADIw
                                             MjMtMDItMTNUMDg6MTU6MjkrMDA6MDA0eo8JAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDIzLTAy
                                             LTEzVDA4OjE1OjI5KzAwOjAwY2+u1gAAAABJRU5ErkJggg==" y="0" x="0" height="50"
-                                                    width="50" id="image0"></image>
-                                            </svg>
-                                            <svg xml:space="preserve" viewBox="0 0 50 50" height="30px" width="30px"
-                                                y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                xmlns="http://www.w3.org/2000/svg" id="Layer_1" class="contactless"
-                                                version="1.1">
-                                                <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                                                            width="50" id="image0"></image>
+                                                    </svg>
+                                                    <svg xml:space="preserve" viewBox="0 0 50 50" height="30px"
+                                                        width="30px" y="0px" x="0px"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                        xmlns="http://www.w3.org/2000/svg" id="Layer_1"
+                                                        class="contactless" version="1.1">
+                                                        <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
                                             AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZ
                                             cwAACxMAAAsTAQCanBgAAAAHdElNRQfnAg0IEzgIwaKTAAADDklEQVRYw+1XS0iUURQ+f5qPyjQf
                                             lGRFEEFK76koKGxRbWyVVLSOgsCgwjZBJJYuKogSIoOonUK4q3U0WVBWFPZYiIE6kuArG3VGzK/F
@@ -355,30 +474,31 @@
                                             MTNUMDg6MTk6NTYrMDA6MDCjlq7LAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAyLTEzVDA4OjE5
                                             OjU2KzAwOjAw0ssWdwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0xM1QwODoxOTo1Nisw
                                             MDowMIXeN6gAAAAASUVORK5CYII=" y="0" x="0" height="50" width="50"
-                                                    id="image0">
-                                                </image>
-                                            </svg>
-                                            <p class="number">{{card.number}} </p>
-                                            <p class="valid_thru "> Valid dates </p>
-                                            <p class="fromDate">{{card.fromDate}} </p>
-                                            <p class="thruDate">{{card.thruDate}} </p>
-                                            <p class="name">{{card.cardholder}}</p>
+                                                            id="image0">
+                                                        </image>
+                                                    </svg>
+                                                    <p class="number">{{card.number}} </p>
+                                                    <p class="valid_thru "> Valid dates </p>
+                                                    <p class="fromDate">{{card.fromDate}} </p>
+                                                    <p class="thruDate">{{card.thruDate}} </p>
+                                                    <p class="name">{{card.cardholder}}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
+                                </template>
+                            </div>
+                            <div v-else class="d-flex justify-content-center">
+                                <div class="box-account ">
+                                    <h1>Has no cards!</h1>
                                 </div>
-                            </a>
-                        </template>
-                    </div>
-                    <div v-else class="d-flex justify-content-center">
-                        <div class="box-account ">
-                            <h1>Has no cards!</h1>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
 
+            <!------------ END CARDS ------------>
 
         </main>
         <footer>
@@ -387,7 +507,11 @@
                 <img class="footer-img-textologo" src="././images/texto logo.png" alt="">
             </div>
             <p>Copyrigth - Calvo juan Calvo</p>
-
+            <div class="redes-footer">
+                <a href=""><img src="./images/facebook1.png" alt="" class="icono-facebook"></a>
+                <a href=""><img src="./images/github.png" alt="" class="icono-github"></a>
+                <a href=""><img src="./images/instagram1.png" alt="" class="icono-instagram"></a>
+            </div>
         </footer>
     </div>
 
@@ -402,6 +526,10 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://unpkg.com/@vuepic/vue-datepicker@latest"></script>
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na1.hs-scripts.com/24257725.js"></script>
+    <!-- End of HubSpot Embed Code -->
     <script src="./javaScript/accounts.js"></script>
 
 </body>
