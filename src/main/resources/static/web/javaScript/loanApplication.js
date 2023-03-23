@@ -26,8 +26,8 @@ createApp({
     methods: {
         loadData() {
             axios.all([
-                axios.get('http://localhost:8080/api/clients/current'),
-                axios.get('http://localhost:8080/api/loans')
+                axios.get('/api/clients/current'),
+                axios.get('/api/loans')
             ])
                 .then(axios.spread((response1, response2) => {
                     this.dataClient = response1.data

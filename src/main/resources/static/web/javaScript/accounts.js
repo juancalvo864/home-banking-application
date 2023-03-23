@@ -26,7 +26,7 @@ createApp({
     methods: {
         loadData() {
             axios.all([
-                axios.get('http://localhost:8080/api/clients/current'),
+                axios.get('/api/clients/current'),
                 axios.get('https://api.apilayer.com/exchangerates_data/timeseries?base=USD&start_date=2023-03-01&end_date=2023-03-20&symbols=EUR,GBP,ARS', { headers: { 'apikey': 'bBUZoSyHTESo4H7elpuiGhpDcZMkVJok' } })
 
             ])

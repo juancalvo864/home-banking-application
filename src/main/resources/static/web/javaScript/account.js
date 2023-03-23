@@ -27,7 +27,7 @@ createApp({
 
     methods: {
         loadData() {
-            axios.get("http://localhost:8080/api/clients/current")
+            axios.get("/api/clients/current")
                 .then(res => {
                     this.dataClient = res.data
                     this.accounts = this.dataClient.accounts
@@ -73,7 +73,7 @@ createApp({
 
         params() {
 
-            axios.get("http://localhost:8080/api/accounts/" + this.id)
+            axios.get("/api/accounts/" + this.id)
                 .then(res => {
                     this.accountSelect = res.data
                     this.transactionFilter = this.accountSelect.transactions
